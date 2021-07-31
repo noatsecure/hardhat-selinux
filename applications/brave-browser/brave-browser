@@ -3,7 +3,17 @@
 ### FLAGS ###
 #############
 # Flags for privacy
-flags_custom="--disable-3d-apis --disable-background-networking --disable-breakpad --disable-oopr-debug-crash-dump --disable-speech-api --disable-sync --disable-system-font-check --no-crash-upload"
+flags_custom="\
+                --disable-3d-apis               \
+                --disable-background-networking \
+                --disable-breakpad              \
+                --disable-dinosaur-easter-egg   \
+                --disable-speech-api            \
+                --disable-sync                  \
+                --disable-webgl                 \
+                --js-flags='--jitless'          \
+                --no-crash-upload               \
+             ";
 
 # Flags to enable wayland support
 flags_wayland="--enable-features=UseOzonePlatform --ozone-platform=wayland"
@@ -26,4 +36,4 @@ home_config_brave="${HOME}/.config/BraveSoftware/Brave-Browser";
 #############
 ### START ###
 #############
-/usr/bin/brave-browser ${flags_wayland} --incognito "${@}";
+/usr/bin/brave-browser ${flags_custom} ${flags_wayland} --incognito "${@}";
