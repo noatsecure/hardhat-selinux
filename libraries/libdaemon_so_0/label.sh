@@ -1,0 +1,2 @@
+#!/bin/sh
+/usr/sbin/semanage fcontext --add --type libdaemon_so_0_t /usr/lib/libdaemon.so.0.5.0;

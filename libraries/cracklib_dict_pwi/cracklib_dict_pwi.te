@@ -1,0 +1,8 @@
+module cracklib_dict_pwi 1.0.0;
+########################################
+require {
+    attribute file_type, non_auth_file_type, non_security_file_type;
+}
+########################################
+type cracklib_dict_pwi_t, file_type, non_auth_file_type, non_security_file_type;
+########################################

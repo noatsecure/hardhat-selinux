@@ -1,0 +1,8 @@
+module libbd_fs_so_2 1.0.0;
+########################################
+require {
+    attribute base_file_type, base_ro_file_type, file_type, non_auth_file_type, non_security_file_type, sepgsql_module_type;
+}
+########################################
+type libbd_fs_so_2_t, base_file_type, base_ro_file_type, file_type, non_auth_file_type, non_security_file_type, sepgsql_module_type;
+########################################
