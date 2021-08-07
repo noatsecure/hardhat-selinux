@@ -1,4 +1,4 @@
-module hardened-fedora-core 1.0.0;
+module hardhat-core 1.0.0;
 ########################################
 require {
     class file { read write };
@@ -7,4 +7,4 @@ require {
 }
 ########################################
 #============= user_t ==============
-allow user_t tmpfs_t:file { read write };
+#allow user_t tmpfs_t:file { read write };
