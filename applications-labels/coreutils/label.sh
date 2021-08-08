@@ -101,4 +101,3 @@
 /usr/sbin/semanage fcontext --add --type coreutils_t /usr/bin/who;
 /usr/sbin/semanage fcontext --add --type coreutils_t /usr/bin/whoami;
 /usr/sbin/semanage fcontext --add --type coreutils_t /usr/bin/yes;
-/usr/sbin/semanage fcontext --add --type coreutils_t /usr/sbin/chroot;
