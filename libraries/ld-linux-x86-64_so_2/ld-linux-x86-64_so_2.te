@@ -1,8 +1,0 @@
-module ld-linux-x86-64_so_2 1.0.0;
-########################################
-require {
-    attribute file_type, non_auth_file_type, non_security_file_type;
-}
-########################################
-type ld-linux-x86-64_so_2_t, file_type, non_auth_file_type, non_security_file_type;
-########################################
