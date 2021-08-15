@@ -5,6 +5,7 @@ require {
     class dbus { send_msg };
     class file { entrypoint lock open read setattr write };
     class lnk_file { read };
+    class process { transition };
     class shm { unix_read unix_write };
     class sock_file { write };
     class unix_stream_socket { connectto };
