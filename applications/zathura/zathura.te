@@ -3,7 +3,7 @@ module zathura 1.0.0;
 require {
     attribute application_domain_type, application_exec_type, entry_type, exec_type, file_type, non_auth_file_type, non_security_file_type, userdomain, x_userdomain;
     class chr_file { getattr read write };
-    class dir { getattr read search };
+    class dir { getattr open read search };
     class fd { use };
     class file { entrypoint execute getattr lock map open read write };
     class lnk_file { read };
@@ -34,6 +34,7 @@ require {
     type user_tmp_t;
     type usr_t;
     type var_run_t;
+    type zathura-pdf-poppler_lib_t;
 }
 ########################################
 type zathura_t, application_domain_type, userdomain, x_userdomain;
@@ -68,8 +69,10 @@ allow zathura_t ld_so_t:file { execute map read };
 allow zathura_t lib_t:dir read;
 allow zathura_t lib_t:file { execute getattr map open read };
 allow zathura_t lib_t:lnk_file read;
+allow zathura_t locale_t:dir { getattr open read search };
+allow zathura_t locale_t:file { getattr map open read };
 allow zathura_t locale_t:lnk_file read;
-allow zathura_t root_t:dir { getattr read search };
+allow zathura_t root_t:dir { getattr search };
 allow zathura_t self:dir search;
 allow zathura_t self:lnk_file read;
 allow zathura_t self:process { fork getsched setsched };
@@ -80,10 +83,11 @@ allow zathura_t tmpfs_t:file { map read write };
 allow zathura_t user_devpts_t:chr_file { read write };
 allow zathura_t user_home_t:dir read;
 allow zathura_t user_home_t:file { open read };
-allow zathura_t user_t:unix_stream_socket connectto;
 allow zathura_t user_tmp_t:sock_file write;
+allow zathura_t user_t:unix_stream_socket connectto;
 allow zathura_t usr_t:dir read;
 allow zathura_t usr_t:file { getattr map open read };
 allow zathura_t usr_t:lnk_file read;
 allow zathura_t var_run_t:lnk_file read;
 allow zathura_t zathura_exec_t:file { entrypoint execute map read };
+allow zathura_t zathura-pdf-poppler_lib_t:file { execute getattr map open read };
