@@ -27,6 +27,7 @@ require {
     type chrome_sandbox_exec_t;
     type chrome_sandbox_home_t;
     type config_home_t;
+    type coreutils_bin_t;
     type device_t;
     type downloads_home_t;
     type dri_device_t;
@@ -90,9 +91,11 @@ allow chromium-browser_t chrome_sandbox_home_t:dir { add_name create getattr ope
 allow chromium-browser_t chrome_sandbox_home_t:file { append create execute getattr lock map open read rename unlink write };
 allow chromium-browser_t chrome_sandbox_home_t:lnk_file { create getattr read unlink };
 allow chromium-browser_t chromium-browser_exec_t:file { entrypoint execute execute_no_trans getattr open read };
+allow chromium-browser_t chromium-browser_exec_t:lnk_file { getattr read };
 allow chromium-browser_t config_home_t:dir { add_name create getattr read remove_name rename reparent rmdir search write };
 allow chromium-browser_t config_home_t:file { append create getattr map lock open read rename unlink write };
 allow chromium-browser_t config_home_t:lnk_file { create unlink };
+allow chromium-browser_t coreutils_bin_t:file { execute execute_no_trans getattr map open read };
 allow chromium-browser_t device_t:dir { getattr open read search };
 allow chromium-browser_t downloads_home_t:dir { add_name getattr open read remove_name search write };
 allow chromium-browser_t downloads_home_t:file { create getattr open read rename setattr unlink write };
@@ -184,6 +187,7 @@ allow chromium-browser_t var_run_t:dir search;
 allow pulseaudio_t chromium-browser_t:fd use;
 #============= user_t ==============
 allow user_t chromium-browser_exec_t:file { execute getattr open read };
+allow user_t chromium-browser_exec_t:lnk_file read;
 allow user_t chromium-browser_t:dir { getattr search };
 allow user_t chromium-browser_t:fd use;
 allow user_t chromium-browser_t:fifo_file write;
