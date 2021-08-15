@@ -4,10 +4,10 @@ require {
     attribute application_domain_type, application_exec_type, entry_type, exec_type, file_type, non_auth_file_type, non_security_file_type;
     class chr_file { append getattr ioctl map open read write };
     class dbus { send_msg };
-    class dir { getattr open read search setattr write };
+    class dir { add_name create getattr open read remove_name search setattr write };
     class fd { use };
     class fifo_file { getattr read write };
-    class file { create entrypoint execute execute_no_trans getattr lock map open read write };
+    class file { create entrypoint execute execute_no_trans getattr lock map open read rename write };
     class lnk_file { getattr read };
     class netlink_route_socket { bind create getattr nlmsg_read read write };
     class process { execmem fork getattr getsched rlimitinh setsched siginh sigkill signal transition };
@@ -56,6 +56,7 @@ require {
     type user_tmp_t;
     type usr_t;
     type var_run_t;
+    type youtube-dl_exec_t;
 }
 ########################################
 type mpv_t, application_domain_type;
@@ -67,10 +68,10 @@ type_transition user_t mpv_exec_t: process mpv_t;
 allow mpv_t audio_home_t:dir { getattr open read search };
 allow mpv_t audio_home_t:file { getattr open read };
 allow mpv_t bin_t:dir { getattr open read search };
-allow mpv_t bin_t:file { execute execute_no_trans getattr map open read };
+allow mpv_t bin_t:file { execute getattr map open read };
 allow mpv_t bin_t:lnk_file read;
-allow mpv_t cache_home_t:dir { getattr search };
-allow mpv_t cache_home_t:file { create getattr map open read write };
+allow mpv_t cache_home_t:dir { add_name create getattr open read remove_name search write };
+allow mpv_t cache_home_t:file { create getattr lock map open read rename write };
 allow mpv_t cert_t:dir { getattr open read search };
 allow mpv_t cert_t:file { getattr map open read };
 allow mpv_t cert_t:lnk_file read;
@@ -144,6 +145,7 @@ allow mpv_t user_t:unix_stream_socket connectto;
 allow mpv_t usr_t:dir { getattr open read search };
 allow mpv_t usr_t:file { getattr map open read };
 allow mpv_t var_run_t:dir { getattr search };
+allow mpv_t youtube-dl_exec_t:file { execute execute_no_trans getattr open read };
 #============= pulseaudio_t ==============
 allow pulseaudio_t mpv_t:fd use;
 #============= user_t ==============
