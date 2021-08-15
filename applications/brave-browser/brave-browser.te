@@ -23,6 +23,7 @@ require {
     type cache_home_t;
     type cert_t;
     type config_home_t;
+    type coreutils_bin_t;
     type device_t;
     type downloads_home_t;
     type dri_device_t;
@@ -72,7 +73,6 @@ type_transition user_t brave-browser_exec_t: process brave-browser_t;
 ########################################
 #============= brave-browser_t ==============
 allow brave-browser_t bin_t:dir { getattr search };
-allow brave-browser_t bin_t:file { execute execute_no_trans getattr map open read };
 allow brave-browser_t bin_t:lnk_file { getattr read };
 allow brave-browser_t brave-browser_exec_t:file { entrypoint execute execute_no_trans getattr open read };
 allow brave-browser_t cache_home_t:dir { add_name create getattr open read remove_name search write };
@@ -83,7 +83,9 @@ allow brave-browser_t cert_t:lnk_file read;
 allow brave-browser_t config_home_t:dir { add_name create getattr open read remove_name rename rmdir search write };
 allow brave-browser_t config_home_t:file { append create getattr lock map open read rename setattr unlink write };
 allow brave-browser_t config_home_t:lnk_file { create read unlink };
+allow brave-browser_t coreutils_bin_t:file { execute execute_no_trans getattr map open read };
 allow brave-browser_t device_t:dir { getattr open read search };
+allow brave-browser_t device_t:lnk_file read;
 allow brave-browser_t downloads_home_t:dir { add_name getattr open read remove_name search write };
 allow brave-browser_t downloads_home_t:file { create getattr open read rename setattr unlink write };
 allow brave-browser_t dri_device_t:chr_file { getattr ioctl map open read write };
@@ -156,9 +158,9 @@ allow brave-browser_t urandom_device_t:chr_file { getattr open read };
 allow brave-browser_t user_devpts_t:chr_file { getattr read write };
 allow brave-browser_t user_fonts_cache_t:dir search;
 allow brave-browser_t user_home_dir_t:dir { getattr search };
-allow brave-browser_t user_t:unix_stream_socket connectto;
 allow brave-browser_t user_tmp_t:dir { add_name getattr open read remove_name search write };
 allow brave-browser_t user_tmp_t:sock_file write;
+allow brave-browser_t user_t:unix_stream_socket connectto;
 allow brave-browser_t usr_t:dir { getattr open read search };
 allow brave-browser_t usr_t:file { execute execute_no_trans getattr map open read };
 allow brave-browser_t usr_t:lnk_file read;
