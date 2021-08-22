@@ -1,0 +1,24 @@
+#!/bin/sh
+/usr/sbin/semanage fcontext --add --type libibverbs_lib_t /usr/lib/libefa.so.1.1.35.0;
+/usr/sbin/semanage fcontext --add --type libibverbs_lib_t /usr/lib/libefa.so.1;
+/usr/sbin/semanage fcontext --add --type libibverbs_lib_t /usr/lib/libibverbs.so.1.13.35.0;
+/usr/sbin/semanage fcontext --add --type libibverbs_lib_t /usr/lib/libibverbs.so.1;
+/usr/sbin/semanage fcontext --add --type libibverbs_lib_t /usr/lib/libibverbs/libbnxt_re-rdmav34.so;
+/usr/sbin/semanage fcontext --add --type libibverbs_lib_t /usr/lib/libibverbs/libcxgb4-rdmav34.so;
+/usr/sbin/semanage fcontext --add --type libibverbs_lib_t /usr/lib/libibverbs/libefa-rdmav34.so;
+/usr/sbin/semanage fcontext --add --type libibverbs_lib_t /usr/lib/libibverbs/libhfi1verbs-rdmav34.so;
+/usr/sbin/semanage fcontext --add --type libibverbs_lib_t /usr/lib/libibverbs/libhns-rdmav34.so;
+/usr/sbin/semanage fcontext --add --type libibverbs_lib_t /usr/lib/libibverbs/libi40iw-rdmav34.so;
+/usr/sbin/semanage fcontext --add --type libibverbs_lib_t /usr/lib/libibverbs/libipathverbs-rdmav34.so;
+/usr/sbin/semanage fcontext --add --type libibverbs_lib_t /usr/lib/libibverbs/libmlx4-rdmav34.so;
+/usr/sbin/semanage fcontext --add --type libibverbs_lib_t /usr/lib/libibverbs/libmlx5-rdmav34.so;
+/usr/sbin/semanage fcontext --add --type libibverbs_lib_t /usr/lib/libibverbs/libmthca-rdmav34.so;
+/usr/sbin/semanage fcontext --add --type libibverbs_lib_t /usr/lib/libibverbs/libocrdma-rdmav34.so;
+/usr/sbin/semanage fcontext --add --type libibverbs_lib_t /usr/lib/libibverbs/libqedr-rdmav34.so;
+/usr/sbin/semanage fcontext --add --type libibverbs_lib_t /usr/lib/libibverbs/librxe-rdmav34.so;
+/usr/sbin/semanage fcontext --add --type libibverbs_lib_t /usr/lib/libibverbs/libsiw-rdmav34.so;
+/usr/sbin/semanage fcontext --add --type libibverbs_lib_t /usr/lib/libibverbs/libvmw_pvrdma-rdmav34.so;
+/usr/sbin/semanage fcontext --add --type libibverbs_lib_t /usr/lib/libmlx4.so.1.0.35.0;
+/usr/sbin/semanage fcontext --add --type libibverbs_lib_t /usr/lib/libmlx4.so.1;
+/usr/sbin/semanage fcontext --add --type libibverbs_lib_t /usr/lib/libmlx5.so.1.19.35.0;
+/usr/sbin/semanage fcontext --add --type libibverbs_lib_t /usr/lib/libmlx5.so.1;
