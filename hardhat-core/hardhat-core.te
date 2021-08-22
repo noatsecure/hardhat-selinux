@@ -2,11 +2,14 @@ module hardhat-core 1.0.0;
 ########################################
 require {
     class file { execute getattr read relabelfrom write };
+    type audit-libs_lib_t;
     type chkpwd_t;
     type libacl_lib_t;
     type libargon2_lib_t;
     type libattr_lib_t;
     type libcap-ng_lib_t;
+    type libgcc_lib_t;
+    type libxcrypt_lib_t;
     type pcre2_lib_t;
     type rtkit_daemon_t;
     type systemd_hostnamed_t;
@@ -21,7 +24,10 @@ require {
 }
 ########################################
 #============= chkpwd_t ==============
+allow chkpwd_t audit-libs_lib_t:file execute;
 allow chkpwd_t libcap-ng_lib_t:file execute;
+allow chkpwd_t libgcc_lib_t:file execute;
+allow chkpwd_t libxcrypt_lib_t:file execute;
 #============= rtkit_daemon_t ==============
 allow rtkit_daemon_t xz-libs_lib_t:file execute;
 #============= systemd_hostnamed_t ==============
