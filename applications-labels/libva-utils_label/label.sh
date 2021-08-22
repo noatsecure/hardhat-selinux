@@ -1,0 +1,22 @@
+#!/bin/sh
+/usr/sbin/semanage fcontext --add --type libva-utils_bin_t /usr/bin/avcenc;
+/usr/sbin/semanage fcontext --add --type libva-utils_bin_t /usr/bin/avcstreamoutdemo;
+/usr/sbin/semanage fcontext --add --type libva-utils_bin_t /usr/bin/h264encode;
+/usr/sbin/semanage fcontext --add --type libva-utils_bin_t /usr/bin/hevcencode;
+/usr/sbin/semanage fcontext --add --type libva-utils_bin_t /usr/bin/jpegenc;
+/usr/sbin/semanage fcontext --add --type libva-utils_bin_t /usr/bin/loadjpeg;
+/usr/sbin/semanage fcontext --add --type libva-utils_bin_t /usr/bin/mpeg2vaenc;
+/usr/sbin/semanage fcontext --add --type libva-utils_bin_t /usr/bin/mpeg2vldemo;
+/usr/sbin/semanage fcontext --add --type libva-utils_bin_t /usr/bin/putsurface;
+/usr/sbin/semanage fcontext --add --type libva-utils_bin_t /usr/bin/putsurface_wayland;
+/usr/sbin/semanage fcontext --add --type libva-utils_bin_t /usr/bin/sfcsample;
+/usr/sbin/semanage fcontext --add --type libva-utils_bin_t /usr/bin/vainfo;
+/usr/sbin/semanage fcontext --add --type libva-utils_bin_t /usr/bin/vavpp;
+/usr/sbin/semanage fcontext --add --type libva-utils_bin_t /usr/bin/vp8enc;
+/usr/sbin/semanage fcontext --add --type libva-utils_bin_t /usr/bin/vp9enc;
+/usr/sbin/semanage fcontext --add --type libva-utils_bin_t /usr/bin/vppblending;
+/usr/sbin/semanage fcontext --add --type libva-utils_bin_t /usr/bin/vppchromasitting;
+/usr/sbin/semanage fcontext --add --type libva-utils_bin_t /usr/bin/vppdenoise;
+/usr/sbin/semanage fcontext --add --type libva-utils_bin_t /usr/bin/vppscaling_csc;
+/usr/sbin/semanage fcontext --add --type libva-utils_bin_t /usr/bin/vppscaling_n_out_usrptr;
+/usr/sbin/semanage fcontext --add --type libva-utils_bin_t /usr/bin/vppsharpness;
