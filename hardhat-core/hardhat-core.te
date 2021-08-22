@@ -1,12 +1,57 @@
 module hardhat-core 1.0.0;
 ########################################
 require {
-    class file { getattr read relabelfrom write };
+    class file { execute getattr read relabelfrom write };
+    type chkpwd_t;
+    type libacl_lib_t;
+    type libargon2_lib_t;
+    type libattr_lib_t;
+    type libcap-ng_lib_t;
+    type pcre2_lib_t;
+    type rtkit_daemon_t;
+    type systemd_hostnamed_t;
+    type systemd_logind_t;
+    type systemd_userdbd_t;
     type tmpfs_t;
+    type user_dbusd_t;
     type user_home_dir_t;
     type user_t;
+    type xz-libs_lib_t;
+    type zlib_lib_t;
 }
 ########################################
+#============= chkpwd_t ==============
+allow chkpwd_t libcap-ng_lib_t:file execute;
+#============= rtkit_daemon_t ==============
+allow rtkit_daemon_t xz-libs_lib_t:file execute;
+#============= systemd_hostnamed_t ==============
+allow systemd_hostnamed_t libacl_lib_t:file execute;
+allow systemd_hostnamed_t libargon2_lib_t:file execute;
+allow systemd_hostnamed_t libattr_lib_t:file execute;
+allow systemd_hostnamed_t libcap-ng_lib_t:file execute;
+allow systemd_hostnamed_t pcre2_lib_t:file execute;
+allow systemd_hostnamed_t xz-libs_lib_t:file execute;
+allow systemd_hostnamed_t zlib_lib_t:file execute;
+#============= systemd_logind_t ==============
+allow systemd_logind_t libacl_lib_t:file execute;
+allow systemd_logind_t libargon2_lib_t:file execute;
+allow systemd_logind_t libattr_lib_t:file execute;
+allow systemd_logind_t libcap-ng_lib_t:file execute;
+allow systemd_logind_t pcre2_lib_t:file execute;
+allow systemd_logind_t xz-libs_lib_t:file execute;
+allow systemd_logind_t zlib_lib_t:file execute;
+#============= systemd_userdbd_t ==============
+allow systemd_userdbd_t libacl_lib_t:file execute;
+allow systemd_userdbd_t libargon2_lib_t:file execute;
+allow systemd_userdbd_t libattr_lib_t:file execute;
+allow systemd_userdbd_t libcap-ng_lib_t:file execute;
+allow systemd_userdbd_t pcre2_lib_t:file execute;
+allow systemd_userdbd_t xz-libs_lib_t:file execute;
+allow systemd_userdbd_t zlib_lib_t:file execute;
+#============= user_dbusd_t ==============
+allow user_dbusd_t libcap-ng_lib_t:file execute;
+allow user_dbusd_t pcre2_lib_t:file execute;
+allow user_dbusd_t xz-libs_lib_t:file execute;
 #============= user_t ==============
 allow user_t tmpfs_t:file { read write };
 allow user_t user_home_dir_t:file { getattr relabelfrom };
