@@ -16,6 +16,7 @@ require {
     type libcap-ng_lib_t;
     type libcap_lib_t;
     type libeconf_lib_t;
+    type libevent_lib_t;
     type libffi_lib_t;
     type libgcc_lib_t;
     type libgcrypt_lib_t;
@@ -23,6 +24,7 @@ require {
     type libibverbs_lib_t;
     type libidn2_lib_t;
     type libmount_lib_t;
+    type libnghttp2_lib_t;
     type libnl3_lib_t;
     type libpcap_lib_t;
     type libseccomp_lib_t;
@@ -32,16 +34,20 @@ require {
     type libxcrypt_lib_t;
     type libzstd_lib_t;
     type lz4-libs_lib_t;
+    type named_t;
     type openssl-libs_lib_t;
     type pcre2_lib_t;
     type plymouthd_t;
     type plymouth-core-libs_lib_t;
+    type python3-libs_lib_t;
     type rtkit_daemon_t;
     type systemd_hostnamed_t;
     type systemd_logind_t;
     type systemd_resolved_t;
+    type systemd_tmpfiles_t;
     type systemd_userdbd_t;
     type tmpfs_t;
+    type unbound-libs_lib_t;
     type user_dbusd_t;
     type user_home_dir_t;
     type user_t;
@@ -54,10 +60,25 @@ allow chkpwd_t audit-libs_lib_t:file execute;
 allow chkpwd_t libcap-ng_lib_t:file execute;
 allow chkpwd_t libgcc_lib_t:file execute;
 allow chkpwd_t libxcrypt_lib_t:file execute;
+#============= named_t ==============
+allow named_t libevent_lib_t:file execute;
+allow named_t libgcc_lib_t:file execute;
+allow named_t libnghttp2_lib_t:file execute;
+allow named_t openssl-libs_lib_t:file execute;
+allow named_t python3-libs_lib_t:file execute;
+allow named_t unbound-libs_lib_t:file execute;
+allow named_t zlib_lib_t:file execute;
 #============= plymouthd_t ==============
+allow plymouthd_t libgcc_lib_t:file execute;
 allow plymouthd_t plymouth-core-libs_lib_t:file execute;
 #============= rtkit_daemon_t ==============
 allow rtkit_daemon_t dbus-libs_lib_t:file execute;
+allow rtkit_daemon_t libcap_lib_t:file execute;
+allow rtkit_daemon_t libgcc_lib_t:file execute;
+allow rtkit_daemon_t libgcrypt_lib_t:file execute;
+allow rtkit_daemon_t libgpg-error_lib_t:file execute;
+allow rtkit_daemon_t libzstd_lib_t:file execute;
+allow rtkit_daemon_t lz4-libs_lib_t:file execute;
 allow rtkit_daemon_t xz-libs_lib_t:file execute;
 #============= systemd_hostnamed_t ==============
 allow systemd_hostnamed_t audit-libs_lib_t:file execute;
@@ -139,6 +160,9 @@ allow systemd_resolved_t libpcap_lib_t:file execute;
 allow systemd_resolved_t libuuid_lib_t:file execute;
 allow systemd_resolved_t pcre2_lib_t:file execute;
 allow systemd_resolved_t zlib_lib_t:file execute;
+#============= systemd_tmpfiles_t ==============
+allow systemd_tmpfiles_t libacl_lib_t:file execute;
+allow systemd_tmpfiles_t libgcc_lib_t:file execute;
 #============= systemd_userdbd_t ==============
 allow systemd_userdbd_t audit-libs_lib_t:file execute;
 allow systemd_userdbd_t cryptsetup-libs_lib_t:file execute;
@@ -173,9 +197,12 @@ allow systemd_userdbd_t pcre2_lib_t:file execute;
 allow systemd_userdbd_t xz-libs_lib_t:file execute;
 allow systemd_userdbd_t zlib_lib_t:file execute;
 #============= user_dbusd_t ==============
+allow user_dbusd_t audit-libs_lib_t:file execute;
 allow user_dbusd_t dbus-libs_lib_t:file execute;
 allow user_dbusd_t libcap-ng_lib_t:file execute;
+allow user_dbusd_t libgcc_lib_t:file execute;
 allow user_dbusd_t libselinux_lib_t:file execute;
+allow user_dbusd_t libzstd_lib_t:file execute;
 allow user_dbusd_t pcre2_lib_t:file execute;
 allow user_dbusd_t xz-libs_lib_t:file execute;
 #============= user_t ==============
