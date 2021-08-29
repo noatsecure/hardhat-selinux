@@ -11,9 +11,9 @@ require {
     class shm { associate create destroy getattr read unix_read unix_write write };
     class unix_stream_socket { accept bind connect connectto create getattr listen read shutdown write };
     role user_r;
-    type OpenEXR-lib_t;
+    type OpenEXR-libs_lib_t;
     type bin_t;
-    type bzip2-lib_t;
+    type bzip2-libs_lib_t;
     type cache_home_t;
     type desktop_home_t;
     type devtty_t;
@@ -23,8 +23,8 @@ require {
     type etc_t;
     type graphite2_lib_t;
     type harfbuzz_lib_t;
-    type jasper-lib_t;
-    type jbigkit-lib_t;
+    type jasper-libs_lib_t;
+    type jbigkit-libs_lib_t;
     type ld_so_cache_t;
     type ld_so_t;
     type libX11-xcb_lib_t;
@@ -61,7 +61,7 @@ require {
     type libxml2_lib_t;
     type libxshmfence_lib_t;
     type libzstd_lib_t;
-    type ncurses-lib_t;
+    type ncurses-libs_lib_t;
     type openjpeg2_lib_t;
     type pango_lib_t;
     type passwd_file_t;
@@ -77,7 +77,7 @@ require {
     type user_home_t;
     type user_t;
     type usr_t;
-    type xz-lib_t;
+    type xz-libs_lib_t;
     type zlib_lib_t;
 }
 ########################################
@@ -88,8 +88,8 @@ type_transition user_t imv_exec_t: process imv_t;
 ########################################
 #============= imv_t ==============
 allow imv_t bin_t:dir search;
-allow imv_t bzip2-lib_t:file { execute getattr map open read };
-allow imv_t bzip2-lib_t:lnk_file read;
+allow imv_t bzip2-libs_lib_t:file { execute getattr map open read };
+allow imv_t bzip2-libs_lib_t:lnk_file read;
 allow imv_t cache_home_t:dir create;
 allow imv_t cache_home_t:file { create getattr lock map open read write };
 allow imv_t desktop_home_t:dir { getattr open read search };
@@ -106,9 +106,9 @@ allow imv_t graphite2_lib_t:lnk_file read;
 allow imv_t harfbuzz_lib_t:file { execute getattr map open read };
 allow imv_t harfbuzz_lib_t:lnk_file read;
 allow imv_t imv_exec_t:file { entrypoint execute execute_no_trans getattr map open read };
-allow imv_t jasper-lib_t:file { execute getattr map open read };
-allow imv_t jasper-lib_t:lnk_file read;
-allow imv_t jbigkit-lib_t:file { execute getattr map open read };
+allow imv_t jasper-libs_lib_t:file { execute getattr map open read };
+allow imv_t jasper-libs_lib_t:lnk_file read;
+allow imv_t jbigkit-libs_lib_t:file { execute getattr map open read };
 allow imv_t ld_so_cache_t:file { getattr map open read };
 allow imv_t ld_so_t:file { execute map open read };
 allow imv_t libblkid_lib_t:file { execute getattr map open read };
@@ -176,10 +176,10 @@ allow imv_t libxshmfence_lib_t:file { execute getattr map open read };
 allow imv_t libxshmfence_lib_t:lnk_file read;
 allow imv_t libzstd_lib_t:file { execute getattr map open read };
 allow imv_t libzstd_lib_t:lnk_file read;
-allow imv_t ncurses-lib_t:file { execute getattr map open read };
-allow imv_t ncurses-lib_t:lnk_file read;
-allow imv_t OpenEXR-lib_t:file { execute getattr map open read };
-allow imv_t OpenEXR-lib_t:lnk_file read;
+allow imv_t ncurses-libs_lib_t:file { execute getattr map open read };
+allow imv_t ncurses-libs_lib_t:lnk_file read;
+allow imv_t OpenEXR-libs_lib_t:file { execute getattr map open read };
+allow imv_t OpenEXR-libs_lib_t:lnk_file read;
 allow imv_t openjpeg2_lib_t:file { execute getattr map open read };
 allow imv_t openjpeg2_lib_t:lnk_file read;
 allow imv_t pango_lib_t:file { execute getattr map open read };
@@ -206,8 +206,8 @@ allow imv_t user_home_t:file { map open read };
 allow imv_t user_t:unix_stream_socket connectto;
 allow imv_t usr_t:dir read;
 allow imv_t usr_t:file { getattr map open read };
-allow imv_t xz-lib_t:file { execute getattr map open read };
-allow imv_t xz-lib_t:lnk_file read;
+allow imv_t xz-libs_lib_t:file { execute getattr map open read };
+allow imv_t xz-libs_lib_t:lnk_file read;
 allow imv_t zlib_lib_t:file { execute getattr map open read };
 allow imv_t zlib_lib_t:lnk_file read;
 #============= user_t ==============
