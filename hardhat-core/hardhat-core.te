@@ -176,5 +176,5 @@ allow user_dbusd_t lz4-libs_t:file { execute map };
 allow user_dbusd_t pcre2_lib_t:file { execute map };
 allow user_dbusd_t xz-libs_t:file { execute map };
 #============= user_t ==============
-allow user_t tmpfs_t:file { read write };
+allow user_t tmpfs_t:file { map read write };
 allow user_t user_home_dir_t:file { getattr relabelfrom };
