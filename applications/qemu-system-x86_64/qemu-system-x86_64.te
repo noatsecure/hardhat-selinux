@@ -3,7 +3,7 @@ module qemu-system-x86_64 1.0.0;
 require {
     class chr_file { ioctl open read write };
     class dbus { send_msg };
-    class file { entrypoint lock open read setattr write };
+    class file { entrypoint lock map open read setattr write };
     class lnk_file { read };
     class process { transition };
     class shm { unix_read unix_write };
@@ -24,7 +24,7 @@ require {
 type_transition user_t virt_home_t: process svirt_t;
 ########################################
 #============= svirt_t ==============
-allow svirt_t config_home_t:file { open read write };
+allow svirt_t config_home_t:file { map open read write };
 allow svirt_t system_dbusd_t:dbus send_msg;
 allow svirt_t system_dbusd_t:unix_stream_socket connectto;
 allow svirt_t system_dbusd_var_lib_t:lnk_file read;
