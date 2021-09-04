@@ -17,7 +17,6 @@ require {
     class udp_socket { connect create getattr setopt write };
     class unix_stream_socket { connect connectto create getattr getopt read setopt shutdown write };
     role user_r;
-    type audio_home_t;
     type bin_t;
     type bzip2-libs_t;
     type cache_home_t;
@@ -135,6 +134,7 @@ require {
     type libzstd_lib_t;
     type locale_t;
     type lz4-libs_t;
+    type music_home_t;
     type ncurses-libs_t;
     type net_conf_t;
     type null_device_t;
@@ -181,8 +181,6 @@ role user_r types mpv_t;
 type_transition user_t mpv_exec_t: process mpv_t;
 ########################################
 #============= mpv_t ==============
-allow mpv_t audio_home_t:dir { getattr open read search };
-allow mpv_t audio_home_t:file { getattr open read };
 allow mpv_t bin_t:dir { getattr open read search };
 allow mpv_t bin_t:file { execute getattr map open read };
 allow mpv_t bin_t:lnk_file read;
@@ -408,6 +406,8 @@ allow mpv_t locale_t:lnk_file read;
 allow mpv_t lz4-libs_t:file { execute getattr map open read };
 allow mpv_t lz4-libs_t:lnk_file read;
 allow mpv_t mpv_exec_t:file { entrypoint execute getattr map read };
+allow mpv_t music_home_t:dir { getattr open read search };
+allow mpv_t music_home_t:file { getattr open read };
 allow mpv_t ncurses-libs_t:file { execute getattr map open read };
 allow mpv_t ncurses-libs_t:lnk_file read;
 allow mpv_t net_conf_t:file { getattr open read };
