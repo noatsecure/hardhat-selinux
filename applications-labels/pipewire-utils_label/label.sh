@@ -1,0 +1,22 @@
+#!/bin/sh
+/usr/sbin/semanage fcontext --add --type pipewire-utils_bin_t /usr/bin/pw-cat;
+/usr/sbin/semanage fcontext --add --type pipewire-utils_bin_t /usr/bin/pw-cli;
+/usr/sbin/semanage fcontext --add --type pipewire-utils_bin_t /usr/bin/pw-dot;
+/usr/sbin/semanage fcontext --add --type pipewire-utils_bin_t /usr/bin/pw-dump;
+/usr/sbin/semanage fcontext --add --type pipewire-utils_bin_t /usr/bin/pw-link;
+/usr/sbin/semanage fcontext --add --type pipewire-utils_bin_t /usr/bin/pw-loopback;
+/usr/sbin/semanage fcontext --add --type pipewire-utils_bin_t /usr/bin/pw-metadata;
+/usr/sbin/semanage fcontext --add --type pipewire-utils_bin_t /usr/bin/pw-mididump;
+/usr/sbin/semanage fcontext --add --type pipewire-utils_bin_t /usr/bin/pw-midiplay;
+/usr/sbin/semanage fcontext --add --type pipewire-utils_bin_t /usr/bin/pw-midirecord;
+/usr/sbin/semanage fcontext --add --type pipewire-utils_bin_t /usr/bin/pw-mon;
+/usr/sbin/semanage fcontext --add --type pipewire-utils_bin_t /usr/bin/pw-play;
+/usr/sbin/semanage fcontext --add --type pipewire-utils_bin_t /usr/bin/pw-profiler;
+/usr/sbin/semanage fcontext --add --type pipewire-utils_bin_t /usr/bin/pw-record;
+/usr/sbin/semanage fcontext --add --type pipewire-utils_bin_t /usr/bin/pw-reserve;
+/usr/sbin/semanage fcontext --add --type pipewire-utils_bin_t /usr/bin/pw-top;
+/usr/sbin/semanage fcontext --add --type pipewire-utils_bin_t /usr/bin/spa-acp-tool;
+/usr/sbin/semanage fcontext --add --type pipewire-utils_bin_t /usr/bin/spa-inspect;
+/usr/sbin/semanage fcontext --add --type pipewire-utils_bin_t /usr/bin/spa-json-dump;
+/usr/sbin/semanage fcontext --add --type pipewire-utils_bin_t /usr/bin/spa-monitor;
+/usr/sbin/semanage fcontext --add --type pipewire-utils_bin_t /usr/bin/spa-resample;
