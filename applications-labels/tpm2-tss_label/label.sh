@@ -1,0 +1,21 @@
+#!/bin/sh
+/usr/sbin/semanage fcontext --add --type tpm2-tss_lib_t /usr/lib/libtss2-esys.so.0.0.0;
+/usr/sbin/semanage fcontext --add --type tpm2-tss_lib_t /usr/lib/libtss2-esys.so.0;
+/usr/sbin/semanage fcontext --add --type tpm2-tss_lib_t /usr/lib/libtss2-fapi.so.1.0.0;
+/usr/sbin/semanage fcontext --add --type tpm2-tss_lib_t /usr/lib/libtss2-fapi.so.1;
+/usr/sbin/semanage fcontext --add --type tpm2-tss_lib_t /usr/lib/libtss2-mu.so.0.0.0;
+/usr/sbin/semanage fcontext --add --type tpm2-tss_lib_t /usr/lib/libtss2-mu.so.0;
+/usr/sbin/semanage fcontext --add --type tpm2-tss_lib_t /usr/lib/libtss2-rc.so.0.0.0;
+/usr/sbin/semanage fcontext --add --type tpm2-tss_lib_t /usr/lib/libtss2-rc.so.0;
+/usr/sbin/semanage fcontext --add --type tpm2-tss_lib_t /usr/lib/libtss2-sys.so.1.0.0;
+/usr/sbin/semanage fcontext --add --type tpm2-tss_lib_t /usr/lib/libtss2-sys.so.1;
+/usr/sbin/semanage fcontext --add --type tpm2-tss_lib_t /usr/lib/libtss2-tcti-cmd.so.0.0.0;
+/usr/sbin/semanage fcontext --add --type tpm2-tss_lib_t /usr/lib/libtss2-tcti-cmd.so.0;
+/usr/sbin/semanage fcontext --add --type tpm2-tss_lib_t /usr/lib/libtss2-tcti-device.so.0.0.0;
+/usr/sbin/semanage fcontext --add --type tpm2-tss_lib_t /usr/lib/libtss2-tcti-device.so.0;
+/usr/sbin/semanage fcontext --add --type tpm2-tss_lib_t /usr/lib/libtss2-tcti-mssim.so.0.0.0;
+/usr/sbin/semanage fcontext --add --type tpm2-tss_lib_t /usr/lib/libtss2-tcti-mssim.so.0;
+/usr/sbin/semanage fcontext --add --type tpm2-tss_lib_t /usr/lib/libtss2-tcti-swtpm.so.0.0.0;
+/usr/sbin/semanage fcontext --add --type tpm2-tss_lib_t /usr/lib/libtss2-tcti-swtpm.so.0;
+/usr/sbin/semanage fcontext --add --type tpm2-tss_lib_t /usr/lib/libtss2-tctildr.so.0.0.0;
+/usr/sbin/semanage fcontext --add --type tpm2-tss_lib_t /usr/lib/libtss2-tctildr.so.0;
