@@ -1,0 +1,26 @@
+#!/bin/sh
+/usr/sbin/semanage fcontext --add --type kbd_bin_t /usr/bin/chvt;
+/usr/sbin/semanage fcontext --add --type kbd_bin_t /usr/bin/deallocvt;
+/usr/sbin/semanage fcontext --add --type kbd_bin_t /usr/bin/dumpkeys;
+/usr/sbin/semanage fcontext --add --type kbd_bin_t /usr/bin/fgconsole;
+/usr/sbin/semanage fcontext --add --type kbd_bin_t /usr/bin/getkeycodes;
+/usr/sbin/semanage fcontext --add --type kbd_bin_t /usr/bin/kbd_mode;
+/usr/sbin/semanage fcontext --add --type kbd_bin_t /usr/bin/kbdinfo;
+/usr/sbin/semanage fcontext --add --type kbd_bin_t /usr/bin/kbdrate;
+/usr/sbin/semanage fcontext --add --type kbd_bin_t /usr/bin/loadunimap;
+/usr/sbin/semanage fcontext --add --type kbd_bin_t /usr/bin/mapscrn;
+/usr/sbin/semanage fcontext --add --type kbd_bin_t /usr/bin/openvt;
+/usr/sbin/semanage fcontext --add --type kbd_bin_t /usr/bin/psfaddtable;
+/usr/sbin/semanage fcontext --add --type kbd_bin_t /usr/bin/psfgettable;
+/usr/sbin/semanage fcontext --add --type kbd_bin_t /usr/bin/psfstriptable;
+/usr/sbin/semanage fcontext --add --type kbd_bin_t /usr/bin/psfxtable;
+/usr/sbin/semanage fcontext --add --type kbd_bin_t /usr/bin/resizecons;
+/usr/sbin/semanage fcontext --add --type kbd_bin_t /usr/bin/setfont;
+/usr/sbin/semanage fcontext --add --type kbd_bin_t /usr/bin/setkeycodes;
+/usr/sbin/semanage fcontext --add --type kbd_bin_t /usr/bin/setleds;
+/usr/sbin/semanage fcontext --add --type kbd_bin_t /usr/bin/setmetamode;
+/usr/sbin/semanage fcontext --add --type kbd_bin_t /usr/bin/setvtrgb;
+/usr/sbin/semanage fcontext --add --type kbd_bin_t /usr/bin/showconsolefont;
+/usr/sbin/semanage fcontext --add --type kbd_bin_t /usr/bin/showkey;
+/usr/sbin/semanage fcontext --add --type kbd_bin_t /usr/bin/unicode_start;
+/usr/sbin/semanage fcontext --add --type kbd_bin_t /usr/bin/unicode_stop;
