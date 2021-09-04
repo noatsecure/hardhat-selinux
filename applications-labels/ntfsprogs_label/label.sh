@@ -1,0 +1,26 @@
+#!/bin/sh
+/usr/sbin/semanage fcontext --add --type ntfsprogs_bin_t /usr/bin/ntfscat;
+/usr/sbin/semanage fcontext --add --type ntfsprogs_bin_t /usr/bin/ntfsck;
+/usr/sbin/semanage fcontext --add --type ntfsprogs_bin_t /usr/bin/ntfscluster;
+/usr/sbin/semanage fcontext --add --type ntfsprogs_bin_t /usr/bin/ntfscmp;
+/usr/sbin/semanage fcontext --add --type ntfsprogs_bin_t /usr/bin/ntfsdecrypt;
+/usr/sbin/semanage fcontext --add --type ntfsprogs_bin_t /usr/bin/ntfsdump_logfile;
+/usr/sbin/semanage fcontext --add --type ntfsprogs_bin_t /usr/bin/ntfsfallocate;
+/usr/sbin/semanage fcontext --add --type ntfsprogs_bin_t /usr/bin/ntfsfix;
+/usr/sbin/semanage fcontext --add --type ntfsprogs_bin_t /usr/bin/ntfsinfo;
+/usr/sbin/semanage fcontext --add --type ntfsprogs_bin_t /usr/bin/ntfsls;
+/usr/sbin/semanage fcontext --add --type ntfsprogs_bin_t /usr/bin/ntfsmftalloc;
+/usr/sbin/semanage fcontext --add --type ntfsprogs_bin_t /usr/bin/ntfsmove;
+/usr/sbin/semanage fcontext --add --type ntfsprogs_bin_t /usr/bin/ntfsrecover;
+/usr/sbin/semanage fcontext --add --type ntfsprogs_bin_t /usr/bin/ntfssecaudit;
+/usr/sbin/semanage fcontext --add --type ntfsprogs_bin_t /usr/bin/ntfstruncate;
+/usr/sbin/semanage fcontext --add --type ntfsprogs_bin_t /usr/bin/ntfsusermap;
+/usr/sbin/semanage fcontext --add --type ntfsprogs_bin_t /usr/bin/ntfswipe;
+/usr/sbin/semanage fcontext --add --type ntfsprogs_bin_t /usr/sbin/fsck.ntfs;
+/usr/sbin/semanage fcontext --add --type ntfsprogs_bin_t /usr/sbin/mkfs.ntfs;
+/usr/sbin/semanage fcontext --add --type ntfsprogs_bin_t /usr/sbin/mkntfs;
+/usr/sbin/semanage fcontext --add --type ntfsprogs_bin_t /usr/sbin/ntfsclone;
+/usr/sbin/semanage fcontext --add --type ntfsprogs_bin_t /usr/sbin/ntfscp;
+/usr/sbin/semanage fcontext --add --type ntfsprogs_bin_t /usr/sbin/ntfslabel;
+/usr/sbin/semanage fcontext --add --type ntfsprogs_bin_t /usr/sbin/ntfsresize;
+/usr/sbin/semanage fcontext --add --type ntfsprogs_bin_t /usr/sbin/ntfsundelete;
