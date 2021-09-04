@@ -1,0 +1,19 @@
+#!/bin/sh
+/usr/sbin/semanage fcontext --add --type iproute_bin_t /usr/sbin/arpd;
+/usr/sbin/semanage fcontext --add --type iproute_bin_t /usr/sbin/bridge;
+/usr/sbin/semanage fcontext --add --type iproute_bin_t /usr/sbin/ctstat;
+/usr/sbin/semanage fcontext --add --type iproute_bin_t /usr/sbin/devlink;
+/usr/sbin/semanage fcontext --add --type iproute_bin_t /usr/sbin/genl;
+/usr/sbin/semanage fcontext --add --type iproute_bin_t /usr/sbin/ifcfg;
+/usr/sbin/semanage fcontext --add --type iproute_bin_t /usr/sbin/ifstat;
+/usr/sbin/semanage fcontext --add --type iproute_bin_t /usr/sbin/lnstat;
+/usr/sbin/semanage fcontext --add --type iproute_bin_t /usr/sbin/nstat;
+/usr/sbin/semanage fcontext --add --type iproute_bin_t /usr/sbin/rdma;
+/usr/sbin/semanage fcontext --add --type iproute_bin_t /usr/sbin/routef;
+/usr/sbin/semanage fcontext --add --type iproute_bin_t /usr/sbin/routel;
+/usr/sbin/semanage fcontext --add --type iproute_bin_t /usr/sbin/rtacct;
+/usr/sbin/semanage fcontext --add --type iproute_bin_t /usr/sbin/rtmon;
+/usr/sbin/semanage fcontext --add --type iproute_bin_t /usr/sbin/rtpr;
+/usr/sbin/semanage fcontext --add --type iproute_bin_t /usr/sbin/rtstat;
+/usr/sbin/semanage fcontext --add --type iproute_bin_t /usr/sbin/ss;
+/usr/sbin/semanage fcontext --add --type iproute_bin_t /usr/sbin/tipc;
