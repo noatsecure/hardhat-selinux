@@ -1,0 +1,21 @@
+#!/bin/sh
+/usr/sbin/semanage fcontext --add --type xfsprogs_bin_t /usr/sbin/xfs_admin;
+/usr/sbin/semanage fcontext --add --type xfsprogs_bin_t /usr/sbin/xfs_bmap;
+/usr/sbin/semanage fcontext --add --type xfsprogs_bin_t /usr/sbin/xfs_copy;
+/usr/sbin/semanage fcontext --add --type xfsprogs_bin_t /usr/sbin/xfs_db;
+/usr/sbin/semanage fcontext --add --type xfsprogs_bin_t /usr/sbin/xfs_estimate;
+/usr/sbin/semanage fcontext --add --type xfsprogs_bin_t /usr/sbin/xfs_freeze;
+/usr/sbin/semanage fcontext --add --type xfsprogs_bin_t /usr/sbin/xfs_fsr;
+/usr/sbin/semanage fcontext --add --type xfsprogs_bin_t /usr/sbin/xfs_info;
+/usr/sbin/semanage fcontext --add --type xfsprogs_bin_t /usr/sbin/xfs_io;
+/usr/sbin/semanage fcontext --add --type xfsprogs_bin_t /usr/sbin/xfs_logprint;
+/usr/sbin/semanage fcontext --add --type xfsprogs_bin_t /usr/sbin/xfs_mdrestore;
+/usr/sbin/semanage fcontext --add --type xfsprogs_bin_t /usr/sbin/xfs_metadump;
+/usr/sbin/semanage fcontext --add --type xfsprogs_bin_t /usr/sbin/xfs_mkfile;
+/usr/sbin/semanage fcontext --add --type xfsprogs_bin_t /usr/sbin/xfs_ncheck;
+/usr/sbin/semanage fcontext --add --type xfsprogs_bin_t /usr/sbin/xfs_quota;
+/usr/sbin/semanage fcontext --add --type xfsprogs_bin_t /usr/sbin/xfs_repair;
+/usr/sbin/semanage fcontext --add --type xfsprogs_bin_t /usr/sbin/xfs_rtcp;
+/usr/sbin/semanage fcontext --add --type xfsprogs_bin_t /usr/sbin/xfs_spaceman;
+/usr/sbin/semanage fcontext --add --type xfsprogs_lib_t /usr/lib/libhandle.so.1.0.3;
+/usr/sbin/semanage fcontext --add --type xfsprogs_lib_t /usr/lib/libhandle.so.1;
