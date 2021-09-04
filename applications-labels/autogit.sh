@@ -22,5 +22,5 @@ for d in ${directories}; do
     # Define only the name for the current entry
     name="$(echo $(basename ${d}) | sed s/_label//g)";
     # Add the $te and $label. Also, git commit these files using the $name
-    git add "${te}" && git add "${label}" && git commit -m "Added SELinux policy module (label only) for package '${name}'";
+    git add "${te}" && git add "${label}" && git commit -m "Added/updated SELinux policy module (label only) and/or label.sh for package '${name}'";
 done;
