@@ -1,0 +1,21 @@
+#!/bin/sh
+/usr/sbin/semanage fcontext --add --type procps-ng_bin_t /usr/bin/free;
+/usr/sbin/semanage fcontext --add --type procps-ng_bin_t /usr/bin/pgrep;
+/usr/sbin/semanage fcontext --add --type procps-ng_bin_t /usr/bin/pidof;
+/usr/sbin/semanage fcontext --add --type procps-ng_bin_t /usr/bin/pkill;
+/usr/sbin/semanage fcontext --add --type procps-ng_bin_t /usr/bin/pmap;
+/usr/sbin/semanage fcontext --add --type procps-ng_bin_t /usr/bin/ps;
+/usr/sbin/semanage fcontext --add --type procps-ng_bin_t /usr/bin/pwdx;
+/usr/sbin/semanage fcontext --add --type procps-ng_bin_t /usr/bin/skill;
+/usr/sbin/semanage fcontext --add --type procps-ng_bin_t /usr/bin/slabtop;
+/usr/sbin/semanage fcontext --add --type procps-ng_bin_t /usr/bin/snice;
+/usr/sbin/semanage fcontext --add --type procps-ng_bin_t /usr/bin/tload;
+/usr/sbin/semanage fcontext --add --type procps-ng_bin_t /usr/bin/top;
+/usr/sbin/semanage fcontext --add --type procps-ng_bin_t /usr/bin/uptime;
+/usr/sbin/semanage fcontext --add --type procps-ng_bin_t /usr/bin/vmstat;
+/usr/sbin/semanage fcontext --add --type procps-ng_bin_t /usr/bin/w;
+/usr/sbin/semanage fcontext --add --type procps-ng_bin_t /usr/bin/watch;
+/usr/sbin/semanage fcontext --add --type procps-ng_bin_t /usr/sbin/pidof;
+/usr/sbin/semanage fcontext --add --type procps-ng_bin_t /usr/sbin/sysctl;
+/usr/sbin/semanage fcontext --add --type procps-ng_lib_t /usr/lib/libprocps.so.8.0.2;
+/usr/sbin/semanage fcontext --add --type procps-ng_lib_t /usr/lib/libprocps.so.8;
