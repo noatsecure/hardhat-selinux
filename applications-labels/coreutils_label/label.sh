@@ -1,4 +1,5 @@
 #!/bin/sh
+/usr/sbin/semanage fcontext --add --type coreutils_bin_t '/usr/bin/\[';
 /usr/sbin/semanage fcontext --add --type coreutils_bin_t /usr/bin/arch;
 /usr/sbin/semanage fcontext --add --type coreutils_bin_t /usr/bin/b2sum;
 /usr/sbin/semanage fcontext --add --type coreutils_bin_t /usr/bin/base32;
@@ -22,6 +23,7 @@
 /usr/sbin/semanage fcontext --add --type coreutils_bin_t /usr/bin/dircolors;
 /usr/sbin/semanage fcontext --add --type coreutils_bin_t /usr/bin/dirname;
 /usr/sbin/semanage fcontext --add --type coreutils_bin_t /usr/bin/du;
+/usr/sbin/semanage fcontext --add --type coreutils_bin_t /usr/bin/echo;
 /usr/sbin/semanage fcontext --add --type coreutils_bin_t /usr/bin/env;
 /usr/sbin/semanage fcontext --add --type coreutils_bin_t /usr/bin/expand;
 /usr/sbin/semanage fcontext --add --type coreutils_bin_t /usr/bin/expr;
