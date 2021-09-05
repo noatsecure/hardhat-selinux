@@ -7,7 +7,9 @@ require {
     type cryptsetup-libs_t;
     type dbus-libs_t;
     type device-mapper-libs_t;
+    type glibc_lib_t;
     type iptables-libs_t;
+    type json-c_lib_t;
     type kmod-libs_t;
     type libacl_lib_t;
     type libargon2_lib_t;
@@ -37,11 +39,13 @@ require {
     type lz4-libs_t;
     type named_t;
     type openssl-libs_t;
+    type p11-kit_lib_t;
     type pcre2_lib_t;
     type plymouth-core-libs_t;
     type plymouthd_t;
     type python3-libs_t;
     type rtkit_daemon_t;
+    type sssd-client_lib_t;
     type systemd_hostnamed_t;
     type systemd_logind_t;
     type systemd_resolved_t;
@@ -58,9 +62,11 @@ require {
 ########################################
 #============= chkpwd_t ==============
 allow chkpwd_t audit-libs_t:file { execute map };
+allow chkpwd_t glibc_lib_t:file { execute map };
 allow chkpwd_t libcap-ng_lib_t:file { execute map };
 allow chkpwd_t libgcc_lib_t:file { execute map };
 allow chkpwd_t libxcrypt_lib_t:file { execute map };
+allow chkpwd_t sssd-client_lib_t:file { execute map };
 #============= named_t ==============
 allow named_t libevent_lib_t:file { execute map };
 allow named_t libgcc_lib_t:file { execute map };
@@ -199,7 +205,9 @@ allow systemd_tmpfiles_t zlib_lib_t:file { execute map };
 allow systemd_userdbd_t audit-libs_t:file { execute map };
 allow systemd_userdbd_t cryptsetup-libs_t:file { execute map };
 allow systemd_userdbd_t device-mapper-libs_t:file { execute map };
+allow systemd_userdbd_t glibc_lib_t:file { execute map };
 allow systemd_userdbd_t iptables-libs_t:file { execute map };
+allow systemd_userdbd_t json-c_lib_t:file { execute map };
 allow systemd_userdbd_t kmod-libs_t:file { execute map };
 allow systemd_userdbd_t libacl_lib_t:file { execute map };
 allow systemd_userdbd_t libargon2_lib_t:file { execute map };
@@ -225,7 +233,9 @@ allow systemd_userdbd_t libxcrypt_lib_t:file { execute map };
 allow systemd_userdbd_t libzstd_lib_t:file { execute map };
 allow systemd_userdbd_t lz4-libs_t:file { execute map };
 allow systemd_userdbd_t openssl-libs_t:file { execute map };
+allow systemd_userdbd_t p11-kit_lib_t:file { execute map };
 allow systemd_userdbd_t pcre2_lib_t:file { execute map };
+allow systemd_userdbd_t sssd-client_lib_t:file { execute map };
 allow systemd_userdbd_t xz-libs_t:file { execute map };
 allow systemd_userdbd_t zlib_lib_t:file { execute map };
 #============= user_dbusd_t ==============
