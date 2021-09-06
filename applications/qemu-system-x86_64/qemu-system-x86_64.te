@@ -12,6 +12,7 @@ require {
     type config_home_t;
     type kvm_device_t;
     type svirt_t;
+    type svirt_tmp_t;
     type svirt_tmpfs_t;
     type system_dbusd_t;
     type system_dbusd_var_lib_t;
@@ -25,6 +26,7 @@ type_transition user_t virt_home_t: process svirt_t;
 ########################################
 #============= svirt_t ==============
 allow svirt_t config_home_t:file { map open read write };
+allow svirt_t svirt_tmp_t:file map;
 allow svirt_t system_dbusd_t:dbus send_msg;
 allow svirt_t system_dbusd_t:unix_stream_socket connectto;
 allow svirt_t system_dbusd_var_lib_t:lnk_file read;
