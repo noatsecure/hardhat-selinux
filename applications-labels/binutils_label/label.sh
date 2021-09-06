@@ -2,7 +2,7 @@
 /usr/sbin/semanage fcontext --add --type binutils_bin_t /usr/bin/addr2line;
 /usr/sbin/semanage fcontext --add --type binutils_bin_t /usr/bin/ar;
 /usr/sbin/semanage fcontext --add --type binutils_bin_t /usr/bin/as;
-/usr/sbin/semanage fcontext --add --type binutils_bin_t /usr/bin/c++filt;
+/usr/sbin/semanage fcontext --add --type binutils_bin_t '/usr/bin/c\+\+filt';
 /usr/sbin/semanage fcontext --add --type binutils_bin_t /usr/bin/dwp;
 /usr/sbin/semanage fcontext --add --type binutils_bin_t /usr/bin/elfedit;
 /usr/sbin/semanage fcontext --add --type binutils_bin_t /usr/bin/gprof;
