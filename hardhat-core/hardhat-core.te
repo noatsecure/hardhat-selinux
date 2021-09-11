@@ -9,6 +9,7 @@ require {
     type device-mapper-libs_t;
     type expat_lib_t;
     type glibc_lib_t;
+    type gmp_lib_t;
     type hardened-malloc_t;
     type iptables-libs_t;
     type json-c_lib_t;
@@ -33,6 +34,7 @@ require {
     type libpcap_lib_t;
     type libseccomp_lib_t;
     type libselinux_lib_t;
+    type libsepol_lib_t;
     type libstdcpp_lib_t;
     type libtasn1_lib_t;
     type libunistring_lib_t;
@@ -50,6 +52,7 @@ require {
     type protobuf-c_lib_t;
     type python3-libs_t;
     type rtkit_daemon_t;
+    type setfiles_t;
     type sssd-client_lib_t;
     type systemd_hostnamed_t;
     type systemd-libs_t;
@@ -78,9 +81,11 @@ allow chkpwd_t sssd-client_lib_t:file { execute map };
 #============= named_t ==============
 allow named_t expat_lib_t:file { execute map };
 allow named_t glibc_lib_t:file { execute map };
+allow named_t hardened-malloc_t:file { execute map };
 allow named_t libevent_lib_t:file { execute map };
 allow named_t libgcc_lib_t:file { execute map };
 allow named_t libnghttp2_lib_t:file { execute map };
+allow named_t libstdcpp_lib_t:file { execute map };
 allow named_t openssl-libs_t:file { execute map };
 allow named_t protobuf-c_lib_t:file { execute map };
 allow named_t python3-libs_t:file { execute map };
@@ -107,6 +112,16 @@ allow rtkit_daemon_t lz4-libs_t:file { execute map };
 allow rtkit_daemon_t sssd-client_lib_t:file { execute map };
 allow rtkit_daemon_t systemd-libs_t:file { execute map };
 allow rtkit_daemon_t xz-libs_t:file { execute map };
+#============= setfiles_t ==============
+allow setfiles_t audit-libs_t:file { execute map };
+allow setfiles_t glibc_lib_t:file { execute map };
+allow setfiles_t hardened-malloc_t:file { execute map };
+allow setfiles_t libcap-ng_lib_t:file { execute map };
+allow setfiles_t libgcc_lib_t:file { execute map };
+allow setfiles_t libselinux_lib_t:file { execute map };
+allow setfiles_t libsepol_lib_t:file { execute map };
+allow setfiles_t libstdcpp_lib_t:file { execute map };
+allow setfiles_t pcre2_lib_t:file { execute map };
 #============= systemd_hostnamed_t ==============
 allow systemd_hostnamed_t audit-libs_t:file { execute map };
 allow systemd_hostnamed_t cryptsetup-libs_t:file { execute map };
@@ -114,6 +129,7 @@ allow systemd_hostnamed_t device-mapper-libs_t:file { execute map };
 allow systemd_hostnamed_t glibc_lib_t:file { execute map };
 allow systemd_hostnamed_t iptables-libs_t:file { execute map };
 allow systemd_hostnamed_t json-c_lib_t:file { execute map };
+allow systemd_hostnamed_t hardened-malloc_t:file { execute map };
 allow systemd_hostnamed_t kmod-libs_t:file { execute map };
 allow systemd_hostnamed_t libacl_lib_t:file { execute map };
 allow systemd_hostnamed_t libargon2_lib_t:file { execute map };
@@ -133,6 +149,7 @@ allow systemd_hostnamed_t libnl3_lib_t:file { execute map };
 allow systemd_hostnamed_t libpcap_lib_t:file { execute map };
 allow systemd_hostnamed_t libseccomp_lib_t:file { execute map };
 allow systemd_hostnamed_t libselinux_lib_t:file { execute map };
+allow systemd_hostnamed_t libstdcpp_lib_t:file { execute map };
 allow systemd_hostnamed_t libunistring_lib_t:file { execute map };
 allow systemd_hostnamed_t libuuid_lib_t:file { execute map };
 allow systemd_hostnamed_t libxcrypt_lib_t:file { execute map };
@@ -141,6 +158,7 @@ allow systemd_hostnamed_t lz4-libs_t:file { execute map };
 allow systemd_hostnamed_t openssl-libs_t:file { execute map };
 allow systemd_hostnamed_t p11-kit_lib_t:file { execute map };
 allow systemd_hostnamed_t pcre2_lib_t:file { execute map };
+allow systemd_hostnamed_t systemd-libs_t:file { execute map };
 allow systemd_hostnamed_t xz-libs_t:file { execute map };
 allow systemd_hostnamed_t zlib_lib_t:file { execute map };
 #============= systemd_logind_t ==============
@@ -186,6 +204,8 @@ allow systemd_logind_t zlib_lib_t:file { execute map };
 #============= systemd_resolved_t ==============
 allow systemd_resolved_t audit-libs_t:file { execute map };
 allow systemd_resolved_t device-mapper-libs_t:file { execute map };
+allow systemd_resolved_t gmp_lib_t:file { execute map };
+allow systemd_resolved_t json-c_lib_t:file { execute map };
 allow systemd_resolved_t libargon2_lib_t:file { execute map };
 allow systemd_resolved_t libattr_lib_t:file { execute map };
 allow systemd_resolved_t libcap-ng_lib_t:file { execute map };
@@ -199,6 +219,7 @@ allow systemd_resolved_t libuuid_lib_t:file { execute map };
 allow systemd_resolved_t p11-kit-trust_lib_t:file { execute map };
 allow systemd_resolved_t pcre2_lib_t:file { execute map };
 allow systemd_resolved_t sssd-client_lib_t:file { execute map };
+allow systemd_resolved_t systemd-libs_t:file { execute map };
 allow systemd_resolved_t zlib_lib_t:file { execute map };
 #============= systemd_tmpfiles_t ==============
 allow systemd_tmpfiles_t audit-libs_t:file { execute map };
