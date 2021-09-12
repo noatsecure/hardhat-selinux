@@ -2,6 +2,7 @@ module hardhat-core 1.0.0;
 ########################################
 require {
     class file { execute getattr map read relabelfrom write };
+    class dir { getattr open read search };
     type audit-libs_t;
     type chkpwd_t;
     type cryptsetup-libs_t;
@@ -62,6 +63,7 @@ require {
     type systemd_userdbd_t;
     type tmpfs_t;
     type unbound-libs_t;
+    type unlabeled_t;
     type user_dbusd_t;
     type user_home_dir_t;
     type user_t;
@@ -320,4 +322,5 @@ allow user_dbusd_t systemd-libs_t:file { execute map };
 allow user_dbusd_t xz-libs_t:file { execute map };
 #============= user_t ==============
 allow user_t tmpfs_t:file { map read write };
+allow user_t unlabeled_t:dir { getattr open read search };
 allow user_t user_home_dir_t:file { getattr relabelfrom };
