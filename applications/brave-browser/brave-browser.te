@@ -202,6 +202,7 @@ allow brave-browser_t at-spi2-core_lib_t:lnk_file read;
 allow brave-browser_t bin_t:dir { getattr search };
 allow brave-browser_t bin_t:lnk_file { getattr read };
 allow brave-browser_t brave-browser_exec_t:file { entrypoint execute execute_no_trans getattr open read };
+allow brave-browser_t brave-browser_exec_t:lnk_file { getattr read };
 allow brave-browser_t bzip2-libs_t:file { execute getattr map open read };
 allow brave-browser_t bzip2-libs_t:lnk_file read;
 allow brave-browser_t cache_home_t:dir { add_name create getattr open read remove_name search write };
@@ -502,6 +503,7 @@ allow brave-browser_t xz-libs_t:lnk_file read;
 allow brave-browser_t zlib_lib_t:file { execute getattr map open read };
 allow brave-browser_t zlib_lib_t:lnk_file read;
 #============= user_t ==============
+allow user_t brave-browser_exec_t:lnk_file read;
 allow user_t brave-browser_t:dir { getattr search };
 allow user_t brave-browser_t:fd use;
 allow user_t brave-browser_t:fifo_file write;
