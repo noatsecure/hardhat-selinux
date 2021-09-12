@@ -251,6 +251,7 @@ allow brave-browser_t gdk-pixbuf2_lib_t:lnk_file read;
 allow brave-browser_t glib2_lib_t:file { execute getattr map open read };
 allow brave-browser_t glib2_lib_t:lnk_file read;
 allow brave-browser_t glibc_lib_t:file { execute getattr map open read };
+allow brave-browser_t glibc_lib_t:lnk_file read;
 allow brave-browser_t glib-networking_lib_t:file { execute getattr map open read };
 allow brave-browser_t gmp_lib_t:file { execute getattr map open read };
 allow brave-browser_t gmp_lib_t:lnk_file read;
