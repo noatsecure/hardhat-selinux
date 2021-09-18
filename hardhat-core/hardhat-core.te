@@ -42,6 +42,7 @@ require {
     type libuuid_lib_t;
     type libxcrypt_lib_t;
     type libzstd_lib_t;
+    type load_policy_t;
     type lz4-libs_t;
     type named_t;
     type openssl-libs_t;
@@ -80,6 +81,9 @@ allow chkpwd_t libstdcpp_lib_t:file { execute map };
 allow chkpwd_t libgcc_lib_t:file { execute map };
 allow chkpwd_t libxcrypt_lib_t:file { execute map };
 allow chkpwd_t sssd-client_lib_t:file { execute map };
+#============= load_policy_t ==============
+allow load_policy_t hardened-malloc_t:file map;
+allow load_policy_t libsepol_lib_t:file map;
 #============= named_t ==============
 allow named_t expat_lib_t:file { execute map };
 allow named_t glibc_lib_t:file { execute map };
