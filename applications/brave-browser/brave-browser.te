@@ -40,6 +40,7 @@ require {
     type dri_device_t;
     type etc_t;
     type expat_lib_t;
+    type flac-libs_t;
     type fontconfig_lib_t;
     type fonts_cache_t;
     type fonts_t;
@@ -233,6 +234,7 @@ allow brave-browser_t etc_t:file { getattr map open read };
 allow brave-browser_t etc_t:lnk_file { getattr read };
 allow brave-browser_t expat_lib_t:file { execute getattr map open read };
 allow brave-browser_t expat_lib_t:lnk_file read;
+allow brave-browser_t flac-libs_t:lnk_file read;
 allow brave-browser_t fontconfig_lib_t:file { execute getattr map open read };
 allow brave-browser_t fontconfig_lib_t:lnk_file read;
 allow brave-browser_t fonts_cache_t:dir search;
