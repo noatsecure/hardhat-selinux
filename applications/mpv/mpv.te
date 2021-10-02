@@ -162,6 +162,7 @@ require {
     type libzstd_lib_t;
     type lilv_lib_t;
     type locale_t;
+    type lua-libs_t;
     type luajit_lib_t;
     type lz4-libs_t;
     type mesa-libEGL_lib_t;
@@ -514,6 +515,7 @@ allow mpv_t lilv_lib_t:lnk_file read;
 allow mpv_t locale_t:dir search;
 allow mpv_t locale_t:file { getattr map open read };
 allow mpv_t locale_t:lnk_file read;
+allow mpv_t lua-libs_t:file { execute getattr map open read };
 allow mpv_t luajit_lib_t:file { execute getattr map open read };
 allow mpv_t luajit_lib_t:lnk_file read;
 allow mpv_t lz4-libs_t:file { execute getattr map open read };
