@@ -1,7 +1,7 @@
 module cryptsetup_label 1.0.0;
 ########################################
 require {
-    attribute file_type, non_auth_file_type, non_security_file_type;
+    attribute application_exec_type, entry_type, exec_type, file_type, non_auth_file_type, non_security_file_type, systemprocess_entry;
 }
 ########################################
 type cryptsetup_sbin_t, application_exec_type, entry_type, exec_type, file_type, non_auth_file_type, non_security_file_type, systemprocess_entry;

@@ -79,9 +79,9 @@ PACKAGE: e2fsprogs-libs
 PACKAGE: edk2-ovmf
 PACKAGE: efi-filesystem
 Traceback (most recent call last):
-  File "/home/user/git/hardhat-bin/semodgenpackage", line 350, in <module>
+  File "/home/user/git/hardhat-bin/semodgenpackage", line 354, in <module>
     main(package, outdir)
-  File "/home/user/git/hardhat-bin/semodgenpackage", line 333, in main
+  File "/home/user/git/hardhat-bin/semodgenpackage", line 337, in main
     [label, te] = generate(package, lst)
   File "/home/user/git/hardhat-bin/semodgenpackage", line 195, in generate
     example_target = lst[0][0]
@@ -109,9 +109,9 @@ PACKAGE: file
 PACKAGE: file-libs
 PACKAGE: filesystem
 Traceback (most recent call last):
-  File "/home/user/git/hardhat-bin/semodgenpackage", line 350, in <module>
+  File "/home/user/git/hardhat-bin/semodgenpackage", line 354, in <module>
     main(package, outdir)
-  File "/home/user/git/hardhat-bin/semodgenpackage", line 333, in main
+  File "/home/user/git/hardhat-bin/semodgenpackage", line 337, in main
     [label, te] = generate(package, lst)
   File "/home/user/git/hardhat-bin/semodgenpackage", line 195, in generate
     example_target = lst[0][0]
@@ -166,9 +166,9 @@ WARN: Unable to obtain the SELinux context for the following entry due to a perm
 WARN: Unable to obtain the SELinux context for the following entry due to a permission error. You may need to run this script as root: '/boot/grub2/grub.cfg'
 WARN: Unable to obtain the SELinux context for the following entry due to a permission error. You may need to run this script as root: '/boot/grub2/grubenv'
 Traceback (most recent call last):
-  File "/home/user/git/hardhat-bin/semodgenpackage", line 350, in <module>
+  File "/home/user/git/hardhat-bin/semodgenpackage", line 354, in <module>
     main(package, outdir)
-  File "/home/user/git/hardhat-bin/semodgenpackage", line 335, in main
+  File "/home/user/git/hardhat-bin/semodgenpackage", line 339, in main
     lst = add_label(lst, label)
   File "/home/user/git/hardhat-bin/semodgenpackage", line 223, in add_label
     for nst_lst in lst: nst_lst[0] = regex(nst_lst[0])
@@ -413,7 +413,7 @@ ERROR: Unable to obtain module name from the following $te contents:
 module libstdc++_label 1.0.0;
 ########################################
 require {
-    attribute base_file_type, base_ro_file_type, entry_type, exec_type, file_type, mountpoint, non_auth_file_type, non_security_file_type;
+    attribute base_file_type, base_ro_file_type, entry_type, exec_type, file_type, mountpoint, non_auth_file_type, non_security_file_type, sepgsql_module_type;
 }
 ########################################
 type libstdc++_lib_t, base_file_type, base_ro_file_type, file_type, non_auth_file_type, non_security_file_type, sepgsql_module_type;
@@ -595,9 +595,9 @@ WARN: Unable to obtain the SELinux context for the following entry due to a perm
 WARN: Unable to obtain the SELinux context for the following entry due to a permission error. You may need to run this script as root: '/root/.cshrc'
 WARN: Unable to obtain the SELinux context for the following entry due to a permission error. You may need to run this script as root: '/root/.tcshrc'
 Traceback (most recent call last):
-  File "/home/user/git/hardhat-bin/semodgenpackage", line 350, in <module>
+  File "/home/user/git/hardhat-bin/semodgenpackage", line 354, in <module>
     main(package, outdir)
-  File "/home/user/git/hardhat-bin/semodgenpackage", line 333, in main
+  File "/home/user/git/hardhat-bin/semodgenpackage", line 337, in main
     [label, te] = generate(package, lst)
   File "/home/user/git/hardhat-bin/semodgenpackage", line 195, in generate
     example_target = lst[0][0]
