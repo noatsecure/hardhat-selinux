@@ -1,0 +1,19 @@
+#!/bin/sh
+/usr/sbin/semanage fcontext --add --type openssh-server_bin_t "/usr/libexec/openssh/sftp-server";
+/usr/sbin/semanage fcontext --add --type openssh-server_bin_t "/usr/libexec/openssh/sshd-keygen";
+/usr/sbin/semanage fcontext --add --type openssh-server_etc_t "/etc/pam.d/sshd";
+/usr/sbin/semanage fcontext --add --type openssh-server_etc_t "/etc/ssh/sshd_config";
+/usr/sbin/semanage fcontext --add --type openssh-server_etc_t "/etc/sysconfig/sshd";
+/usr/sbin/semanage fcontext --add --type openssh-server_lib_t "/usr/lib/systemd/system/sshd-keygen.target";
+/usr/sbin/semanage fcontext --add --type openssh-server_lib_t "/usr/lib/systemd/system/sshd-keygen@.service";
+/usr/sbin/semanage fcontext --add --type openssh-server_lib_t "/usr/lib/systemd/system/sshd.service";
+/usr/sbin/semanage fcontext --add --type openssh-server_lib_t "/usr/lib/systemd/system/sshd.so(.*)?";
+/usr/sbin/semanage fcontext --add --type openssh-server_lib_t "/usr/lib/systemd/system/sshd@.service";
+/usr/sbin/semanage fcontext --add --type openssh-server_lib_t "/usr/libexec/openssh/sftp-server";
+/usr/sbin/semanage fcontext --add --type openssh-server_lib_t "/usr/libexec/openssh/sshd-keygen";
+/usr/sbin/semanage fcontext --add --type openssh-server_sbin_t "/usr/sbin/sshd";
+/usr/sbin/semanage fcontext --add --type openssh-server_usr_t "/usr/share/empty.sshd(.*)?";
+/usr/sbin/semanage fcontext --add --type openssh-server_usr_t "/usr/share/man/man5/moduli.5.gz";
+/usr/sbin/semanage fcontext --add --type openssh-server_usr_t "/usr/share/man/man5/sshd_config.5.gz";
+/usr/sbin/semanage fcontext --add --type openssh-server_usr_t "/usr/share/man/man8/sftp-server.8.gz";
+/usr/sbin/semanage fcontext --add --type openssh-server_usr_t "/usr/share/man/man8/sshd.8.gz";
