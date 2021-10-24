@@ -1,0 +1,9 @@
+module xorg-x11-server-Xwayland_label 1.0.0;
+########################################
+require {
+    attribute application_exec_type, entry_type, exec_type, file_type, non_auth_file_type, non_security_file_type, systemprocess_entry;
+}
+########################################
+type xorg-x11-server-Xwayland_bin_t, application_exec_type, entry_type, exec_type, file_type, non_auth_file_type, non_security_file_type, systemprocess_entry;
+type xorg-x11-server-Xwayland_usr_t, file_type, non_auth_file_type, non_security_file_type;
+########################################
