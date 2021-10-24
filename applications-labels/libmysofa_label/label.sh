@@ -1,3 +1,4 @@
 #!/bin/sh
-/usr/sbin/semanage fcontext --add --type libmysofa_lib_t /usr/lib/libmysofa.so.1.1.0;
-/usr/sbin/semanage fcontext --add --type libmysofa_lib_t /usr/lib/libmysofa.so.1;
+/usr/sbin/semanage fcontext --add --type libmysofa_lib_t "/usr/lib/libm.so(.*)?";
+/usr/sbin/semanage fcontext --add --type libmysofa_usr_t "/usr/share/doc/libmysofa(.*)?";
+/usr/sbin/semanage fcontext --add --type libmysofa_usr_t "/usr/share/licenses/libmysofa(.*)?";

@@ -1,3 +1,20 @@
 #!/bin/sh
-/usr/sbin/semanage fcontext --add --type wpa_supplicant_bin_t /usr/sbin/eapol_test;
-/usr/sbin/semanage fcontext --add --type wpa_supplicant_bin_t /usr/sbin/wpa_passphrase;
+/usr/sbin/semanage fcontext --add --type wpa_supplicant_etc_t "/etc/dbus-1/system.d/wpa_supplicant.conf";
+/usr/sbin/semanage fcontext --add --type wpa_supplicant_etc_t "/etc/logrotate.d(.*)?";
+/usr/sbin/semanage fcontext --add --type wpa_supplicant_etc_t "/etc/sysconfig/wpa_supplicant";
+/usr/sbin/semanage fcontext --add --type wpa_supplicant_etc_t "/etc/wpa_supplicant(.*)?";
+/usr/sbin/semanage fcontext --add --type wpa_supplicant_lib_t "/usr/lib/systemd/system/wpa_supplicant.service";
+/usr/sbin/semanage fcontext --add --type wpa_supplicant_sbin_t "/usr/sbin/eapol_test";
+/usr/sbin/semanage fcontext --add --type wpa_supplicant_sbin_t "/usr/sbin/wpa_cli";
+/usr/sbin/semanage fcontext --add --type wpa_supplicant_sbin_t "/usr/sbin/wpa_passphrase";
+/usr/sbin/semanage fcontext --add --type wpa_supplicant_sbin_t "/usr/sbin/wpa_supplicant";
+/usr/sbin/semanage fcontext --add --type wpa_supplicant_usr_t "/usr/share/dbus-1/system-services/fi.w1.wpa_supplicant1.service";
+/usr/sbin/semanage fcontext --add --type wpa_supplicant_usr_t "/usr/share/doc/wpa_supplicant(.*)?";
+/usr/sbin/semanage fcontext --add --type wpa_supplicant_usr_t "/usr/share/licenses/wpa_supplicant(.*)?";
+/usr/sbin/semanage fcontext --add --type wpa_supplicant_usr_t "/usr/share/man/man5/wpa_supplicant.conf.5.gz";
+/usr/sbin/semanage fcontext --add --type wpa_supplicant_usr_t "/usr/share/man/man8/eapol_test.8.gz";
+/usr/sbin/semanage fcontext --add --type wpa_supplicant_usr_t "/usr/share/man/man8/wpa_background.8.gz";
+/usr/sbin/semanage fcontext --add --type wpa_supplicant_usr_t "/usr/share/man/man8/wpa_cli.8.gz";
+/usr/sbin/semanage fcontext --add --type wpa_supplicant_usr_t "/usr/share/man/man8/wpa_passphrase.8.gz";
+/usr/sbin/semanage fcontext --add --type wpa_supplicant_usr_t "/usr/share/man/man8/wpa_priv.8.gz";
+/usr/sbin/semanage fcontext --add --type wpa_supplicant_usr_t "/usr/share/man/man8/wpa_supplicant.8.gz";

@@ -1,3 +1,19 @@
 #!/bin/sh
-/usr/sbin/semanage fcontext --add --type at_bin_t /usr/bin/batch;
-/usr/sbin/semanage fcontext --add --type at_bin_t /usr/sbin/atrun;
+/usr/sbin/semanage fcontext --add --type at_bin_t "/usr/bin/at";
+/usr/sbin/semanage fcontext --add --type at_bin_t "/usr/bin/batch";
+/usr/sbin/semanage fcontext --add --type at_etc_t "/etc/at.deny";
+/usr/sbin/semanage fcontext --add --type at_etc_t "/etc/pam.d/atd";
+/usr/sbin/semanage fcontext --add --type at_etc_t "/etc/sysconfig/atd";
+/usr/sbin/semanage fcontext --add --type at_lib_t "/usr/lib/systemd/system/atd.service";
+/usr/sbin/semanage fcontext --add --type at_sbin_t "/usr/sbin/atd";
+/usr/sbin/semanage fcontext --add --type at_sbin_t "/usr/sbin/atrun";
+/usr/sbin/semanage fcontext --add --type at_usr_t "/usr/share/doc/at(.*)?";
+/usr/sbin/semanage fcontext --add --type at_usr_t "/usr/share/licenses/at(.*)?";
+/usr/sbin/semanage fcontext --add --type at_usr_t "/usr/share/man/man1/at.1.gz";
+/usr/sbin/semanage fcontext --add --type at_usr_t "/usr/share/man/man1/atq.1.gz";
+/usr/sbin/semanage fcontext --add --type at_usr_t "/usr/share/man/man1/atrm.1.gz";
+/usr/sbin/semanage fcontext --add --type at_usr_t "/usr/share/man/man1/batch.1.gz";
+/usr/sbin/semanage fcontext --add --type at_usr_t "/usr/share/man/man5/at.allow.5.gz";
+/usr/sbin/semanage fcontext --add --type at_usr_t "/usr/share/man/man5/at.deny.5.gz";
+/usr/sbin/semanage fcontext --add --type at_usr_t "/usr/share/man/man8/atd.8.gz";
+/usr/sbin/semanage fcontext --add --type at_usr_t "/usr/share/man/man8/atrun.8.gz";

@@ -1,2 +1,22 @@
 #!/bin/sh
-/usr/sbin/semanage fcontext --add --type authselect_bin_t /usr/bin/authselect;
+/usr/sbin/semanage fcontext --add --type authselect_bin_t "/usr/bin/authselect";
+/usr/sbin/semanage fcontext --add --type authselect_etc_t "/etc/bash_completion.d/authselect-completion.sh";
+/usr/sbin/semanage fcontext --add --type authselect_usr_t "/usr/share/man/cs/man7/authselect-migration.7.gz";
+/usr/sbin/semanage fcontext --add --type authselect_usr_t "/usr/share/man/cs/man8/authselect.8.gz";
+/usr/sbin/semanage fcontext --add --type authselect_usr_t "/usr/share/man/de/man8/authselect.8.gz";
+/usr/sbin/semanage fcontext --add --type authselect_usr_t "/usr/share/man/es/man7/authselect-migration.7.gz";
+/usr/sbin/semanage fcontext --add --type authselect_usr_t "/usr/share/man/fr/man7/authselect-migration.7.gz";
+/usr/sbin/semanage fcontext --add --type authselect_usr_t "/usr/share/man/fr/man8/authselect.8.gz";
+/usr/sbin/semanage fcontext --add --type authselect_usr_t "/usr/share/man/ja/man7/authselect-migration.7.gz";
+/usr/sbin/semanage fcontext --add --type authselect_usr_t "/usr/share/man/man7/authselect-migration.7.gz";
+/usr/sbin/semanage fcontext --add --type authselect_usr_t "/usr/share/man/man8/authselect.8.gz";
+/usr/sbin/semanage fcontext --add --type authselect_usr_t "/usr/share/man/nl/man7/authselect-migration.7.gz";
+/usr/sbin/semanage fcontext --add --type authselect_usr_t "/usr/share/man/nl/man8/authselect.8.gz";
+/usr/sbin/semanage fcontext --add --type authselect_usr_t "/usr/share/man/ru/man7/authselect-migration.7.gz";
+/usr/sbin/semanage fcontext --add --type authselect_usr_t "/usr/share/man/ru/man8/authselect.8.gz";
+/usr/sbin/semanage fcontext --add --type authselect_usr_t "/usr/share/man/sv/man7/authselect-migration.7.gz";
+/usr/sbin/semanage fcontext --add --type authselect_usr_t "/usr/share/man/sv/man8/authselect.8.gz";
+/usr/sbin/semanage fcontext --add --type authselect_usr_t "/usr/share/man/tr/man7/authselect-migration.7.gz";
+/usr/sbin/semanage fcontext --add --type authselect_usr_t "/usr/share/man/tr/man8/authselect.8.gz";
+/usr/sbin/semanage fcontext --add --type authselect_usr_t "/usr/share/man/uk/man7/authselect-migration.7.gz";
+/usr/sbin/semanage fcontext --add --type authselect_usr_t "/usr/share/man/uk/man8/authselect.8.gz";

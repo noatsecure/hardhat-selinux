@@ -1,7 +1,21 @@
 #!/bin/sh
-/usr/sbin/semanage fcontext --add --type zvbi_bin_t /usr/bin/zvbi-atsc-cc;
-/usr/sbin/semanage fcontext --add --type zvbi_bin_t /usr/bin/zvbi-chains;
-/usr/sbin/semanage fcontext --add --type zvbi_bin_t /usr/bin/zvbi-ntsc-cc;
-/usr/sbin/semanage fcontext --add --type zvbi_bin_t /usr/sbin/zvbid;
-/usr/sbin/semanage fcontext --add --type zvbi_lib_t /usr/lib/libzvbi-chains.so.0.0.0;
-/usr/sbin/semanage fcontext --add --type zvbi_lib_t /usr/lib/libzvbi-chains.so.0;
+/usr/sbin/semanage fcontext --add --type zvbi_bin_t "/usr/bin/zvbi-atsc-cc";
+/usr/sbin/semanage fcontext --add --type zvbi_bin_t "/usr/bin/zvbi-chains";
+/usr/sbin/semanage fcontext --add --type zvbi_bin_t "/usr/bin/zvbi-ntsc-cc";
+/usr/sbin/semanage fcontext --add --type zvbi_lib_t "/usr/lib/libzvbi-chains.so.0";
+/usr/sbin/semanage fcontext --add --type zvbi_lib_t "/usr/lib/libzvbi.so.0";
+/usr/sbin/semanage fcontext --add --type zvbi_lib_t "/usr/lib/systemd/system/zvbid.service";
+/usr/sbin/semanage fcontext --add --type zvbi_sbin_t "/usr/sbin/zvbid";
+/usr/sbin/semanage fcontext --add --type zvbi_usr_t "/usr/share/doc/zvbi(.*)?";
+/usr/sbin/semanage fcontext --add --type zvbi_usr_t "/usr/share/locale/de/LC_MESSAGES/zvbi.mo";
+/usr/sbin/semanage fcontext --add --type zvbi_usr_t "/usr/share/locale/en@boldquot/LC_MESSAGES/zvbi.mo";
+/usr/sbin/semanage fcontext --add --type zvbi_usr_t "/usr/share/locale/en@quot/LC_MESSAGES/zvbi.mo";
+/usr/sbin/semanage fcontext --add --type zvbi_usr_t "/usr/share/locale/es/LC_MESSAGES/zvbi.mo";
+/usr/sbin/semanage fcontext --add --type zvbi_usr_t "/usr/share/locale/fr/LC_MESSAGES/zvbi.mo";
+/usr/sbin/semanage fcontext --add --type zvbi_usr_t "/usr/share/locale/it/LC_MESSAGES/zvbi.mo";
+/usr/sbin/semanage fcontext --add --type zvbi_usr_t "/usr/share/locale/nl/LC_MESSAGES/zvbi.mo";
+/usr/sbin/semanage fcontext --add --type zvbi_usr_t "/usr/share/locale/pl/LC_MESSAGES/zvbi.mo";
+/usr/sbin/semanage fcontext --add --type zvbi_usr_t "/usr/share/man/man1/zvbi-atsc-cc.1.gz";
+/usr/sbin/semanage fcontext --add --type zvbi_usr_t "/usr/share/man/man1/zvbi-chains.1.gz";
+/usr/sbin/semanage fcontext --add --type zvbi_usr_t "/usr/share/man/man1/zvbi-ntsc-cc.1.gz";
+/usr/sbin/semanage fcontext --add --type zvbi_usr_t "/usr/share/man/man1/zvbid.1.gz";

@@ -1,5 +1,21 @@
 #!/bin/sh
-/usr/sbin/semanage fcontext --add --type ffmpeg_bin_t /usr/bin/ffmpeg;
-/usr/sbin/semanage fcontext --add --type ffmpeg_bin_t /usr/bin/ffplay;
-/usr/sbin/semanage fcontext --add --type ffmpeg_bin_t /usr/bin/ffprobe;
-/usr/sbin/semanage fcontext --add --type ffmpeg_bin_t /usr/bin/qt-faststart;
+/usr/sbin/semanage fcontext --add --type ffmpeg_bin_t "/usr/bin/ffmpeg";
+/usr/sbin/semanage fcontext --add --type ffmpeg_bin_t "/usr/bin/ffplay";
+/usr/sbin/semanage fcontext --add --type ffmpeg_bin_t "/usr/bin/ffprobe";
+/usr/sbin/semanage fcontext --add --type ffmpeg_bin_t "/usr/bin/qt-faststart";
+/usr/sbin/semanage fcontext --add --type ffmpeg_usr_t "/usr/share/ffmpeg(.*)?";
+/usr/sbin/semanage fcontext --add --type ffmpeg_usr_t "/usr/share/man/man1/ffmpeg-all.1.gz";
+/usr/sbin/semanage fcontext --add --type ffmpeg_usr_t "/usr/share/man/man1/ffmpeg-bitstream-filters.1.gz";
+/usr/sbin/semanage fcontext --add --type ffmpeg_usr_t "/usr/share/man/man1/ffmpeg-codecs.1.gz";
+/usr/sbin/semanage fcontext --add --type ffmpeg_usr_t "/usr/share/man/man1/ffmpeg-devices.1.gz";
+/usr/sbin/semanage fcontext --add --type ffmpeg_usr_t "/usr/share/man/man1/ffmpeg-filters.1.gz";
+/usr/sbin/semanage fcontext --add --type ffmpeg_usr_t "/usr/share/man/man1/ffmpeg-formats.1.gz";
+/usr/sbin/semanage fcontext --add --type ffmpeg_usr_t "/usr/share/man/man1/ffmpeg-protocols.1.gz";
+/usr/sbin/semanage fcontext --add --type ffmpeg_usr_t "/usr/share/man/man1/ffmpeg-resampler.1.gz";
+/usr/sbin/semanage fcontext --add --type ffmpeg_usr_t "/usr/share/man/man1/ffmpeg-scaler.1.gz";
+/usr/sbin/semanage fcontext --add --type ffmpeg_usr_t "/usr/share/man/man1/ffmpeg-utils.1.gz";
+/usr/sbin/semanage fcontext --add --type ffmpeg_usr_t "/usr/share/man/man1/ffmpeg.1.gz";
+/usr/sbin/semanage fcontext --add --type ffmpeg_usr_t "/usr/share/man/man1/ffplay-all.1.gz";
+/usr/sbin/semanage fcontext --add --type ffmpeg_usr_t "/usr/share/man/man1/ffplay.1.gz";
+/usr/sbin/semanage fcontext --add --type ffmpeg_usr_t "/usr/share/man/man1/ffprobe-all.1.gz";
+/usr/sbin/semanage fcontext --add --type ffmpeg_usr_t "/usr/share/man/man1/ffprobe.1.gz";
