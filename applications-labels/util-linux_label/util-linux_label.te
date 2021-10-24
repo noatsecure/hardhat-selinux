@@ -4,7 +4,7 @@ require {
     attribute file_type, non_auth_file_type, non_security_file_type, systemd_unit_file_type;
 }
 ########################################
-type util-linux_bin_t, application_exec_type, entry_type, exec_type, file_type, non_auth_file_type, non_security_file_type;
+type util-linux_bin_t, base_file_type, base_ro_file_type, entry_type, exec_type, file_type, non_auth_file_type, non_security_file_type;
 type util-linux_etc_t, base_file_type, base_ro_file_type, configfile, file_type, non_auth_file_type, non_security_file_type;
 type util-linux_lib_t, file_type, non_auth_file_type, non_security_file_type, systemd_unit_file_type;
 type util-linux_sbin_t, application_exec_type, entry_type, exec_type, file_type, non_auth_file_type, non_security_file_type, systemprocess_entry;

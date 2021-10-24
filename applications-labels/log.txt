@@ -413,7 +413,7 @@ ERROR: Unable to obtain module name from the following $te contents:
 module libstdc++_label 1.0.0;
 ########################################
 require {
-    attribute base_file_type, base_ro_file_type, file_type, non_auth_file_type, non_security_file_type, sepgsql_module_type;
+    attribute base_file_type, base_ro_file_type, entry_type, exec_type, file_type, mountpoint, non_auth_file_type, non_security_file_type;
 }
 ########################################
 type libstdc++_lib_t, base_file_type, base_ro_file_type, file_type, non_auth_file_type, non_security_file_type, sepgsql_module_type;
@@ -717,6 +717,7 @@ PACKAGE: yajl
 PACKAGE: yum
 PACKAGE: zchunk-libs
 PACKAGE: zimg
+PACKAGE: zip
 PACKAGE: zlib
 PACKAGE: zram-generator
 PACKAGE: zram-generator-defaults

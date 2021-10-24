@@ -4,9 +4,9 @@ require {
     attribute base_file_type, base_ro_file_type, entry_type, exec_type, file_type, non_auth_file_type, non_security_file_type;
 }
 ########################################
-type NetworkManager_bin_t, base_file_type, base_ro_file_type, entry_type, exec_type, file_type, non_auth_file_type, non_security_file_type;
+type NetworkManager_bin_t, application_exec_type, entry_type, exec_type, file_type, non_auth_file_type, non_security_file_type, direct_init_entry, systemprocess_entry;
 type NetworkManager_etc_t, configfile, file_type, non_auth_file_type, non_security_file_type;
-type NetworkManager_lib_t, file_type, non_auth_file_type, non_security_file_type, systemd_unit_file_type;
+type NetworkManager_lib_t, base_file_type, base_ro_file_type, entry_type, exec_type, file_type, non_auth_file_type, non_security_file_type;
 type NetworkManager_sbin_t, base_file_type, base_ro_file_type, entry_type, exec_type, file_type, non_auth_file_type, non_security_file_type;
-type NetworkManager_usr_t, base_file_type, base_ro_file_type, entry_type, exec_type, file_type, mountpoint, non_auth_file_type, non_security_file_type;
+type NetworkManager_usr_t, file_type, non_auth_file_type, non_security_file_type;
 ########################################
