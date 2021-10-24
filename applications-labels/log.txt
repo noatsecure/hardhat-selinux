@@ -1,0 +1,723 @@
+PACKAGE: NetworkManager
+PACKAGE: NetworkManager-libnm
+PACKAGE: NetworkManager-wifi
+PACKAGE: SDL2
+PACKAGE: acl
+PACKAGE: adwaita-cursor-theme
+PACKAGE: adwaita-icon-theme
+PACKAGE: alsa-lib
+PACKAGE: alternatives
+PACKAGE: at
+PACKAGE: at-spi2-atk
+PACKAGE: at-spi2-core
+PACKAGE: atk
+PACKAGE: audit
+WARN: The following entry is not a valid file. This error occurs when a package's symlink is to a non-existent file and is often harmless: '/var/run/auditd.state'
+PACKAGE: audit-libs
+PACKAGE: authselect
+PACKAGE: authselect-libs
+PACKAGE: avahi-libs
+PACKAGE: basesystem
+WARN: There are no files associated with this package, exiting now.
+PACKAGE: bash
+PACKAGE: bemenu
+PACKAGE: bluez-libs
+PACKAGE: brave-browser
+PACKAGE: brave-keyring
+PACKAGE: bzip2-libs
+PACKAGE: ca-certificates
+PACKAGE: cairo
+PACKAGE: cairo-gobject
+PACKAGE: capstone
+PACKAGE: chkconfig
+PACKAGE: chrony
+WARN: Unable to obtain the SELinux context for the following entry due to a permission error. You may need to run this script as root: '/etc/dhcp/dhclient.d/chrony.sh'
+PACKAGE: colord-libs
+PACKAGE: compat-lua-libs
+PACKAGE: coreutils
+PACKAGE: coreutils-common
+PACKAGE: cpio
+PACKAGE: cracklib
+PACKAGE: cracklib-dicts
+PACKAGE: crypto-policies
+PACKAGE: crypto-policies-scripts
+PACKAGE: cryptsetup
+PACKAGE: cryptsetup-libs
+PACKAGE: cups-libs
+PACKAGE: curl
+PACKAGE: cyrus-sasl-lib
+PACKAGE: daxctl-libs
+PACKAGE: dbus
+WARN: There are no files associated with this package, exiting now.
+PACKAGE: dbus-broker
+PACKAGE: dbus-common
+PACKAGE: dbus-glib
+PACKAGE: dbus-libs
+PACKAGE: dejavu-fonts-all
+WARN: There are no files associated with this package, exiting now.
+PACKAGE: dejavu-sans-fonts
+PACKAGE: dejavu-sans-mono-fonts
+PACKAGE: dejavu-serif-fonts
+PACKAGE: deltarpm
+PACKAGE: desktop-file-utils
+PACKAGE: device-mapper
+PACKAGE: device-mapper-libs
+PACKAGE: dhcp-client
+PACKAGE: dhcp-common
+PACKAGE: diffutils
+PACKAGE: dnf
+PACKAGE: dnf-automatic
+PACKAGE: dnf-data
+WARN: The following entry is not a valid file. This error occurs when a package's symlink is to a non-existent file and is often harmless: '/var/log/dnf.plugin.log'
+PACKAGE: dnf-plugins-core
+PACKAGE: dosfstools
+PACKAGE: dracut
+WARN: The following entry is not a valid file. This error occurs when a package's symlink is to a non-existent file and is often harmless: '/var/log/dracut.log'
+PACKAGE: dracut-config-rescue
+PACKAGE: e2fsprogs
+PACKAGE: e2fsprogs-libs
+PACKAGE: edk2-ovmf
+PACKAGE: efi-filesystem
+Traceback (most recent call last):
+  File "/home/user/git/hardhat-bin/semodgenpackage", line 350, in <module>
+    main(package, outdir)
+  File "/home/user/git/hardhat-bin/semodgenpackage", line 333, in main
+    [label, te] = generate(package, lst)
+  File "/home/user/git/hardhat-bin/semodgenpackage", line 195, in generate
+    example_target = lst[0][0]
+IndexError: list index out of range
+PACKAGE: efibootmgr
+PACKAGE: efivar-libs
+PACKAGE: elfutils-debuginfod-client
+PACKAGE: elfutils-default-yama-scope
+PACKAGE: elfutils-libelf
+PACKAGE: elfutils-libs
+PACKAGE: emacs-filesystem
+PACKAGE: expat
+PACKAGE: fdk-aac-free
+PACKAGE: fedora-gpg-keys
+PACKAGE: fedora-release
+WARN: There are no files associated with this package, exiting now.
+PACKAGE: fedora-release-common
+PACKAGE: fedora-release-identity-basic
+PACKAGE: fedora-repos
+PACKAGE: fedora-repos-modular
+PACKAGE: ffmpeg
+PACKAGE: ffmpeg-libs
+PACKAGE: fftw-libs-double
+PACKAGE: file
+PACKAGE: file-libs
+PACKAGE: filesystem
+Traceback (most recent call last):
+  File "/home/user/git/hardhat-bin/semodgenpackage", line 350, in <module>
+    main(package, outdir)
+  File "/home/user/git/hardhat-bin/semodgenpackage", line 333, in main
+    [label, te] = generate(package, lst)
+  File "/home/user/git/hardhat-bin/semodgenpackage", line 195, in generate
+    example_target = lst[0][0]
+IndexError: list index out of range
+PACKAGE: findutils
+PACKAGE: firewalld
+WARN: Unable to obtain the SELinux context for the following entry due to a permission error. You may need to run this script as root: '/usr/share/polkit-1/rules.d/org.fedoraproject.FirewallD1.desktop.rules.choice'
+WARN: Unable to obtain the SELinux context for the following entry due to a permission error. You may need to run this script as root: '/usr/share/polkit-1/rules.d/org.fedoraproject.FirewallD1.rules'
+PACKAGE: firewalld-filesystem
+PACKAGE: flac-libs
+PACKAGE: fontconfig
+PACKAGE: fonts-filesystem
+PACKAGE: freeglut
+PACKAGE: freetype
+PACKAGE: fribidi
+PACKAGE: fuse-libs
+PACKAGE: fuse3-libs
+PACKAGE: gawk
+PACKAGE: gawk-all-langpacks
+PACKAGE: gdbm-libs
+PACKAGE: gdisk
+PACKAGE: gdk-pixbuf2
+PACKAGE: gdk-pixbuf2-modules
+PACKAGE: geolite2-city
+PACKAGE: geolite2-country
+PACKAGE: gettext
+PACKAGE: gettext-libs
+PACKAGE: git-core
+PACKAGE: glib-networking
+PACKAGE: glib2
+PACKAGE: glibc
+WARN: The following entry is not a valid file. This error occurs when a package's symlink is to a non-existent file and is often harmless: '/etc/gai.conf'
+PACKAGE: glibc-common
+PACKAGE: glibc-gconv-extra
+PACKAGE: glibc-langpack-en
+PACKAGE: gmp
+PACKAGE: gnupg2
+PACKAGE: gnupg2-smime
+PACKAGE: gnutls
+PACKAGE: gobject-introspection
+PACKAGE: gpgme
+PACKAGE: gpm-libs
+PACKAGE: graphite2
+PACKAGE: grep
+PACKAGE: groff-base
+PACKAGE: grub2-common
+WARN: Unable to obtain the SELinux context for the following entry due to a permission error. You may need to run this script as root: '/boot/efi/EFI/fedora'
+PACKAGE: grub2-efi-x64
+WARN: Unable to obtain the SELinux context for the following entry due to a permission error. You may need to run this script as root: '/boot/efi/EFI/fedora/grub.cfg'
+WARN: Unable to obtain the SELinux context for the following entry due to a permission error. You may need to run this script as root: '/boot/efi/EFI/fedora/grubx64.efi'
+WARN: Unable to obtain the SELinux context for the following entry due to a permission error. You may need to run this script as root: '/boot/grub2/fonts'
+WARN: Unable to obtain the SELinux context for the following entry due to a permission error. You may need to run this script as root: '/boot/grub2/grub.cfg'
+WARN: Unable to obtain the SELinux context for the following entry due to a permission error. You may need to run this script as root: '/boot/grub2/grubenv'
+Traceback (most recent call last):
+  File "/home/user/git/hardhat-bin/semodgenpackage", line 350, in <module>
+    main(package, outdir)
+  File "/home/user/git/hardhat-bin/semodgenpackage", line 335, in main
+    lst = add_label(lst, label)
+  File "/home/user/git/hardhat-bin/semodgenpackage", line 223, in add_label
+    for nst_lst in lst: nst_lst[0] = regex(nst_lst[0])
+  File "/home/user/git/hardhat-bin/semodgenpackage", line 156, in regex
+    if Path(entry).is_dir(): entry = f"{entry}(.*)?" 
+  File "/usr/lib64/python3.10/pathlib.py", line 1303, in is_dir
+    return S_ISDIR(self.stat().st_mode)
+  File "/usr/lib64/python3.10/pathlib.py", line 1095, in stat
+    return self._accessor.stat(self, follow_symlinks=follow_symlinks)
+PermissionError: [Errno 13] Permission denied: '/etc/grub2-efi.cfg'
+PACKAGE: grub2-tools
+WARN: Unable to obtain the SELinux context for the following entry due to a permission error. You may need to run this script as root: '/etc/grub.d/00_header'
+WARN: Unable to obtain the SELinux context for the following entry due to a permission error. You may need to run this script as root: '/etc/grub.d/01_users'
+WARN: Unable to obtain the SELinux context for the following entry due to a permission error. You may need to run this script as root: '/etc/grub.d/08_fallback_counting'
+WARN: Unable to obtain the SELinux context for the following entry due to a permission error. You may need to run this script as root: '/etc/grub.d/10_linux'
+WARN: Unable to obtain the SELinux context for the following entry due to a permission error. You may need to run this script as root: '/etc/grub.d/10_reset_boot_success'
+WARN: Unable to obtain the SELinux context for the following entry due to a permission error. You may need to run this script as root: '/etc/grub.d/12_menu_auto_hide'
+WARN: Unable to obtain the SELinux context for the following entry due to a permission error. You may need to run this script as root: '/etc/grub.d/14_menu_show_once'
+WARN: Unable to obtain the SELinux context for the following entry due to a permission error. You may need to run this script as root: '/etc/grub.d/20_linux_xen'
+WARN: Unable to obtain the SELinux context for the following entry due to a permission error. You may need to run this script as root: '/etc/grub.d/20_ppc_terminfo'
+WARN: Unable to obtain the SELinux context for the following entry due to a permission error. You may need to run this script as root: '/etc/grub.d/30_os-prober'
+WARN: Unable to obtain the SELinux context for the following entry due to a permission error. You may need to run this script as root: '/etc/grub.d/30_uefi-firmware'
+WARN: Unable to obtain the SELinux context for the following entry due to a permission error. You may need to run this script as root: '/etc/grub.d/40_custom'
+WARN: Unable to obtain the SELinux context for the following entry due to a permission error. You may need to run this script as root: '/etc/grub.d/41_custom'
+WARN: Unable to obtain the SELinux context for the following entry due to a permission error. You may need to run this script as root: '/etc/grub.d/README'
+PACKAGE: grub2-tools-minimal
+PACKAGE: grubby
+PACKAGE: gsettings-desktop-schemas
+PACKAGE: gsm
+PACKAGE: gtk-update-icon-cache
+PACKAGE: gtk3
+PACKAGE: gzip
+PACKAGE: harfbuzz
+PACKAGE: hicolor-icon-theme
+PACKAGE: hostname
+PACKAGE: hunspell
+PACKAGE: hunspell-en
+PACKAGE: hunspell-en-GB
+PACKAGE: hunspell-en-US
+PACKAGE: hunspell-filesystem
+PACKAGE: hwdata
+PACKAGE: ima-evm-utils
+PACKAGE: inih
+PACKAGE: initscripts
+PACKAGE: initscripts-service
+PACKAGE: intel-mediasdk
+PACKAGE: ipcalc
+PACKAGE: iproute
+PACKAGE: iproute-tc
+PACKAGE: ipset
+PACKAGE: ipset-libs
+PACKAGE: iptables-legacy-libs
+PACKAGE: iptables-libs
+PACKAGE: iptables-nft
+PACKAGE: iputils
+PACKAGE: ipxe-roms-qemu
+PACKAGE: iw
+PACKAGE: jansson
+PACKAGE: jbigkit-libs
+PACKAGE: json-c
+PACKAGE: json-glib
+PACKAGE: kbd
+PACKAGE: kbd-misc
+PACKAGE: kernel
+WARN: There are no files associated with this package, exiting now.
+PACKAGE: kernel
+WARN: There are no files associated with this package, exiting now.
+PACKAGE: kernel-core
+PACKAGE: kernel-core
+PACKAGE: kernel-modules
+PACKAGE: kernel-modules
+PACKAGE: keyutils-libs
+PACKAGE: kmod
+PACKAGE: kmod-libs
+PACKAGE: kpartx
+PACKAGE: krb5-libs
+PACKAGE: ladspa
+PACKAGE: lame-libs
+PACKAGE: langpacks-core-en
+PACKAGE: langpacks-core-font-en
+PACKAGE: langpacks-en
+PACKAGE: lcms2
+PACKAGE: less
+PACKAGE: libICE
+PACKAGE: libSM
+PACKAGE: libX11
+PACKAGE: libX11-common
+PACKAGE: libX11-xcb
+PACKAGE: libXScrnSaver
+PACKAGE: libXau
+PACKAGE: libXcomposite
+PACKAGE: libXcursor
+PACKAGE: libXdamage
+PACKAGE: libXdmcp
+PACKAGE: libXext
+PACKAGE: libXfixes
+PACKAGE: libXfont2
+PACKAGE: libXft
+PACKAGE: libXi
+PACKAGE: libXinerama
+PACKAGE: libXrandr
+PACKAGE: libXrender
+PACKAGE: libXt
+PACKAGE: libXtst
+PACKAGE: libXv
+PACKAGE: libXxf86vm
+PACKAGE: libacl
+PACKAGE: libaio
+PACKAGE: libaom
+PACKAGE: libarchive
+PACKAGE: libargon2
+PACKAGE: libass
+PACKAGE: libassuan
+PACKAGE: libasyncns
+PACKAGE: libatasmart
+PACKAGE: libattr
+PACKAGE: libavdevice
+PACKAGE: libblkid
+PACKAGE: libblockdev
+PACKAGE: libblockdev-crypto
+PACKAGE: libblockdev-fs
+PACKAGE: libblockdev-loop
+PACKAGE: libblockdev-mdraid
+PACKAGE: libblockdev-part
+PACKAGE: libblockdev-swap
+PACKAGE: libblockdev-utils
+PACKAGE: libbluray
+PACKAGE: libbpf
+PACKAGE: libbrotli
+PACKAGE: libbytesize
+PACKAGE: libcaca
+PACKAGE: libcap
+PACKAGE: libcap-ng
+PACKAGE: libcap-ng-python3
+PACKAGE: libcbor
+PACKAGE: libcdio
+PACKAGE: libcdio-paranoia
+PACKAGE: libcloudproviders
+PACKAGE: libcom_err
+PACKAGE: libcomps
+PACKAGE: libcurl
+PACKAGE: libdatrie
+PACKAGE: libdav1d
+PACKAGE: libdb
+PACKAGE: libdecor
+PACKAGE: libdnf
+PACKAGE: libdrm
+PACKAGE: libdvdnav
+PACKAGE: libdvdread
+PACKAGE: libeconf
+PACKAGE: libedit
+PACKAGE: libepoxy
+PACKAGE: liberation-fonts
+WARN: There are no files associated with this package, exiting now.
+PACKAGE: liberation-fonts-common
+PACKAGE: liberation-mono-fonts
+PACKAGE: liberation-narrow-fonts
+PACKAGE: liberation-sans-fonts
+PACKAGE: liberation-serif-fonts
+PACKAGE: libevdev
+PACKAGE: libevent
+PACKAGE: libfdisk
+PACKAGE: libfdt
+PACKAGE: libffi
+PACKAGE: libfido2
+PACKAGE: libfontenc
+PACKAGE: libfsverity
+PACKAGE: libgcc
+PACKAGE: libgcrypt
+PACKAGE: libglvnd
+PACKAGE: libglvnd-egl
+PACKAGE: libglvnd-gles
+PACKAGE: libglvnd-glx
+PACKAGE: libgomp
+PACKAGE: libgpg-error
+PACKAGE: libgudev
+PACKAGE: libgusb
+PACKAGE: libibverbs
+PACKAGE: libicu
+PACKAGE: libidn2
+PACKAGE: libinput
+PACKAGE: libjpeg-turbo
+PACKAGE: libjxl
+PACKAGE: libkcapi
+PACKAGE: libkcapi-hmaccalc
+PACKAGE: libksba
+PACKAGE: libldac
+PACKAGE: libldb
+PACKAGE: libmaxminddb
+PACKAGE: libmetalink
+PACKAGE: libmnl
+PACKAGE: libmodplug
+PACKAGE: libmodulemd
+PACKAGE: libmount
+PACKAGE: libmysofa
+PACKAGE: libndp
+PACKAGE: libnetfilter_conntrack
+PACKAGE: libnfnetlink
+PACKAGE: libnftnl
+PACKAGE: libnghttp2
+PACKAGE: libnl3
+PACKAGE: libnsl2
+PACKAGE: libogg
+PACKAGE: libopenmpt
+PACKAGE: libpcap
+PACKAGE: libpciaccess
+PACKAGE: libpipeline
+PACKAGE: libplacebo
+PACKAGE: libpmem
+PACKAGE: libpng
+PACKAGE: libproxy
+PACKAGE: libpsl
+PACKAGE: libpwquality
+PACKAGE: librdmacm
+PACKAGE: librepo
+PACKAGE: libreport-filesystem
+PACKAGE: librsvg2
+PACKAGE: libsamplerate
+PACKAGE: libsbc
+PACKAGE: libseat
+PACKAGE: libseccomp
+PACKAGE: libsecret
+PACKAGE: libselinux
+PACKAGE: libselinux-utils
+PACKAGE: libsemanage
+PACKAGE: libsepol
+PACKAGE: libshaderc
+PACKAGE: libsigsegv
+PACKAGE: libslirp
+PACKAGE: libsmartcols
+PACKAGE: libsmbclient
+PACKAGE: libsndfile
+PACKAGE: libsodium
+PACKAGE: libsolv
+PACKAGE: libsoup
+PACKAGE: libss
+PACKAGE: libssh
+PACKAGE: libssh-config
+PACKAGE: libstdc++
+ERROR: Unable to obtain module name from the following $te contents:
+
+module libstdc++_label 1.0.0;
+########################################
+require {
+    attribute base_file_type, base_ro_file_type, file_type, non_auth_file_type, non_security_file_type, sepgsql_module_type;
+}
+########################################
+type libstdc++_lib_t, base_file_type, base_ro_file_type, file_type, non_auth_file_type, non_security_file_type, sepgsql_module_type;
+type libstdc++_usr_t, base_file_type, base_ro_file_type, entry_type, exec_type, file_type, mountpoint, non_auth_file_type, non_security_file_type;
+########################################
+
+PACKAGE: libstemmer
+PACKAGE: libtalloc
+PACKAGE: libtasn1
+PACKAGE: libtdb
+PACKAGE: libtevent
+PACKAGE: libthai
+PACKAGE: libtheora
+PACKAGE: libtiff
+PACKAGE: libtirpc
+PACKAGE: libtracker-sparql
+PACKAGE: libudfread
+PACKAGE: libudisks2
+PACKAGE: libunistring
+PACKAGE: liburing
+PACKAGE: libusb1
+PACKAGE: libuser
+PACKAGE: libutempter
+PACKAGE: libuuid
+PACKAGE: libv4l
+PACKAGE: libva
+WARN: The following entry is not a valid file. This error occurs when a package's symlink is to a non-existent file and is often harmless: '/etc/libva.conf'
+PACKAGE: libva-intel-driver
+PACKAGE: libvdpau
+PACKAGE: libverto
+PACKAGE: libvmaf
+PACKAGE: libvorbis
+PACKAGE: libvpx
+PACKAGE: libwacom
+PACKAGE: libwacom-data
+PACKAGE: libwayland-client
+PACKAGE: libwayland-cursor
+PACKAGE: libwayland-egl
+PACKAGE: libwayland-server
+PACKAGE: libwbclient
+PACKAGE: libwebp
+PACKAGE: libxcb
+PACKAGE: libxcrypt
+PACKAGE: libxcrypt-compat
+PACKAGE: libxkbcommon
+PACKAGE: libxkbfile
+PACKAGE: libxml2
+PACKAGE: libxshmfence
+PACKAGE: libyaml
+PACKAGE: libzstd
+PACKAGE: lilv
+PACKAGE: linux-atm-libs
+PACKAGE: linux-firmware
+PACKAGE: linux-firmware-whence
+PACKAGE: llvm-libs
+PACKAGE: lmdb-libs
+PACKAGE: lua-libs
+PACKAGE: lv2
+PACKAGE: lz4-libs
+PACKAGE: lzo
+PACKAGE: man-db
+PACKAGE: mdadm
+PACKAGE: memstrack
+PACKAGE: mesa-dri-drivers
+PACKAGE: mesa-filesystem
+PACKAGE: mesa-libEGL
+PACKAGE: mesa-libGL
+PACKAGE: mesa-libGLU
+PACKAGE: mesa-libgbm
+PACKAGE: mesa-libglapi
+PACKAGE: mesa-vulkan-drivers
+PACKAGE: mkpasswd
+PACKAGE: mokutil
+PACKAGE: mozjs78
+PACKAGE: mpdecimal
+PACKAGE: mpfr
+PACKAGE: mpg123-libs
+PACKAGE: mpv
+PACKAGE: mtdev
+PACKAGE: ncurses
+PACKAGE: ncurses-base
+PACKAGE: ncurses-libs
+PACKAGE: ndctl-libs
+PACKAGE: nettle
+PACKAGE: nftables
+PACKAGE: npth
+PACKAGE: nspr
+PACKAGE: nss
+PACKAGE: nss-softokn
+PACKAGE: nss-softokn-freebl
+PACKAGE: nss-sysinit
+PACKAGE: nss-util
+PACKAGE: ntfs-3g-libs
+PACKAGE: ntfsprogs
+PACKAGE: numactl-libs
+PACKAGE: ocl-icd
+PACKAGE: openal-soft
+PACKAGE: opencore-amr
+PACKAGE: openjpeg2
+PACKAGE: openldap
+PACKAGE: openssh
+PACKAGE: openssh-clients
+PACKAGE: openssh-server
+PACKAGE: openssl-libs
+PACKAGE: openssl-pkcs11
+PACKAGE: opus
+PACKAGE: os-prober
+PACKAGE: p11-kit
+PACKAGE: p11-kit-trust
+PACKAGE: pam
+PACKAGE: pango
+PACKAGE: parted
+PACKAGE: passwd
+PACKAGE: pcre
+PACKAGE: pcre2
+PACKAGE: pcre2-syntax
+PACKAGE: pigz
+PACKAGE: pinentry
+PACKAGE: pipewire
+PACKAGE: pipewire-jack-audio-connection-kit
+PACKAGE: pipewire-libs
+PACKAGE: pipewire-pulseaudio
+PACKAGE: pipewire-utils
+PACKAGE: pixman
+PACKAGE: plymouth
+PACKAGE: plymouth-core-libs
+PACKAGE: plymouth-scripts
+PACKAGE: policycoreutils
+PACKAGE: polkit
+PACKAGE: polkit-libs
+PACKAGE: polkit-pkla-compat
+WARN: Unable to obtain the SELinux context for the following entry due to a permission error. You may need to run this script as root: '/etc/polkit-1/rules.d/49-polkit-pkla-compat.rules'
+PACKAGE: popt
+PACKAGE: procps-ng
+PACKAGE: protobuf-c
+PACKAGE: psmisc
+PACKAGE: publicsuffix-list-dafsa
+PACKAGE: pulseaudio-libs
+PACKAGE: pulseaudio-utils
+PACKAGE: python-pip-wheel
+PACKAGE: python-setuptools-wheel
+PACKAGE: python-unversioned-command
+PACKAGE: python3
+PACKAGE: python3-dateutil
+PACKAGE: python3-dbus
+PACKAGE: python3-distro
+PACKAGE: python3-dnf
+PACKAGE: python3-dnf-plugins-core
+PACKAGE: python3-firewall
+PACKAGE: python3-gobject-base
+PACKAGE: python3-gpg
+PACKAGE: python3-hawkey
+PACKAGE: python3-libcomps
+PACKAGE: python3-libdnf
+PACKAGE: python3-libs
+PACKAGE: python3-libselinux
+PACKAGE: python3-nftables
+PACKAGE: python3-rpm
+PACKAGE: python3-setools
+PACKAGE: python3-setuptools
+PACKAGE: python3-six
+PACKAGE: python3-unbound
+PACKAGE: qemu-common
+PACKAGE: qemu-device-display-virtio-gpu
+PACKAGE: qemu-device-display-virtio-vga
+PACKAGE: qemu-img
+PACKAGE: qemu-kvm-core
+WARN: There are no files associated with this package, exiting now.
+PACKAGE: qemu-system-x86-core
+PACKAGE: qemu-ui-gtk
+PACKAGE: qemu-ui-opengl
+PACKAGE: qrencode-libs
+PACKAGE: rav1e-libs
+PACKAGE: readline
+PACKAGE: rootfiles
+WARN: Unable to obtain the SELinux context for the following entry due to a permission error. You may need to run this script as root: '/root/.bash_logout'
+WARN: Unable to obtain the SELinux context for the following entry due to a permission error. You may need to run this script as root: '/root/.bash_profile'
+WARN: Unable to obtain the SELinux context for the following entry due to a permission error. You may need to run this script as root: '/root/.bashrc'
+WARN: Unable to obtain the SELinux context for the following entry due to a permission error. You may need to run this script as root: '/root/.cshrc'
+WARN: Unable to obtain the SELinux context for the following entry due to a permission error. You may need to run this script as root: '/root/.tcshrc'
+Traceback (most recent call last):
+  File "/home/user/git/hardhat-bin/semodgenpackage", line 350, in <module>
+    main(package, outdir)
+  File "/home/user/git/hardhat-bin/semodgenpackage", line 333, in main
+    [label, te] = generate(package, lst)
+  File "/home/user/git/hardhat-bin/semodgenpackage", line 195, in generate
+    example_target = lst[0][0]
+IndexError: list index out of range
+PACKAGE: rpm
+PACKAGE: rpm-build-libs
+PACKAGE: rpm-libs
+PACKAGE: rpm-plugin-selinux
+PACKAGE: rpm-plugin-systemd-inhibit
+PACKAGE: rpm-sign-libs
+PACKAGE: rpmfusion-free-release
+PACKAGE: rsync
+PACKAGE: rtkit
+PACKAGE: rubberband
+PACKAGE: sakura
+PACKAGE: samba-client-libs
+PACKAGE: samba-common
+WARN: The following entry is not a valid file. This error occurs when a package's symlink is to a non-existent file and is often harmless: '/run/winbindd'
+PACKAGE: samba-common-libs
+PACKAGE: seabios-bin
+PACKAGE: seavgabios-bin
+PACKAGE: sed
+PACKAGE: selinux-policy
+PACKAGE: selinux-policy-targeted
+PACKAGE: serd
+PACKAGE: setools-console
+PACKAGE: setup
+PACKAGE: sgabios-bin
+PACKAGE: shadow-utils
+PACKAGE: shared-mime-info
+PACKAGE: shim-x64
+WARN: Unable to obtain the SELinux context for the following entry due to a permission error. You may need to run this script as root: '/boot/efi/EFI/BOOT/BOOTX64.EFI'
+WARN: Unable to obtain the SELinux context for the following entry due to a permission error. You may need to run this script as root: '/boot/efi/EFI/BOOT/fbx64.efi'
+WARN: Unable to obtain the SELinux context for the following entry due to a permission error. You may need to run this script as root: '/boot/efi/EFI/fedora/BOOTX64.CSV'
+WARN: Unable to obtain the SELinux context for the following entry due to a permission error. You may need to run this script as root: '/boot/efi/EFI/fedora/mmx64.efi'
+WARN: Unable to obtain the SELinux context for the following entry due to a permission error. You may need to run this script as root: '/boot/efi/EFI/fedora/shim.efi'
+WARN: Unable to obtain the SELinux context for the following entry due to a permission error. You may need to run this script as root: '/boot/efi/EFI/fedora/shimx64.efi'
+PACKAGE: slang
+PACKAGE: snappy
+PACKAGE: sord
+PACKAGE: soxr
+PACKAGE: speex
+PACKAGE: spirv-tools-libs
+PACKAGE: sqlite-libs
+PACKAGE: sratom
+PACKAGE: srt-libs
+PACKAGE: sudo
+PACKAGE: sudo-python-plugin
+PACKAGE: svt-av1-libs
+PACKAGE: sway
+PACKAGE: swaybg
+PACKAGE: swayidle
+PACKAGE: swaylock
+PACKAGE: systemd
+WARN: The following entry is not a valid file. This error occurs when a package's symlink is to a non-existent file and is often harmless: '/etc/machine-info'
+WARN: The following entry is not a valid file. This error occurs when a package's symlink is to a non-existent file and is often harmless: '/var/lib/rpm-state/systemd'
+PACKAGE: systemd-libs
+PACKAGE: systemd-networkd
+WARN: Unable to obtain the SELinux context for the following entry due to a permission error. You may need to run this script as root: '/usr/share/polkit-1/rules.d/systemd-networkd.rules'
+PACKAGE: systemd-oomd-defaults
+PACKAGE: systemd-pam
+PACKAGE: systemd-resolved
+PACKAGE: systemd-udev
+WARN: The following entry is not a valid file. This error occurs when a package's symlink is to a non-existent file and is often harmless: '/var/lib/systemd/timesync'
+PACKAGE: tar
+PACKAGE: tpm2-tss
+PACKAGE: trousers
+PACKAGE: trousers-lib
+PACKAGE: tzdata
+PACKAGE: uchardet
+PACKAGE: udisks2
+PACKAGE: unbound-libs
+PACKAGE: unzip
+PACKAGE: util-linux
+PACKAGE: util-linux-core
+PACKAGE: vamp-plugin-sdk
+PACKAGE: vapoursynth-libs
+PACKAGE: vid
+ERROR: Invalid package: 'vid'
+PACKAGE: vim-common
+PACKAGE: vim-enhanced
+PACKAGE: vim-filesystem
+PACKAGE: vim-minimal
+PACKAGE: vo-amrwbenc
+PACKAGE: volume_key-libs
+PACKAGE: vte-profile
+PACKAGE: vte291
+PACKAGE: vulkan-loader
+PACKAGE: webrtc-audio-processing
+PACKAGE: wget
+PACKAGE: which
+PACKAGE: whois-nls
+PACKAGE: wireless-regdb
+PACKAGE: wireplumber
+PACKAGE: wireplumber-libs
+PACKAGE: wlroots
+PACKAGE: wpa_supplicant
+PACKAGE: x264-libs
+PACKAGE: x265-libs
+PACKAGE: xcb-util-renderutil
+PACKAGE: xcb-util-wm
+PACKAGE: xdg-user-dirs
+PACKAGE: xdg-user-dirs-gtk
+PACKAGE: xdg-utils
+PACKAGE: xen-libs
+PACKAGE: xen-licenses
+PACKAGE: xfsprogs
+PACKAGE: xkbcomp
+PACKAGE: xkeyboard-config
+PACKAGE: xml-common
+PACKAGE: xorg-x11-server-Xwayland
+PACKAGE: xorg-x11-server-common
+PACKAGE: xvidcore
+PACKAGE: xz
+PACKAGE: xz-libs
+PACKAGE: yajl
+PACKAGE: yum
+PACKAGE: zchunk-libs
+PACKAGE: zimg
+PACKAGE: zlib
+PACKAGE: zram-generator
+PACKAGE: zram-generator-defaults
+PACKAGE: zvbi
