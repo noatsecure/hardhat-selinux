@@ -1,0 +1,20 @@
+#!/bin/sh
+/usr/sbin/semanage fcontext --add --type qemu-system-x86-core_bin_t "/usr/bin/qemu-kvm";
+/usr/sbin/semanage fcontext --add --type qemu-system-x86-core_bin_t "/usr/bin/qemu-system-i386";
+/usr/sbin/semanage fcontext --add --type qemu-system-x86-core_bin_t "/usr/bin/qemu-system-x86_64";
+/usr/sbin/semanage fcontext --add --type qemu-system-x86-core_lib_t "/usr/lib/qemu/accel-tcg-i386.so";
+/usr/sbin/semanage fcontext --add --type qemu-system-x86-core_lib_t "/usr/lib/qemu/accel-tcg-x86_64.so";
+/usr/sbin/semanage fcontext --add --type qemu-system-x86-core_usr_t "/usr/share/man/man1/qemu-kvm.1.gz";
+/usr/sbin/semanage fcontext --add --type qemu-system-x86-core_usr_t "/usr/share/man/man1/qemu-system-i386.1.gz";
+/usr/sbin/semanage fcontext --add --type qemu-system-x86-core_usr_t "/usr/share/man/man1/qemu-system-x86_64.1.gz";
+/usr/sbin/semanage fcontext --add --type qemu-system-x86-core_usr_t "/usr/share/qemu/kvmvapic.bin";
+/usr/sbin/semanage fcontext --add --type qemu-system-x86-core_usr_t "/usr/share/qemu/linuxboot.bin";
+/usr/sbin/semanage fcontext --add --type qemu-system-x86-core_usr_t "/usr/share/qemu/multiboot.bin";
+/usr/sbin/semanage fcontext --add --type qemu-system-x86-core_usr_t "/usr/share/qemu/pvh.bin";
+/usr/sbin/semanage fcontext --add --type qemu-system-x86-core_usr_t "/usr/share/qemu/qboot.rom";
+/usr/sbin/semanage fcontext --add --type qemu-system-x86-core_usr_t "/usr/share/systemtap/tapset/qemu-system-i386-log.stp";
+/usr/sbin/semanage fcontext --add --type qemu-system-x86-core_usr_t "/usr/share/systemtap/tapset/qemu-system-i386-simpletrace.stp";
+/usr/sbin/semanage fcontext --add --type qemu-system-x86-core_usr_t "/usr/share/systemtap/tapset/qemu-system-i386.stp";
+/usr/sbin/semanage fcontext --add --type qemu-system-x86-core_usr_t "/usr/share/systemtap/tapset/qemu-system-x86_64-log.stp";
+/usr/sbin/semanage fcontext --add --type qemu-system-x86-core_usr_t "/usr/share/systemtap/tapset/qemu-system-x86_64-simpletrace.stp";
+/usr/sbin/semanage fcontext --add --type qemu-system-x86-core_usr_t "/usr/share/systemtap/tapset/qemu-system-x86_64.stp";
