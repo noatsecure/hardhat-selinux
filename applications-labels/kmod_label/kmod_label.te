@@ -1,0 +1,12 @@
+module kmod_label 1.0.0;
+########################################
+require {
+    attribute configfile, file_type, non_auth_file_type, non_security_file_type;
+}
+########################################
+type kmod_bin_t, application_exec_type, entry_type, exec_type, file_type, non_auth_file_type, non_security_file_type, systemprocess_entry;
+type kmod_etc_t, configfile, file_type, non_auth_file_type, non_security_file_type;
+type kmod_lib_t, base_file_type, base_ro_file_type, file_type, non_auth_file_type, non_security_file_type, sepgsql_module_type;
+type kmod_sbin_t, base_file_type, base_ro_file_type, entry_type, exec_type, file_type, non_auth_file_type, non_security_file_type;
+type kmod_usr_t, file_type, non_auth_file_type, non_security_file_type;
+########################################
