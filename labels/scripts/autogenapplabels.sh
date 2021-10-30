@@ -33,6 +33,9 @@ semodgenpackage='/usr/local/src/hardhat-bin/semodgenpackage';
 # The output log file will contain the date and time within the filename
 log="log-$(date +'%a_%b_%d-%R').txt";
 
+# Display message to user
+echo "INFO: All output will be in: '${log}'";
+
 #############
 ### START ###
 #############
