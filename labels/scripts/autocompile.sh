@@ -4,7 +4,7 @@
 ###############
 ### SCRIPTS ###
 ###############
-semodcompile="/home/sysadmin/hardhat-bin/semodcompile";
+semodcompile="${HOME}/git/hardhat-bin/semodcompile";
 
 #################
 ### ARGUMENTS ###
@@ -21,16 +21,13 @@ directory="$(realpath ${1})";
 # Verify the $directory is valid
 [[ ! -d "${directory}" ]] && echo "ERROR: Invalid directory: '${directory}'" && exit 1;
 
-# Verify the script is being ran as root
-[[ $EUID != 0 ]] && echo "ERROR: This script needs to be ran as root" && exit 1;
-
 #############
 ### START ###
 #############
 # Iterate through every file/directory in $directory
-for d in "${directory}"/*; do
+for d in "${directory}"/*_label; do
     # Display current $d to user
-    printf "=========\n${d}\n=========\n";
+    printf "\n=========\n$(basename ${d})\n=========\n";
     # If $d is not a directory, then continue to the next entry
     [[ ! -d "${d}" ]] && continue;
     # Define the name of the mod and pp SELinux policy module files
@@ -44,14 +41,6 @@ for d in "${directory}"/*; do
     [[ ! -f "${te}" ]] && echo "WARN: Skipping; unable to locate te file: '${te}'" && continue;
     # `cd` into $d and compile the $te file
     cd "${d}" && "${semodcompile}" "${te}";
-    # Define the shell script used for labelling
-    label="${d}/label.sh";
-    # Verify the $label is available, and if not, display a warning message to user and continue
-    [[ ! -f "${label}" ]] && echo "WARN: Unable to locate the label.sh file: '${label}'" && continue;
-    # Make the label.sh executable
-    /usr/bin/chmod +x "${label}";
-    # Execute the labelling script
-    "${label}";
     # Create a space between each $d
     printf "\n";
 done;
