@@ -4,7 +4,7 @@
 ### ARGUMENTS ###
 #################
 # Argument 1: Directory to output the SELinux policy module folder to
-directory="$(realpath ${1})";
+directory="${1}";
 
 # If the user has not specified an output directory, then display an error message and exit
 [[ -z "${directory}" ]] && echo 'ERROR: Argument 1: Define the directory to output the generated SELinux policy module folder to.' && exit 1;
@@ -14,6 +14,14 @@ directory="$(realpath ${1})";
 
 # Display informational message to user
 echo "INFO: The output directory for all SELinux policy module folders will be: '${directory}'";
+
+# Iterate through all arguments passed by user
+for arg in "${@}"; do
+    # If the current $arg is the skip flag, then set variable $skip to 1 and then break the loop
+    [[ '--skip' == "${arg}" ]] && skip=1 && break;
+    # Otherwise set variable $skip to 0
+    skip=0;
+done;
 
 ###############
 ### SCRIPTS ###
@@ -43,6 +51,8 @@ echo "INFO: All output will be in: '${log}'";
 for package in $(dnf list installed | awk '{print $1}' | sed -E s:\\..*$::g); do
     # Skip the header
     [[ "${package}" == "Installed" ]] && continue;
+    # If the user has passed the --skip flag, then any package that already has a SELinux folder within $directory is skipped
+    [[ ${skip} == 1 ]] && [[ -d "${directory}/${package}_label" ]] && echo "SKIPPED: ${package}" && continue;
     # Display the name of the current $package
     echo "PACKAGE: ${package}";
     # Generate the SELinux policy and shell script for labeling. Output errors to 
