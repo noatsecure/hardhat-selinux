@@ -1,8 +1,0 @@
-module gawk-all-langpacks_label 1.0.0;
-########################################
-require {
-    attribute file_type, non_auth_file_type, non_security_file_type;
-}
-########################################
-type gawk-all-langpacks_usr_t, file_type, non_auth_file_type, non_security_file_type;
-########################################

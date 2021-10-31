@@ -1,8 +1,0 @@
-module libudisks2_label 1.0.0;
-########################################
-require {
-    attribute base_file_type, base_ro_file_type, file_type, non_auth_file_type, non_security_file_type, sepgsql_module_type;
-}
-########################################
-type libudisks2_lib_t, base_file_type, base_ro_file_type, file_type, non_auth_file_type, non_security_file_type, sepgsql_module_type;
-########################################

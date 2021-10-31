@@ -1,8 +1,0 @@
-module kernel-modules_label 1.0.0;
-########################################
-require {
-    attribute file_type, non_auth_file_type, non_security_file_type;
-}
-########################################
-type kernel-modules_lib_t, file_type, non_auth_file_type, non_security_file_type;
-########################################

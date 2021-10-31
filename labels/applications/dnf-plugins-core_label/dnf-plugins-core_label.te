@@ -1,8 +1,0 @@
-module dnf-plugins-core_label 1.0.0;
-########################################
-require {
-    attribute file_type, non_auth_file_type, non_security_file_type;
-}
-########################################
-type dnf-plugins-core_usr_t, file_type, non_auth_file_type, non_security_file_type;
-########################################
