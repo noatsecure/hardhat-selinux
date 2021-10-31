@@ -1,0 +1,18 @@
+module xorg_user 1.0;
+########################################
+require {
+    class dir { add_name remove_name write };
+    class file { create link unlink };
+    class process { rlimitinh siginh signal };
+    type iceauth_t;
+    type user_t;
+    type user_tmp_t;
+    type xauth_t;
+}
+########################################
+#============= iceauth_t ==============
+allow iceauth_t user_tmp_t:dir { add_name remove_name write };
+allow iceauth_t user_tmp_t:file { create link unlink };
+#============= user_t ==============
+allow user_t iceauth_t:process { rlimitinh siginh signal };
+allow user_t xauth_t:process { rlimitinh siginh };
