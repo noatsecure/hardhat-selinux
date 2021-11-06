@@ -1,0 +1,20 @@
+module hardhat-plymouthd 1.0;
+########################################
+require {
+    class file { execute map };
+    type glibc_lib_t;
+    type hardened-malloc_t;
+    type libgcc_lib_t;
+    type libstdcpp_lib_t;
+    type plymouth-core-libs_t;
+    type plymouthd_t;
+    type systemd-libs_t;
+}
+########################################
+#============= plymouthd_t ==============
+allow plymouthd_t hardened-malloc_t:file { execute map };
+allow plymouthd_t libgcc_lib_t:file { execute map };
+allow plymouthd_t libstdcpp_lib_t:file { execute map };
+allow plymouthd_t glibc_lib_t:file { execute map };
+allow plymouthd_t plymouth-core-libs_t:file { execute map };
+allow plymouthd_t systemd-libs_t:file { execute map };
