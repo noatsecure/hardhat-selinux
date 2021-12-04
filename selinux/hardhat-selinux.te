@@ -2,29 +2,12 @@ module hardhat-selinux 1.0.0;
 ########################################
 require {
     class file { execute map };
-    type audit-libs_t;
-    type glibc_lib_t;
     type hardened-malloc_t;
-    type libcap-ng_lib_t;
-    type libgcc_lib_t;
-    type libselinux_lib_t;
-    type libsepol_lib_t;
-    type libstdcpp_lib_t;
     type load_policy_t;
-    type pcre2_lib_t;
     type setfiles_t;
 }
 ########################################
 #============= load_policy_t ==============
 allow load_policy_t hardened-malloc_t:file map;
-allow load_policy_t libsepol_lib_t:file map;
 #============= setfiles_t ==============
-allow setfiles_t audit-libs_t:file { execute map };
-allow setfiles_t glibc_lib_t:file { execute map };
 allow setfiles_t hardened-malloc_t:file { execute map };
-allow setfiles_t libcap-ng_lib_t:file { execute map };
-allow setfiles_t libgcc_lib_t:file { execute map };
-allow setfiles_t libselinux_lib_t:file { execute map };
-allow setfiles_t libsepol_lib_t:file { execute map };
-allow setfiles_t libstdcpp_lib_t:file { execute map };
-allow setfiles_t pcre2_lib_t:file { execute map };
