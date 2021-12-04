@@ -1,77 +1,10 @@
 module hardhat-dbus 1.0;
 ########################################
 require {
-    class dir { watch write };
-    class file { execute execute_no_trans getattr map open read };
     class process { noatsecure rlimitinh siginh };
-    class sock_file { write };
-    class unix_stream_socket { connectto };
-    type audit-libs_t;
-    type config_home_t;
-    type dbus-libs_t;
-    type expat_lib_t;
-    type glibc_lib_t;
-    type gnome_atspi_exec_t;
-    type hardened-malloc_t;
-    type libcap-ng_lib_t;
-    type libcap_lib_t;
-    type libgcc_lib_t;
-    type libgcrypt_lib_t;
-    type libgpg-error_lib_t;
-    type libselinux_lib_t;
-    type libstdcpp_lib_t;
-    type libzstd_lib_t;
-    type lz4-libs_t;
-    type pcre2_lib_t;
-    type rtkit_daemon_t;
-    type session_dbusd_tmp_t;
-    type sssd-client_lib_t;
-    type system_dbusd_t;
-    type systemd-libs_t;
     type user_dbusd_t;
     type user_t;
-    type user_tmp_t;
-    type xauth_home_t;
-    type xz-libs_t;
 }
 ########################################
-#============= rtkit_daemon_t ==============
-allow rtkit_daemon_t dbus-libs_t:file { execute map };
-allow rtkit_daemon_t glibc_lib_t:file { execute map };
-allow rtkit_daemon_t hardened-malloc_t:file { execute map };
-allow rtkit_daemon_t libcap_lib_t:file { execute map };
-allow rtkit_daemon_t libgcc_lib_t:file { execute map };
-allow rtkit_daemon_t libgcrypt_lib_t:file { execute map };
-allow rtkit_daemon_t libgpg-error_lib_t:file { execute map };
-allow rtkit_daemon_t libstdcpp_lib_t:file { execute map };
-allow rtkit_daemon_t libzstd_lib_t:file { execute map };
-allow rtkit_daemon_t lz4-libs_t:file { execute map };
-allow rtkit_daemon_t sssd-client_lib_t:file { execute map };
-allow rtkit_daemon_t systemd-libs_t:file { execute map };
-allow rtkit_daemon_t xz-libs_t:file { execute map };
-#============= system_dbusd_t ==============
-allow system_dbusd_t user_tmp_t:sock_file write;
 #============= user_dbusd_t ==============
-allow user_dbusd_t audit-libs_t:file { execute map };
-allow user_dbusd_t config_home_t:dir { watch write };
-allow user_dbusd_t expat_lib_t:file { execute map };
-allow user_dbusd_t glibc_lib_t:file { execute map };
-allow user_dbusd_t gnome_atspi_exec_t:file { execute execute_no_trans map open read };
-allow user_dbusd_t hardened-malloc_t:file { execute map };
-allow user_dbusd_t libcap-ng_lib_t:file { execute map };
-allow user_dbusd_t libgcc_lib_t:file { execute map };
-allow user_dbusd_t libgcrypt_lib_t:file { execute map };
-allow user_dbusd_t libgpg-error_lib_t:file { execute map };
-allow user_dbusd_t libselinux_lib_t:file { execute map };
-allow user_dbusd_t libstdcpp_lib_t:file { execute map };
-allow user_dbusd_t libzstd_lib_t:file { execute map };
-allow user_dbusd_t lz4-libs_t:file { execute map };
-allow user_dbusd_t pcre2_lib_t:file { execute map };
-allow user_dbusd_t sssd-client_lib_t:file { execute map };
-allow user_dbusd_t systemd-libs_t:file { execute map };
 allow user_dbusd_t user_t:process { noatsecure rlimitinh siginh };
-allow user_dbusd_t user_t:unix_stream_socket connectto;
-allow user_dbusd_t xauth_home_t:file { getattr open read };
-allow user_dbusd_t xz-libs_t:file { execute map };
-#============= user_t ==============
-allow user_t session_dbusd_tmp_t:sock_file write;

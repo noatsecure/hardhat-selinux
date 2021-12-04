@@ -2,31 +2,9 @@ module hardhat-named 1.0;
 ########################################
 require {
     class file { execute map };
-    type expat_lib_t;
-    type glibc_lib_t;
     type hardened-malloc_t;
-    type libevent_lib_t;
-    type libgcc_lib_t;
-    type libnghttp2_lib_t;
-    type libstdcpp_lib_t;
     type named_t;
-    type openssl-libs_t;
-    type protobuf-c_lib_t;
-    type python3-libs_t;
-    type unbound-libs_t;
-    type zlib_lib_t;
 }
 ########################################
 #============= named_t ==============
-allow named_t expat_lib_t:file { execute map };
-allow named_t glibc_lib_t:file { execute map };
 allow named_t hardened-malloc_t:file { execute map };
-allow named_t libevent_lib_t:file { execute map };
-allow named_t libgcc_lib_t:file { execute map };
-allow named_t libnghttp2_lib_t:file { execute map };
-allow named_t libstdcpp_lib_t:file { execute map };
-allow named_t openssl-libs_t:file { execute map };
-allow named_t protobuf-c_lib_t:file { execute map };
-allow named_t python3-libs_t:file { execute map };
-allow named_t unbound-libs_t:file { execute map };
-allow named_t zlib_lib_t:file { execute map };
