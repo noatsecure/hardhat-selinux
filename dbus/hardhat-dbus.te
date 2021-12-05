@@ -2,9 +2,13 @@ module hardhat-dbus 1.0;
 ########################################
 require {
     class process { noatsecure rlimitinh siginh };
+    class sock_file { write };
+    type session_dbusd_tmp_t;
     type user_dbusd_t;
     type user_t;
 }
 ########################################
 #============= user_dbusd_t ==============
 allow user_dbusd_t user_t:process { noatsecure rlimitinh siginh };
+#============= user_t ==============
+allow user_t session_dbusd_tmp_t:sock_file write;
