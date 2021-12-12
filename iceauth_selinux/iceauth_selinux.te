@@ -1,7 +1,6 @@
 module iceauth_selinux 1.0.0;
 ########################################
 require {
-    attribute application_domain_type, application_exec_type, entry_type, exec_type, file_type, non_auth_file_type, non_security_file_type;
     class dir { add_name remove_name write };
     class file { create link unlink };
     class process { rlimitinh siginh signal };
