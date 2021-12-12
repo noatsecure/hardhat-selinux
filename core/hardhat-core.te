@@ -1,18 +1,17 @@
 module hardhat-core 1.0.0;
 ########################################
 require {
-    class dir { getattr open read search };
-    class file { getattr map open read relabelfrom write };
-    type thumb_tmp_t;
+    class capability { sys_admin };
+    class file { getattr map open read write };
     type tmp_t;
-    type unlabeled_t;
     type user_home_dir_t;
     type user_t;
 }
 ########################################
 #============= user_t ==============
-allow user_t thumb_tmp_t:dir search;
-allow user_t thumb_tmp_t:file open;
+# Required to launch setsuid binaries (eg. brave-browser, bwrap, chromium, etc.)
+allow user_t self:capability { sys_admin };
+# Read/write files in /tmp
 allow user_t tmp_t:file { map open read write };
-#allow user_t unlabeled_t:dir { getattr open read search };
+# Read files in $HOME that are labeled as 'user_home_dir_t' type (eg. ~/.ICEauthority-c)
 allow user_t user_home_dir_t:file { getattr read };
