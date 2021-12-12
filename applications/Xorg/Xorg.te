@@ -10,7 +10,7 @@ require {
     class file { create entrypoint execute execute_no_trans getattr link map open read rename setattr unlink write };
     class lnk_file { getattr read };
     class netlink_kobject_uevent_socket { bind create getattr setopt };
-    class process { execmem fork getsched noatsecure rlimitinh setsched siginh signal transition };
+    class process { execmem fork getsched rlimitinh setsched siginh signal transition };
     class shm { associate getattr read unix_read unix_write write };
     class sock_file { create getattr unlink write };
     class unix_stream_socket { accept bind connect connectto create getattr getopt listen read shutdown write };
@@ -27,16 +27,14 @@ require {
     type event_device_t;
     type fonts_t;
     type gconf_home_t;
-    type gnome_atspi_exec_t;
     type home_bin_t;
     type home_root_t;
-    type iceauth_t;
+    type init_t;
     type ld_so_cache_t;
     type ld_so_t;
     type lib_t;
     type locale_t;
     type root_t;
-    type session_dbusd_tmp_t;
     type shell_exec_t;
     type sysctl_kernel_t;
     type sysctl_t;
@@ -68,18 +66,11 @@ type Xorg_exec_t, application_exec_type, entry_type, exec_type, file_type, non_a
 role user_r types Xorg_t;
 type_transition user_t Xorg_exec_t: process Xorg_t;
 ########################################
-#============= iceauth_t ==============
-allow iceauth_t user_tmp_t:dir { add_name remove_name write };
-allow iceauth_t user_tmp_t:file { create link unlink };
 #============= systemd_logind_t ==============
+allow systemd_logind_t Xorg_t:dbus send_msg;
 allow systemd_logind_t Xorg_t:dir search;
 allow systemd_logind_t Xorg_t:file { getattr open read };
-#============= user_dbusd_t ==============
-allow user_dbusd_t gnome_atspi_exec_t:file { execute execute_no_trans map open read };
-allow user_dbusd_t user_t:process { noatsecure rlimitinh siginh };
 #============= user_t ==============
-allow user_t iceauth_t:process { rlimitinh siginh signal };
-allow user_t session_dbusd_tmp_t:sock_file write;
 allow user_t xauth_t:process { rlimitinh siginh };
 allow user_t Xorg_t:process { rlimitinh siginh signal transition };
 allow user_t Xorg_t:unix_stream_socket connectto;
@@ -101,6 +92,8 @@ allow Xorg_t fonts_t:file { getattr open read };
 allow Xorg_t gconf_home_t:dir search;
 allow Xorg_t home_bin_t:dir search;
 allow Xorg_t home_root_t:dir { getattr search };
+allow Xorg_t init_t:dbus send_msg;
+allow Xorg_t init_t:unix_stream_socket connectto;
 allow Xorg_t ld_so_cache_t:file { getattr map open read };
 allow Xorg_t ld_so_t:file { execute map open read };
 allow Xorg_t lib_t:dir { getattr open read search };
