@@ -13,6 +13,6 @@ require {
 #============= user_t ==============
 allow user_t thumb_tmp_t:dir search;
 allow user_t thumb_tmp_t:file open;
-allow user_t tmp_t:file { map read write };
+allow user_t tmp_t:file { map open read write };
 #allow user_t unlabeled_t:dir { getattr open read search };
-#allow user_t user_home_dir_t:file { getattr relabelfrom };
+allow user_t user_home_dir_t:file { getattr read };
