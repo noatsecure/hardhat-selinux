@@ -20,6 +20,7 @@ require {
     type bin_t;
     type cache_home_t;
     type data_home_t;
+    type dbus-launch_t;
     type device_t;
     type devtty_t;
     type dri_device_t;
@@ -80,6 +81,9 @@ allow Xorg_t bin_t:file { execute execute_no_trans map open read };
 allow Xorg_t bin_t:lnk_file read;
 allow Xorg_t cache_home_t:lnk_file read;
 allow Xorg_t data_home_t:dir search;
+allow Xorg_t dbus-launch_t:dir search;
+allow Xorg_t dbus-launch_t:file { open read };
+allow Xorg_t dbus-launch_t:shm { associate getattr read unix_read unix_write write };
 allow Xorg_t device_t:dir { getattr open read search };
 allow Xorg_t devtty_t:chr_file { open read write };
 allow Xorg_t dri_device_t:chr_file { getattr ioctl map open read write };
