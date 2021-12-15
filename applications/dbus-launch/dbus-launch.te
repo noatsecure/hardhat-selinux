@@ -13,7 +13,7 @@ require {
     class lnk_file { create getattr read unlink };
     class netlink_kobject_uevent_socket { bind create getattr setopt };
     class netlink_route_socket { bind create getattr nlmsg_read read write };
-    class process { execmem fork getcap getpgid getsched rlimitinh setcap setpgid setrlimit setsched siginh sigkill signal transition };
+    class process { execmem fork getcap getpgid getsched rlimitinh setcap setpgid setrlimit setsched siginh sigkill signal sigstop transition };
     class security { compute_av };
     class shm { create destroy read unix_read unix_write write };
     class sock_file { create getattr setattr unlink write };
@@ -281,6 +281,7 @@ allow dbus-launch_t xauth_home_t:file { getattr open read write };
 #============= init_t ==============
 allow init_t dbus-launch_t:dir search;
 allow init_t dbus-launch_t:file { getattr open read };
+allow init_t dbus-launch_t:process { sigkill signal sigstop };
 #============= NetworkManager_t ==============
 allow NetworkManager_t dbus-launch_t:dbus send_msg;
 allow NetworkManager_t dbus-launch_t:dir search;
