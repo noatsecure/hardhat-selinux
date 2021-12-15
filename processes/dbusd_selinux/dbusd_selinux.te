@@ -1,21 +1,49 @@
 module dbusd_selinux 1.0.0;
 ########################################
 require {
+    class dbus { acquire_svc };
     class dir { write };
-    class file { execute execute_no_trans map open read };
+    class file { execute execute_no_trans getattr map open read };
     class process { noatsecure rlimitinh siginh };
     class sock_file { write };
+    class unix_stream_socket { connectto getattr read write };
     role user_r;
     type config_home_t;
+    type firewalld_t;
     type gnome_atspi_exec_t;
+    type init_t;
+    type NetworkManager_t;
+    type policykit_t;
     type session_dbusd_tmp_t;
+    type systemd_hostnamed_t;
+    type systemd_logind_t;
+    type thumb_t;
     type user_dbusd_t;
     type user_t;
+    type xauth_home_t;
+    type Xorg_t;
 }
 ########################################
+#============= init_t ==============
+allow init_t self:dbus acquire_svc;
+#============= firewalld_t ==============
+allow firewalld_t init_t:dbus acquire_svc;
+#============= NetworkManager_t ==============
+allow NetworkManager_t init_t:dbus acquire_svc;
+#============= systemd_hostnamed_t ==============
+allow systemd_hostnamed_t init_t:dbus acquire_svc;
+#============= systemd_logind_t ==============
+allow systemd_logind_t init_t:dbus acquire_svc;
+#============= policykit_t ==============
+allow policykit_t init_t:dbus acquire_svc;
+#============= thumb_t ==============
+allow thumb_t user_dbusd_t:unix_stream_socket { getattr read write };
 #============= user_dbusd_t ==============
 allow user_dbusd_t config_home_t:dir { write };
 allow user_dbusd_t gnome_atspi_exec_t:file { execute execute_no_trans map open read };
+allow user_dbusd_t thumb_t:process { rlimitinh siginh };
 allow user_dbusd_t user_t:process { noatsecure rlimitinh siginh };
+allow user_dbusd_t xauth_home_t:file { getattr open read };
+allow user_dbusd_t Xorg_t:unix_stream_socket connectto;
 #============= user_t ==============
 allow user_t session_dbusd_tmp_t:sock_file write;
