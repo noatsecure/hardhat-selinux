@@ -1,0 +1,14 @@
+module polkit-agent-helper-1 1.0.0;
+########################################
+require {
+    attribute application_domain_type, application_exec_type, entry_type, exec_type, file_type, non_auth_file_type, non_security_file_type;
+    class process { transition };
+    role user_r;
+    type user_t;
+}
+########################################
+type polkit-agent-helper-1_t, application_domain_type;
+type polkit-agent-helper-1_exec_t, application_exec_type, entry_type, exec_type, file_type, non_auth_file_type, non_security_file_type;
+role user_r types polkit-agent-helper-1_t;
+type_transition user_t polkit-agent-helper-1_exec_t: process polkit-agent-helper-1_t;
+########################################
