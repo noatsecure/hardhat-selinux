@@ -272,13 +272,14 @@ allow dbus-launch_t user_tmp_t:sock_file { create getattr setattr unlink write }
 allow dbus-launch_t user_tty_device_t:chr_file { getattr read write };
 allow dbus-launch_t usr_t:dir { getattr open read search watch };
 allow dbus-launch_t usr_t:file { execute execute_no_trans getattr map open read };
-allow dbus-launch_t usr_t:lnk_file read;
+allow dbus-launch_t usr_t:lnk_file { getattr read };
 allow dbus-launch_t var_lib_t:dir search;
 allow dbus-launch_t var_run_t:dir { getattr search };
 allow dbus-launch_t var_run_t:lnk_file read;
 allow dbus-launch_t var_t:dir search;
 allow dbus-launch_t xauth_home_t:file { getattr open read write };
 #============= init_t ==============
+allow init_t dbus-launch_t:dbus send_msg;
 allow init_t dbus-launch_t:dir search;
 allow init_t dbus-launch_t:file { getattr open read };
 allow init_t dbus-launch_t:process { sigkill signal sigstop };
