@@ -1,0 +1,15 @@
+module polkitd 1.0.0;
+########################################
+require {
+    attribute application_domain_type, application_exec_type, entry_type, exec_type, file_type, non_auth_file_type, non_security_file_type;
+    class file { execute execute_no_trans map open read };
+    class process { execmem };
+    type init_t;
+}
+########################################
+type polkitd_t, application_domain_type;
+type polkitd_exec_t, application_exec_type, entry_type, exec_type, file_type, non_auth_file_type, non_security_file_type;
+########################################
+#============= init_t ==============
+allow init_t polkitd_exec_t:file { execute execute_no_trans map open read };
+allow init_t self:process execmem;
