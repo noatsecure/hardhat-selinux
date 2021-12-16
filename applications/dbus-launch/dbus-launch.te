@@ -31,6 +31,7 @@ require {
     type cgroup_t;
     type config_home_t;
     type data_home_t;
+    type dbus-broker_t;
     type dbus-daemon_exec_t;
     type dbus-launch_exec_t;
     type dbus-launch_t;
@@ -69,7 +70,7 @@ require {
     type null_device_t;
     type passwd_file_t;
     type pkcs11_modules_conf_t;
-    type policykit_t;
+    type polkitd_t;
     type proc_t;
     type ptmx_t;
     type pulseaudio_home_t;
@@ -134,6 +135,7 @@ allow dbus-launch_t config_home_t:file { append create getattr lock map open rea
 allow dbus-launch_t config_home_t:lnk_file { create read unlink };
 allow dbus-launch_t data_home_t:dir { getattr open read search watch };
 allow dbus-launch_t data_home_t:file { getattr map open read };
+allow dbus-launch_t dbus-broker_t:dbus send_msg;
 allow dbus-launch_t dbus-daemon_exec_t:file { execute execute_no_trans map open read };
 allow dbus-launch_t dbus-launch_exec_t:file { entrypoint execute map read };
 allow dbus-launch_t dbus_home_t:dir { add_name getattr read search write };
@@ -191,7 +193,7 @@ allow dbus-launch_t net_conf_t:file { getattr open read };
 allow dbus-launch_t null_device_t:chr_file { getattr open read write };
 allow dbus-launch_t passwd_file_t:file { getattr open read };
 allow dbus-launch_t pkcs11_modules_conf_t:dir { getattr open read search };
-allow dbus-launch_t policykit_t:dbus send_msg;
+allow dbus-launch_t polkitd_t:dbus send_msg;
 allow dbus-launch_t proc_t:dir { open read search };
 allow dbus-launch_t proc_t:file { getattr open read };
 allow dbus-launch_t proc_t:filesystem { associate getattr };
@@ -287,10 +289,6 @@ allow init_t dbus-launch_t:process { sigkill signal sigstop };
 allow NetworkManager_t dbus-launch_t:dbus send_msg;
 allow NetworkManager_t dbus-launch_t:dir search;
 allow NetworkManager_t dbus-launch_t:file { getattr open read };
-#============= policykit_t ==============
-allow policykit_t dbus-launch_t:dbus send_msg;
-allow policykit_t dbus-launch_t:dir search;
-allow policykit_t dbus-launch_t:file { getattr open read };
 #============= syslogd_t ==============
 allow syslogd_t dbus-launch_t:dir search;
 allow syslogd_t dbus-launch_t:file { getattr open read };
