@@ -5,15 +5,19 @@ require {
     class dir { search };
     class file { execute execute_no_trans getattr map open read };
     class lnk_file { read };
-    class process { getattr sigkill signull };
+    class process { getattr sigkill signull transition };
+    role system_r;
     type dbus-broker_exec_t;
     type dbus-broker_t;
     type init_t;
+    role object_r;
     type syslogd_t;
 }
 ########################################
 type dbus-broker_t, application_domain_type;
 type dbus-broker_exec_t, application_exec_type, entry_type, exec_type, file_type, non_auth_file_type, non_security_file_type;
+role system_r types dbus-broker_t;
+type_transition init_t dbus-broker_exec_t: process dbus-broker_t;
 ########################################
 #============= init_t ==============
 allow init_t dbus-broker_exec_t:file { execute execute_no_trans map open read };
