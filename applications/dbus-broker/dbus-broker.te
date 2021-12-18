@@ -18,7 +18,7 @@ require {
     class sock_file { write };
     class system { status };
     class unix_dgram_socket { connect create getopt sendto setopt write };
-    class unix_stream_socket { accept bind connect connectto create getattr getopt listen read setopt write };
+    class unix_stream_socket { accept bind connect connectto create getattr getopt ioctl listen read setopt write };
     role system_r;
     type NetworkManager_t;
     type NetworkManager_unit_file_t;
@@ -102,7 +102,7 @@ allow dbus-broker_t self:dbus send_msg;
 allow dbus-broker_t self:netlink_audit_socket { create nlmsg_relay read write };
 allow dbus-broker_t self:process { fork getcap setcap signal };
 allow dbus-broker_t self:unix_dgram_socket { connect create getopt setopt write };
-allow dbus-broker_t self:unix_stream_socket { accept connect connectto create getattr getopt read setopt write };
+allow dbus-broker_t self:unix_stream_socket { accept connect connectto create getattr getopt ioctl read setopt write };
 allow dbus-broker_t sysfs_t:dir search;
 allow dbus-broker_t syslogd_var_run_t:dir search;
 allow dbus-broker_t syslogd_var_run_t:sock_file write;
