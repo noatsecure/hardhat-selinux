@@ -265,7 +265,7 @@ allow dbus-launch_t udev_var_run_t:dir search;
 allow dbus-launch_t udev_var_run_t:file { getattr open read };
 allow dbus-launch_t urandom_device_t:chr_file { getattr open read };
 allow dbus-launch_t user_home_dir_t:dir { add_name getattr open read search watch write };
-allow dbus-launch_t user_home_dir_t:file { create open read write };
+allow dbus-launch_t user_home_dir_t:file { create getattr open read write };
 allow dbus-launch_t user_home_t:dir { getattr open read search watch write };
 allow dbus-launch_t user_home_t:file { open read write };
 allow dbus-launch_t user_t:unix_stream_socket connectto;
