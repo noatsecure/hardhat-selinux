@@ -94,7 +94,7 @@ allow dbus-broker_t passwd_file_t:file { getattr open read };
 allow dbus-broker_t power_unit_file_t:service start;
 allow dbus-broker_t root_t:dir search;
 allow dbus-broker_t security_t:dir { getattr open read search };
-allow dbus-broker_t security_t:file { getattr map open read };
+allow dbus-broker_t security_t:file { getattr map open read write };
 allow dbus-broker_t security_t:filesystem getattr;
 allow dbus-broker_t security_t:security compute_av;
 allow dbus-broker_t self:capability { audit_write net_admin setgid setuid };
