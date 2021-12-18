@@ -27,6 +27,7 @@ require {
     type dbus-broker_t;
     type dbusd_etc_t;
     type default_context_t;
+    type devicekit_disk_t;
     type dri_device_t;
     type etc_t;
     type event_device_t;
@@ -116,6 +117,9 @@ allow dbus-broker_t tmpfs_t:file { map read write };
 allow dbus-broker_t usr_t:dir { getattr open read search watch };
 allow dbus-broker_t usr_t:file { open read };
 allow dbus-broker_t var_run_t:dir search;
+#============= devicekit_disk_t ==============
+allow devicekit_disk_t dbus-broker_t:dbus { acquire_svc send_msg };
+allow devicekit_disk_t dbus-broker_t:unix_stream_socket connectto;
 #============= firewalld_t ==============
 allow firewalld_t dbus-broker_t:dbus { acquire_svc send_msg };
 allow firewalld_t dbus-broker_t:unix_stream_socket connectto;
