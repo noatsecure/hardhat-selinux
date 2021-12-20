@@ -2,9 +2,29 @@ module dbus-update-activation-environment 1.0.0;
 ########################################
 require {
     attribute application_domain_type, application_exec_type, entry_type, exec_type, file_type, non_auth_file_type, non_security_file_type;
-    class process { transition };
+    class chr_file { read write };
+    class dbus { send_msg };
+    class dir { getattr search };
+    class file { entrypoint execute getattr map open read };
+    class lnk_file { read };
+    class process { rlimitinh siginh transition };
+    class sock_file { getattr write };
+    class unix_stream_socket { connect connectto create getattr read write };
     role user_r;
+    type dbus-update-activation-environment_exec_t;
+    type dbus-update-activation-environment_t;
+    type etc_t;
+    type ld_so_cache_t;
+    type ld_so_t;
+    type lib_t;
+    type proc_t;
+    type root_t;
+    type sysctl_t;
     type user_t;
+    type user_tmp_t;
+    type user_tty_device_t;
+    type usr_t;
+    type var_run_t;
 }
 ########################################
 type dbus-update-activation-environment_t, application_domain_type;
