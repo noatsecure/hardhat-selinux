@@ -1,0 +1,69 @@
+module dbus-send 1.0.0;
+########################################
+require {
+    attribute application_domain_type, application_exec_type, entry_type, exec_type, file_type, non_auth_file_type, non_security_file_type;
+    class chr_file { getattr read write };
+    class dbus { send_msg };
+    class dir { search };
+    class file { entrypoint execute getattr map open read };
+    class lnk_file { read };
+    class process { rlimitinh siginh transition };
+    class sock_file { write };
+    class system { status };
+    class unix_stream_socket { connect connectto create getattr read write };
+    role user_r;
+    type dbus-broker_t;
+    type dbus-send_exec_t;
+    type dbus-send_t;
+    type etc_t;
+    type init_t;
+    type ld_so_cache_t;
+    type ld_so_t;
+    type lib_t;
+    type root_t;
+    type sysctl_crypto_t;
+    type sysctl_t;
+    type system_dbusd_var_run_t;
+    type user_t;
+    type user_tmp_t;
+    type user_tty_device_t;
+    type usr_t;
+    type var_run_t;
+}
+########################################
+type dbus-send_t, application_domain_type;
+type dbus-send_exec_t, application_exec_type, entry_type, exec_type, file_type, non_auth_file_type, non_security_file_type;
+role user_r types dbus-send_t;
+type_transition user_t dbus-send_exec_t: process dbus-send_t;
+########################################
+#============= dbus-send_t ==============
+allow dbus-send_t dbus-broker_t:dbus send_msg;
+allow dbus-send_t dbus-broker_t:unix_stream_socket connectto;
+allow dbus-send_t dbus-send_exec_t:file { entrypoint execute map read };
+allow dbus-send_t etc_t:dir search;
+allow dbus-send_t init_t:dbus send_msg;
+allow dbus-send_t init_t:system status;
+allow dbus-send_t ld_so_cache_t:file { getattr map open read };
+allow dbus-send_t ld_so_t:file { execute map read };
+allow dbus-send_t lib_t:dir search;
+allow dbus-send_t lib_t:file { execute getattr map open read };
+allow dbus-send_t lib_t:lnk_file read;
+allow dbus-send_t root_t:dir search;
+allow dbus-send_t self:unix_stream_socket { connect create getattr read write };
+allow dbus-send_t sysctl_crypto_t:dir search;
+allow dbus-send_t sysctl_crypto_t:file { getattr open read };
+allow dbus-send_t sysctl_t:dir search;
+allow dbus-send_t system_dbusd_var_run_t:dir search;
+allow dbus-send_t system_dbusd_var_run_t:sock_file write;
+allow dbus-send_t user_t:dbus send_msg;
+allow dbus-send_t user_t:unix_stream_socket connectto;
+allow dbus-send_t user_tmp_t:dir search;
+allow dbus-send_t user_tmp_t:sock_file write;
+allow dbus-send_t user_tty_device_t:chr_file { getattr read write };
+allow dbus-send_t usr_t:dir search;
+allow dbus-send_t var_run_t:dir search;
+#============= init_t ==============
+allow init_t dbus-send_t:dir search;
+allow init_t dbus-send_t:file { getattr open read };
+#============= user_t ==============
+allow user_t dbus-send_t:process { rlimitinh siginh transition };
