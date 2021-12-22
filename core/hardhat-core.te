@@ -2,7 +2,7 @@ module hardhat-core 1.0.0;
 ########################################
 require {
     class capability { sys_admin };
-    class file { getattr map open read write };
+    class file { execute execute_no_trans getattr map open read relabelfrom write };
     type tmp_t;
     type user_home_dir_t;
     type user_t;
@@ -13,5 +13,5 @@ require {
 allow user_t self:capability { sys_admin };
 # Read/write files in /tmp
 allow user_t tmp_t:file { map open read write };
-# Read files in $HOME that are labeled as 'user_home_dir_t' type (eg. ~/.ICEauthority-c)
-allow user_t user_home_dir_t:file { getattr read };
+# Read, execute, etc. files labeled as user_home_dir_t
+allow user_t user_home_dir_t:file { execute execute_no_trans getattr open read relabelfrom };
