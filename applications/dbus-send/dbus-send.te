@@ -21,7 +21,6 @@ require {
     type ld_so_t;
     type lib_t;
     type root_t;
-    type sysctl_crypto_t;
     type sysctl_t;
     type system_dbusd_var_run_t;
     type user_t;
@@ -50,8 +49,6 @@ allow dbus-send_t lib_t:file { execute getattr map open read };
 allow dbus-send_t lib_t:lnk_file read;
 allow dbus-send_t root_t:dir search;
 allow dbus-send_t self:unix_stream_socket { connect create getattr read write };
-allow dbus-send_t sysctl_crypto_t:dir search;
-allow dbus-send_t sysctl_crypto_t:file { getattr open read };
 allow dbus-send_t sysctl_t:dir search;
 allow dbus-send_t system_dbusd_var_run_t:dir search;
 allow dbus-send_t system_dbusd_var_run_t:sock_file write;
