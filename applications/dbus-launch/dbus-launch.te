@@ -14,7 +14,6 @@ require {
     class netlink_kobject_uevent_socket { bind create getattr setopt };
     class netlink_route_socket { bind create getattr nlmsg_read read write };
     class process { execmem fork getcap getpgid getsched rlimitinh setcap setpgid setrlimit setsched siginh sigkill signal sigstop transition };
-    class security { compute_av };
     class shm { create destroy read unix_read unix_write write };
     class sock_file { create getattr setattr unlink write };
     class system { status };
@@ -35,12 +34,13 @@ require {
     type data_home_t;
     type dbus-broker_t;
     type dbus-daemon_exec_t;
+    type dbus-launch_exec_t;
+    type dbus-launch_t;
     type dbus-monitor_exec_t;
     type dbus-send_exec_t;
     type dbus-update-activation-environment_exec_t;
     type dbus_home_t;
     type dbusd_etc_t;
-    type default_context_t;
     type device_t;
     type devicekit_disk_t;
     type devlog_t;
@@ -50,7 +50,6 @@ require {
     type etc_t;
     type fonts_cache_t;
     type fonts_t;
-    type fs_t;
     type gconf_home_t;
     type gnome_atspi_exec_t;
     type gpg_agent_exec_t;
@@ -78,7 +77,6 @@ require {
     type ptmx_t;
     type pulseaudio_home_t;
     type root_t;
-    type security_t;
     type shell_exec_t;
     type ssh_agent_exec_t;
     type ssh_home_t;
