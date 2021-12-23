@@ -13,8 +13,6 @@ require {
     class unix_dgram_socket { connect create sendto write };
     class unix_stream_socket { connect connectto create read write };
     role system_r;
-    type dbus-daemon_exec_t;
-    type dbus-daemon_t;
     type dbusd_etc_t;
     type default_context_t;
     type device_t;

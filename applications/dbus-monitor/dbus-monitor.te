@@ -11,8 +11,6 @@ require {
     class sock_file { write };
     class unix_stream_socket { connect connectto create getattr read write };
     role user_r;
-    type dbus-monitor_exec_t;
-    type dbus-monitor_t;
     type etc_t;
     type ld_so_cache_t;
     type ld_so_t;

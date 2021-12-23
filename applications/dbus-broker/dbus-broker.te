@@ -23,8 +23,6 @@ require {
     type NetworkManager_t;
     type NetworkManager_unit_file_t;
     type bin_t;
-    type dbus-broker_exec_t;
-    type dbus-broker_t;
     type dbusd_etc_t;
     type default_context_t;
     type devicekit_disk_t;

@@ -34,8 +34,6 @@ require {
     type data_home_t;
     type dbus-broker_t;
     type dbus-daemon_exec_t;
-    type dbus-launch_exec_t;
-    type dbus-launch_t;
     type dbus-monitor_exec_t;
     type dbus-send_exec_t;
     type dbus-update-activation-environment_exec_t;

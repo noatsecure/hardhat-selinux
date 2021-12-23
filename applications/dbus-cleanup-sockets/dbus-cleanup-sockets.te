@@ -8,8 +8,6 @@ require {
     class lnk_file { read };
     class process { rlimitinh siginh transition };
     role user_r;
-    type dbus-cleanup-sockets_exec_t;
-    type dbus-cleanup-sockets_t;
     type ld_so_cache_t;
     type ld_so_t;
     type lib_t;

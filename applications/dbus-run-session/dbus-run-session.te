@@ -20,8 +20,6 @@ require {
     type data_home_t;
     type dbus-broker_t;
     type dbus-daemon_exec_t;
-    type dbus-run-session_exec_t;
-    type dbus-run-session_t;
     type dbusd_etc_t;
     type device_t;
     type devtty_t;

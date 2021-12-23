@@ -12,8 +12,6 @@ require {
     class system { reload };
     class unix_stream_socket { connect connectto create getattr read write };
     role user_r;
-    type dbus-update-activation-environment_exec_t;
-    type dbus-update-activation-environment_t;
     type etc_t;
     type ld_so_cache_t;
     type ld_so_t;

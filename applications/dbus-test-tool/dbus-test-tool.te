@@ -12,8 +12,6 @@ require {
     class unix_stream_socket { connect connectto create getattr read write };
     role user_r;
     type dbus-broker_t;
-    type dbus-test-tool_exec_t;
-    type dbus-test-tool_t;
     type etc_t;
     type ld_so_cache_t;
     type ld_so_t;
