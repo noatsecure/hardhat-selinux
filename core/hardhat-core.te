@@ -2,6 +2,7 @@ module hardhat-core 1.0.0;
 ########################################
 require {
     class capability { sys_admin };
+    class dbus { acquire_svc };
     class file { execute execute_no_trans getattr map open read relabelfrom write };
     type tmp_t;
     type user_home_dir_t;
@@ -11,6 +12,8 @@ require {
 #============= user_t ==============
 # Required to launch setsuid binaries (eg. brave-browser, bwrap, chromium, etc.)
 allow user_t self:capability { sys_admin };
+# D-Bus
+allow user_t self:dbus acquire_svc;
 # Read/write files in /tmp
 allow user_t tmp_t:file { map open read write };
 # Read, execute, etc. files labeled as user_home_dir_t
