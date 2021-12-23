@@ -314,7 +314,7 @@ allow dbus-launch_t videos_home_t:dir { add_name create getattr open read remove
 allow dbus-launch_t videos_home_t:file { append create getattr open read rename unlink write };
 allow dbus-launch_t videos_home_t:lnk_file { create getattr read unlink };
 allow dbus-launch_t vim_home_t:file { getattr open read unlink };
-allow dbus-launch_t xauth_home_t:file { getattr open read write };
+allow dbus-launch_t xauth_home_t:file { getattr open read unlink write };
 allow dbus-launch_t xdm_home_t:dir { getattr open read remove_name search write };
 allow dbus-launch_t xdm_home_t:file { getattr open read rename unlink write };
 allow dbus-launch_t Xorg_t:unix_stream_socket connectto;
