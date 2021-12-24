@@ -25,6 +25,7 @@ require {
     type alsa_etc_rw_t;
     type bash_home_t;
     type bin_t;
+    type brave-browser_exec_t;
     type cache_home_t;
     type cert_t;
     type cgroup_t;
@@ -135,6 +136,8 @@ allow dbus-launch_t bash_home_t:file { getattr open read };
 allow dbus-launch_t bin_t:dir { getattr open read search };
 allow dbus-launch_t bin_t:file { execute execute_no_trans getattr map open read };
 allow dbus-launch_t bin_t:lnk_file { getattr read };
+allow dbus-launch_t brave-browser_exec_t:file { execute execute_no_trans getattr open read };
+allow dbus-launch_t brave-browser_exec_t:lnk_file { getattr read };
 allow dbus-launch_t cache_home_t:dir { add_name create getattr open read remove_name rename rmdir search watch write };
 allow dbus-launch_t cache_home_t:file { append create getattr open read rename unlink write };
 allow dbus-launch_t cache_home_t:lnk_file { create getattr read unlink };
