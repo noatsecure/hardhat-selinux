@@ -4,15 +4,15 @@ restorecon -R /home/*/.bash*; \
 %define selinux_policyver 35.7-1
 
 Name:       bash_home_label_selinux
-Version:	1.0
-Release:	1%{?dist}
-Summary:	SELinux policy module (label only) for Bash shell files within the home directory
+Version:    1.0
+Release:    1%{?dist}
+Summary:    SELinux policy module (label only) for Bash shell files within the home directory
 
 Group:      System Environment/Base
-License:	AGPLv3
+License:    AGPLv3
 URL:        https://github.com/noatsecure/hardhat-selinux
-Source0:	bash_home.pp
-Source1:	bash_home.if
+Source0:    bash_home.pp
+Source1:    bash_home.if
 
 Requires: hardhat_interface_macros, policycoreutils, libselinux-utils
 Requires(post): selinux-policy-base >= %{selinux_policyver}, policycoreutils
