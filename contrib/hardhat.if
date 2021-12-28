@@ -92,6 +92,16 @@ interface(`hardhat_userdom_manage_user_home_content_files',`
     allow $1 user_home_t:file { append create getattr link lock open read rename unlink write };
 ')
 ########################################
+interface(`hardhat_userdom_user_home_dir_filetrans',`
+    gen_require(`
+        type home_root_t, user_home_dir_t;
+    ')
+    allow $1 home_root_t:dir { getattr open search };
+    allow $1 home_root_t:lnk_file { getattr read };
+    allow $1 user_home_dir_t:dir { add_name getattr open read remove_name search write };
+    type_transition $1 user_home_dir_t:$3 $2 $4;
+')
+########################################
 interface(`hardhat_userdom_write_user_tmp_files',`
     gen_require(`
         type user_tmp_t;
