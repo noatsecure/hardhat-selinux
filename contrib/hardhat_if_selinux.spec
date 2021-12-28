@@ -1,14 +1,14 @@
 %define selinux_policyver 35.7-1
 
 Name:       hardhat_interface_macros
-Version:	1.0
-Release:	1%{?dist}
-Summary:	SELinux interface macros for the HardHat project
+Version:    1.0
+Release:    1%{?dist}
+Summary:    SELinux interface macros for the HardHat project
 
 Group:      System Environment/Base
-License:	AGPLv3
+License:    AGPLv3
 URL:        https://github.com/noatsecure/hardhat-selinux
-Source0:	hardhat.if
+Source0:    hardhat.if
 
 Requires: policycoreutils, libselinux-utils
 Requires(post): selinux-policy-base >= %{selinux_policyver}, policycoreutils
