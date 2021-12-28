@@ -14,6 +14,6 @@ interface(`userdom_manage_bash_home',`
     gen_require(`
         type bash_home_t;
     ')
-    manage_files_pattern($1, bash_home_t, bash_home_t)
-    manage_lnk_files_pattern($1, bash_home_t, bash_home_t)
+    hardhat_manage_files_pattern($1, bash_home_t, bash_home_t)
+    hardhat_manage_lnk_files_pattern($1, bash_home_t, bash_home_t)
 ')
