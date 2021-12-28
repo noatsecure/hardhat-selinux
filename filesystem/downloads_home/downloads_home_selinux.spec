@@ -1,6 +1,5 @@
 %define relabel_files() \
 restorecon -R /home/*/Downloads; \
-restorecon -R /home/*/Downloads/*; \
 
 %define selinux_policyver 35.7-1
 
