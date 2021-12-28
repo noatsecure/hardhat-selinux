@@ -27,7 +27,7 @@ interface(`hardhat_dev_rw_dri',`
     gen_require(`
         type device_t, dri_device_t;
     ')
-    allow $1 device_t:dir { getattr open search };
+    allow $1 device_t:dir { getattr open read search };
     allow $1 dri_device_t:chr_file { append getattr ioctl lock map open read write };
 ')
 ########################################
@@ -50,10 +50,10 @@ interface(`hardhat_corecmd_exec_bin',`
         attribute base_ro_file_type;
         type bin_t;
     ')
-    allow $1 bin_t:dir { getattr lock open read search };
-    allow $1 bin_t:file { execute execute_no_trans getattr lock map open read };
+    allow $1 bin_t:dir { getattr read search };
+    allow $1 bin_t:file { execute execute_no_trans getattr map open read };
     allow $1 bin_t:lnk_file { getattr read };
-    #allow $1 base_ro_file_type:file { execute execute_no_trans getattr lock map open read };
+    #allow $1 base_ro_file_type:file { execute execute_no_trans getattr map open read };
 ')
 ########################################
 interface(`hardhat_corecmd_exec_shell',`
@@ -62,7 +62,7 @@ interface(`hardhat_corecmd_exec_shell',`
     ')
     allow $1 bin_t:dir { getattr lock open read search };
     allow $1 bin_t:lnk_file { getattr read };
-    allow $1 shell_exec_t:file { execute execute_no_trans getattr lock map open read };
+    allow $1 shell_exec_t:file { execute execute_no_trans getattr open read };
 ')
 ########################################
 interface(`hardhat_userdom_list_user_home_dirs', `
@@ -78,7 +78,7 @@ interface(`hardhat_userdom_manage_tmp_dirs',`
     gen_require(`
         type user_tmp_t;
     ')
-    allow $1 user_tmp_t:dir { add_name create getattr link lock open read remove_name rename reparent rmdir search setattr unlink watch watch_reads write };
+    allow $1 user_tmp_t:dir { add_name create getattr link lock open read remove_name rename reparent rmdir search unlink write };
 ')
 ########################################
 interface(`hardhat_userdom_manage_user_home_content_files',`
@@ -89,7 +89,7 @@ interface(`hardhat_userdom_manage_user_home_content_files',`
     allow $1 home_root_t:lnk_file { getattr read };
     allow $1 user_home_dir_t:dir { getattr open search };
     allow $1 user_home_t:dir { add_name getattr lock open read remove_name search write };
-    allow $1 user_home_t:file { append create getattr link lock map open read rename setattr unlink watch watch_reads write };
+    allow $1 user_home_t:file { append create getattr link lock open read rename unlink write };
 ')
 ########################################
 interface(`hardhat_userdom_write_user_tmp_files',`
