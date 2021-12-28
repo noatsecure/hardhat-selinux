@@ -14,7 +14,7 @@ URL:        https://github.com/noatsecure/hardhat-selinux
 Source0:	bash_home.pp
 Source1:	bash_home.if
 
-Requires: policycoreutils, libselinux-utils
+Requires: hardhat_interface_macros, policycoreutils, libselinux-utils
 Requires(post): selinux-policy-base >= %{selinux_policyver}, policycoreutils
 Requires(postun): policycoreutils
 BuildArch: noarch
