@@ -5,17 +5,17 @@ restorecon -R /home/*/Downloads/*; \
 %define selinux_policyver 35.7-1
 
 Name:       downloads_home_label_selinux
-Version:	1.0
-Release:	1%{?dist}
-Summary:	SELinux policy module for the "Downloads" directory within the home directory
+Version:    1.0
+Release:    1%{?dist}
+Summary:    SELinux policy module for the "Downloads" directory within the home directory
 
 Group:      System Environment/Base
-License:	AGPLv3
+License:    AGPLv3
 URL:        https://github.com/noatsecure/hardhat-selinux
-Source0:	downloads_home.pp
-Source1:	downloads_home.if
+Source0:    downloads_home.pp
+Source1:    downloads_home.if
 
-Requires: policycoreutils, libselinux-utils
+Requires: policycoreutils, libselinux-utils, hardhat_interface_macros
 Requires(post): selinux-policy-base >= %{selinux_policyver}, policycoreutils
 Requires(postun): policycoreutils
 BuildArch: noarch
