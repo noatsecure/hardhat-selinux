@@ -1,8 +1,13 @@
-module bash_home 1.0.0;
+policy_module(bash_home, 1.0.0)
 ########################################
-require {
-    attribute file_type, non_auth_file_type, non_security_file_type, polymember, user_home_type; 
-}
-########################################
-type bash_home_t, file_type, non_auth_file_type, non_security_file_type, polymember, user_home_type;
+gen_require(`
+    attribute userdom_filetrans_type;
+')
+type bash_home_t;
+userdom_user_home_content(bash_home_t)
+ubac_constrained(bash_home_t)
+hardhat_userdom_user_home_dir_filetrans(userdom_filetrans_type, bash_home_t, file, ".bash_history")
+hardhat_userdom_user_home_dir_filetrans(userdom_filetrans_type, bash_home_t, file, ".bash_logout")
+hardhat_userdom_user_home_dir_filetrans(userdom_filetrans_type, bash_home_t, file, ".bash_profile")
+hardhat_userdom_user_home_dir_filetrans(userdom_filetrans_type, bash_home_t, file, ".bashrc")
 ########################################

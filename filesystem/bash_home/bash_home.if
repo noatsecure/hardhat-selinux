@@ -1,0 +1,19 @@
+## <summary>policy for bash_home</summary>
+######################################
+## <summary>
+##      Manage the Bash shell file(s) in the users homedir.
+## </summary>
+## <param name="domain">
+##      <summary>
+##      Domain allowed access.
+##      </summary>
+## </param>
+## <rolecap/>
+#
+interface(`userdom_manage_bash_home',`
+    gen_require(`
+        type bash_home_t;
+    ')
+    manage_files_pattern($1, bash_home_t, bash_home_t)
+    manage_lnk_files_pattern($1, bash_home_t, bash_home_t)
+')
