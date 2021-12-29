@@ -16,8 +16,3 @@ type dbus-binding-tool_exec_t;
 application_domain(dbus-binding-tool_t, dbus-binding-tool_exec_t);
 hardhat_domain_auto_transition_pattern(user_t, dbus-binding-tool_exec_t, dbus-binding-tool_t);
 ########################################
-files_list_isid_type_dirs(dbus-binding-tool_t)
-files_manage_generic_tmp_dirs(dbus-binding-tool_t)
-files_manage_generic_tmp_files(dbus-binding-tool_t)
-files_map_generic_tmp_files(dbus-binding-tool_t)
-files_read_isid_type_files(dbus-binding-tool_t)

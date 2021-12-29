@@ -1,0 +1,41 @@
+module dbus-cleanup-sockets 1.0.0;
+########################################
+require {
+    attribute application_domain_type, application_exec_type, entry_type, exec_type, file_type, non_auth_file_type, non_security_file_type;
+    class chr_file { getattr read write };
+    class dir { getattr open read search };
+    class file { entrypoint execute getattr map open read };
+    class lnk_file { read };
+    class process { rlimitinh siginh transition };
+    role user_r;
+    type ld_so_cache_t;
+    type ld_so_t;
+    type lib_t;
+    type proc_t;
+    type root_t;
+    type tmp_t;
+    type user_t;
+    type user_tty_device_t;
+    type usr_t;
+}
+########################################
+type dbus-cleanup-sockets_t, application_domain_type;
+type dbus-cleanup-sockets_exec_t, application_exec_type, entry_type, exec_type, file_type, non_auth_file_type, non_security_file_type;
+role user_r types dbus-cleanup-sockets_t;
+type_transition user_t dbus-cleanup-sockets_exec_t: process dbus-cleanup-sockets_t;
+########################################
+#============= dbus-cleanup-sockets_t ==============
+allow dbus-cleanup-sockets_t dbus-cleanup-sockets_exec_t:file { entrypoint execute map read };
+allow dbus-cleanup-sockets_t ld_so_cache_t:file { getattr map open read };
+allow dbus-cleanup-sockets_t ld_so_t:file { execute map read };
+allow dbus-cleanup-sockets_t lib_t:dir search;
+allow dbus-cleanup-sockets_t lib_t:file { execute getattr map open read };
+allow dbus-cleanup-sockets_t lib_t:lnk_file read;
+allow dbus-cleanup-sockets_t proc_t:dir search;
+allow dbus-cleanup-sockets_t proc_t:lnk_file read;
+allow dbus-cleanup-sockets_t root_t:dir search;
+allow dbus-cleanup-sockets_t tmp_t:dir { getattr open read };
+allow dbus-cleanup-sockets_t user_tty_device_t:chr_file { getattr read write };
+allow dbus-cleanup-sockets_t usr_t:dir search;
+#============= user_t ==============
+allow user_t dbus-cleanup-sockets_t:process { rlimitinh siginh transition };
