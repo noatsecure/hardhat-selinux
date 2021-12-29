@@ -5,6 +5,27 @@ interface(`hardhat_auth_read_passwd_file',`
     ')
     allow $1 passwd_file_t:file { getattr lock open read };
 ')
+#########################################
+interface(`hardhat_corecmd_exec_bin',`
+    gen_require(`
+        attribute base_ro_file_type;
+        type bin_t;
+    ')
+    allow $1 bin_t:dir { getattr read search };
+    allow $1 bin_t:file { execute execute_no_trans getattr map open read };
+    allow $1 bin_t:lnk_file { getattr read };
+    #allow $1 base_ro_file_type:file { execute execute_no_trans getattr map open read };
+')
+########################################
+interface(`hardhat_corecmd_exec_shell',`
+    gen_require(`
+        type bin_t, shell_exec_t;
+    ')
+    allow $1 bin_t:dir { getattr lock open read search };
+    allow $1 bin_t:lnk_file { getattr read };
+    allow $1 shell_exec_t:file { execute execute_no_trans getattr open read };
+')
+
 ########################################
 interface(`hardhat_dev_list_sysfs',`
     gen_require(`
@@ -44,25 +65,20 @@ interface(`hardhat_domain_auto_transition_pattern',`
     allow $1 $3:process { transition };
     type_transition $1 $2:process $3;
 ')
-#########################################
-interface(`hardhat_corecmd_exec_bin',`
-    gen_require(`
-        attribute base_ro_file_type;
-        type bin_t;
-    ')
-    allow $1 bin_t:dir { getattr read search };
-    allow $1 bin_t:file { execute execute_no_trans getattr map open read };
-    allow $1 bin_t:lnk_file { getattr read };
-    #allow $1 base_ro_file_type:file { execute execute_no_trans getattr map open read };
+########################################
+interface(`hardhat_manage_dirs_pattern',`
+    allow $1 $2:dir { add_name getattr lock open read remove_name search write };
+    allow $1 $3:dir { add_name create getattr link lock open read remove_name rename reparent rmdir search unlink write };
 ')
 ########################################
-interface(`hardhat_corecmd_exec_shell',`
-    gen_require(`
-        type bin_t, shell_exec_t;
-    ')
-    allow $1 bin_t:dir { getattr lock open read search };
-    allow $1 bin_t:lnk_file { getattr read };
-    allow $1 shell_exec_t:file { execute execute_no_trans getattr open read };
+interface(`hardhat_manage_files_pattern',`
+    allow $1 $2:dir { add_name getattr lock open read remove_name search write };
+    allow $1 $3:file { append create getattr link lock open read rename unlink write };
+')
+########################################
+interface(`hardhat_manage_lnk_files_pattern',`
+    allow $1 $2:dir { add_name getattr lock open read remove_name search write };
+    allow $1 $3:lnk_file { append create getattr link lock read rename unlink write };
 ')
 ########################################
 interface(`hardhat_userdom_list_user_home_dirs', `
