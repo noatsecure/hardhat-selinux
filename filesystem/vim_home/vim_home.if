@@ -1,0 +1,19 @@
+## <summary>policy for vim_home</summary>
+######################################
+## <summary>
+##      Manage the vim file(s) in the users homedir.
+## </summary>
+## <param name="domain">
+##      <summary>
+##      Domain allowed access.
+##      </summary>
+## </param>
+## <rolecap/>
+#
+interface(`userdom_manage_vim_home',`
+    gen_require(`
+        type vim_home_t;
+    ')
+    hardhat_manage_files_pattern($1, vim_home_t, vim_home_t)
+    hardhat_manage_lnk_files_pattern($1, vim_home_t, vim_home_t)
+')
