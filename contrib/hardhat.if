@@ -84,6 +84,13 @@ interface(`hardhat_domain_auto_transition_pattern',`
     type_transition $1 $2:process $3;
 ')
 ########################################
+interface(`hardhat_domtrans_pattern',`
+    hardhat_domain_auto_transition_pattern($1, $2, $3)
+    allow $3 $1:fd use;
+    allow $3 $1:fifo_file { append getattr lock read write };
+    allow $3 $1:process { sigchld };
+')
+########################################
 interface(`hardhat_files_exec_all_base_ro_files',`
     gen_require(`
         attribute base_ro_file_type;
@@ -112,6 +119,13 @@ interface(`hardhat_manage_files_pattern',`
 interface(`hardhat_manage_lnk_files_pattern',`
     allow $1 $2:dir { add_name getattr lock open read remove_name search write };
     allow $1 $3:lnk_file { append create getattr link lock read rename unlink write };
+')
+########################################
+interface(`hardhat_ps_process_pattern',`
+    allow $1 $2:dir { getattr open read search };
+    allow $1 $2:file { getattr open read };
+    allow $1 $2:lnk_file { getattr read };
+    allow $1 $2:process { getattr };
 ')
 ########################################
 interface(`hardhat_userdom_list_user_home_dirs', `
