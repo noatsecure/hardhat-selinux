@@ -3,7 +3,7 @@
 Name:       hardhat-selinux-interfaces
 Version:    1.0
 Release:    1%{?dist}
-Summary:    SELinux interface macros for the HardHat project
+Summary:    SELinux interfaces required by the HardHat project
 
 Group:      System Environment/Base
 License:    AGPLv3

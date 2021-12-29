@@ -1,6 +1,7 @@
-module hardhat-core 1.0.0;
+policy_module(hardhat-selinux-core, 1.0.0)
 ########################################
-require {
+# Required
+gen_require(`
     class capability { sys_admin };
     class dbus { acquire_svc };
     class dir { watch };
@@ -9,7 +10,7 @@ require {
     type tmp_t;
     type user_home_dir_t;
     type user_t;
-}
+')
 ########################################
 #============= user_t ==============
 # Read the /etc/dbus-1 directory
