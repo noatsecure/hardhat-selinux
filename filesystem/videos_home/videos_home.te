@@ -1,8 +1,10 @@
-module videos_home 1.0.0;
+policy_module(videos_home, 1.0.0)
 ########################################
-require {
-    attribute file_type, non_auth_file_type, non_security_file_type, polymember, user_home_type; 
-}
-########################################
-type videos_home_t, file_type, non_auth_file_type, non_security_file_type, polymember, user_home_type;
+gen_require(`
+    attribute userdom_filetrans_type;
+')
+type videos_home_t;
+userdom_user_home_content(videos_home_t)
+ubac_constrained(videos_home_t)
+hardhat_userdom_user_home_dir_filetrans(userdom_filetrans_type, videos_home_t, dir, "Videos")
 ########################################
