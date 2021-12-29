@@ -1,6 +1,6 @@
 %define selinux_policyver 35.7-1
 
-Name:       hardhat_interface_macros
+Name:       hardhat-selinux-interfaces
 Version:    1.0
 Release:    1%{?dist}
 Summary:    SELinux interface macros for the HardHat project
@@ -16,7 +16,7 @@ Requires(postun): policycoreutils
 BuildArch: noarch
 
 %description
-This package installs the SELinux interface macros for the HardHat project.
+This package provides the SELinux interfaces required by the HardHat project.
 
 %install
 install -d %{buildroot}%{_datadir}/selinux/devel/include/contrib
