@@ -3,7 +3,7 @@ restorecon -R /home/*/.vim*; \
 
 %define selinux_policyver 35.7-1
 
-Name:       vim_home_label_selinux
+Name:       selinux-label-vim
 Version:    1.0
 Release:    1%{?dist}
 Summary:    SELinux policy module (label only) for vim files within the home directory
@@ -14,7 +14,7 @@ URL:        https://github.com/noatsecure/hardhat-selinux
 Source0:    vim_home.pp
 Source1:    vim_home.if
 
-Requires: policycoreutils, libselinux-utils, hardhat_interface_macros
+Requires: policycoreutils, libselinux-utils, hardhat-selinux-interfaces
 Requires(post): selinux-policy-base >= %{selinux_policyver}, policycoreutils
 Requires(postun): policycoreutils
 BuildArch: noarch

@@ -3,10 +3,10 @@ restorecon -R /home/*/Videos; \
 
 %define selinux_policyver 35.7-1
 
-Name:       videos_home_label_selinux
+Name:       selinux-label-videos
 Version:    1.0
 Release:    1%{?dist}
-Summary:    SELinux policy module for the "Videos" directory within the home directory
+Summary:    SELinux policy module (label only) for the ~/Videos directory
 
 Group:      System Environment/Base
 License:    AGPLv3
@@ -14,13 +14,13 @@ URL:        https://github.com/noatsecure/hardhat-selinux
 Source0:    videos_home.pp
 Source1:    videos_home.if
 
-Requires: policycoreutils, libselinux-utils, hardhat_interface_macros
+Requires: policycoreutils, libselinux-utils, hardhat-selinux-interfaces
 Requires(post): selinux-policy-base >= %{selinux_policyver}, policycoreutils
 Requires(postun): policycoreutils
 BuildArch: noarch
 
 %description
-This package installs and sets up the SELinux policy security module (label only) for the $HOME/Videos directory.
+This package installs and sets up the SELinux policy security module (label only) for the ~/Videos directory.
 
 %install
 install -d %{buildroot}%{_datadir}/selinux/packages

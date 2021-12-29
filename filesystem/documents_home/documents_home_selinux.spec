@@ -3,10 +3,10 @@ restorecon -R /home/*/Documents; \
 
 %define selinux_policyver 35.7-1
 
-Name:       documents_home_label_selinux
+Name:       selinux-label-documents
 Version:    1.0
 Release:    1%{?dist}
-Summary:    SELinux policy module for the "Documents" directory within the home directory
+Summary:    SELinux policy module (label only) for the ~/Documents directory
 
 Group:      System Environment/Base
 License:    AGPLv3
@@ -14,13 +14,13 @@ URL:        https://github.com/noatsecure/hardhat-selinux
 Source0:    documents_home.pp
 Source1:    documents_home.if
 
-Requires: policycoreutils, libselinux-utils, hardhat_interface_macros
+Requires: policycoreutils, libselinux-utils, hardhat-selinux-interfaces
 Requires(post): selinux-policy-base >= %{selinux_policyver}, policycoreutils
 Requires(postun): policycoreutils
 BuildArch: noarch
 
 %description
-This package installs and sets up the SELinux policy security module (label only) for the $HOME/Documents directory.
+This package installs and sets up the SELinux policy security module (label only) for the ~/Documents directory.
 
 %install
 install -d %{buildroot}%{_datadir}/selinux/packages
