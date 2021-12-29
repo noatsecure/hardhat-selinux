@@ -1,14 +1,23 @@
-module dbus-binding-tool 1.0.0;
+policy_module(dbus-binding-tool, 1.0.0)
 ########################################
-require {
-    attribute application_domain_type, application_exec_type, entry_type, exec_type, file_type, non_auth_file_type, non_security_file_type;
-    class process { transition };
+# Required
+gen_require(`
     role user_r;
-    type user_t;
-}
+')
+
+# Roles
+attribute_role dbus-binding-tool_roles;
+roleattribute user_r dbus-binding-tool_roles;
+role dbus-binding-tool_roles types dbus-binding-tool_t;
+
+# Types (Binary)
+type dbus-binding-tool_t;
+type dbus-binding-tool_exec_t;
+application_domain(dbus-binding-tool_t, dbus-binding-tool_exec_t);
+hardhat_domain_auto_transition_pattern(user_t, dbus-binding-tool_exec_t, dbus-binding-tool_t);
 ########################################
-type dbus-binding-tool_t, application_domain_type;
-type dbus-binding-tool_exec_t, application_exec_type, entry_type, exec_type, file_type, non_auth_file_type, non_security_file_type;
-role user_r types dbus-binding-tool_t;
-type_transition user_t dbus-binding-tool_exec_t: process dbus-binding-tool_t;
-########################################
+files_list_isid_type_dirs(dbus-binding-tool_t)
+files_manage_generic_tmp_dirs(dbus-binding-tool_t)
+files_manage_generic_tmp_files(dbus-binding-tool_t)
+files_map_generic_tmp_files(dbus-binding-tool_t)
+files_read_isid_type_files(dbus-binding-tool_t)

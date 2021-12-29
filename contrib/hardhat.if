@@ -3,7 +3,7 @@ interface(`hardhat_auth_read_passwd_file',`
     gen_require(`
         type passwd_file_t;
     ')
-    allow $1 passwd_file_t:file { getattr lock open read };
+    allow $1 passwd_file_t:file { getattr open read };
 ')
 #########################################
 interface(`hardhat_can_exec',`
@@ -19,7 +19,7 @@ interface(`hardhat_corecmd_exec_bin',`
     ')
     hardhat_can_exec($1, bin_t)
     hardhat_corecmd_search_bin($1)
-    allow $1 bin_t:dir { lock read };
+    allow $1 bin_t:dir { read };
 ')
 ########################################
 interface(`hardhat_corecmd_exec_shell',`
@@ -28,7 +28,16 @@ interface(`hardhat_corecmd_exec_shell',`
     ')
     hardhat_can_exec($1, shell_exec_t)
     hardhat_corecmd_search_bin($1)
-    allow $1 bin_t:dir { lock read };
+    allow $1 bin_t:dir { read };
+')
+########################################
+interface(`hardhat_corecmd_mmap_bin_files',`
+    gen_require(`
+        type bin_t;
+    ')
+    hardhat_corecmd_read_bin_symlinks($1)
+    allow $1 bin_t:dir { getattr open search };
+    allow $1 bin_t:file { execute getattr map open read };
 ')
 ########################################
 interface(`hardhat_corecmd_read_bin_symlinks',`
@@ -46,11 +55,18 @@ interface(`hardhat_corecmd_search_bin',`
     allow $1 bin_t:dir { getattr open search };
 ')
 ########################################
+interface(`hardhat_corecmd_shell_entry_type',`
+    gen_require(`
+        type shell_exec_t;
+    ')
+    hardhat_domain_entry_file($1, shell_exec_t) 
+')
+########################################
 interface(`hardhat_dev_list_sysfs',`
     gen_require(`
         type sysfs_t;
     ')
-    allow $1 sysfs_t:dir { getattr lock open read search };
+    allow $1 sysfs_t:dir { getattr open read search };
     allow $1 sysfs_t:lnk_file { getattr read };
 ')
 ########################################
@@ -59,7 +75,7 @@ interface(`hardhat_dev_read_sysfs',`
         type sysfs_t;
     ')
     hardhat_dev_list_sysfs($1)
-    allow $1 sysfs_t:file { getattr lock open read };
+    allow $1 sysfs_t:file { getattr open read };
 ')
 ########################################
 interface(`hardhat_dev_rw_dri',`
@@ -67,7 +83,7 @@ interface(`hardhat_dev_rw_dri',`
         type device_t, dri_device_t;
     ')
     allow $1 device_t:dir { getattr open read search };
-    allow $1 dri_device_t:chr_file { append getattr ioctl lock map open read write };
+    allow $1 dri_device_t:chr_file { append getattr ioctl map open read write };
 ')
 ########################################
 interface(`hardhat_dev_rw_inherited_input_dev',`
@@ -75,7 +91,7 @@ interface(`hardhat_dev_rw_inherited_input_dev',`
         type device_t, event_device_t;
     ')
     allow $1 device_t:dir { getattr open search };
-    allow $1 event_device_t:chr_file { append getattr ioctl lock read write };
+    allow $1 event_device_t:chr_file { append getattr ioctl read write };
 ')
 ########################################
 interface(`hardhat_domain_auto_transition_pattern',`
@@ -84,10 +100,19 @@ interface(`hardhat_domain_auto_transition_pattern',`
     type_transition $1 $2:process $3;
 ')
 ########################################
+interface(`hardhat_domain_entry_file',`
+    gen_require(`
+        attribute entry_type;
+    ')
+    corecmd_executable_file($2)
+    allow $1 $2:file { entrypoint execute getattr open map read };
+    typeattribute $2 entry_type;
+')
+########################################
 interface(`hardhat_domtrans_pattern',`
     hardhat_domain_auto_transition_pattern($1, $2, $3)
     allow $3 $1:fd use;
-    allow $3 $1:fifo_file { append getattr lock read write };
+    allow $3 $1:fifo_file { append getattr read write };
     allow $3 $1:process { sigchld };
 ')
 ########################################
@@ -96,6 +121,28 @@ interface(`hardhat_files_exec_all_base_ro_files',`
         attribute base_ro_file_type;
     ')
     hardhat_can_exec($1, base_ro_file_type)
+')
+########################################
+interface(`hardhat_files_manage_generic_tmp_dirs',`
+    gen_require(`
+        type tmp_t;
+    ')
+    allow $1 tmp_t:dir { add_name create getattr link open read remove_name rename reparent rmdir search unlink write };
+')
+########################################
+interface(`hardhat_files_manage_generic_tmp_files',`
+    gen_require(`
+        type tmp_t;
+    ')
+    allow $1 tmp_t:dir { add_name getattr open read remove_name search write };
+    allow $1 tmp_t:file { append create open getattr link read rename unlink write };
+')
+########################################
+interface(`hardhat_files_map_generic_tmp_files',`
+    gen_require(`
+        type tmp_t;
+    ')
+    allow $1 tmp_t:file { map };
 ')
 ########################################
 interface(`hardhat_files_search_home', `
@@ -107,18 +154,18 @@ interface(`hardhat_files_search_home', `
 ')
 ########################################
 interface(`hardhat_manage_dirs_pattern',`
-    allow $1 $2:dir { add_name getattr lock open read remove_name search write };
-    allow $1 $3:dir { add_name create getattr link lock open read remove_name rename reparent rmdir search unlink write };
+    allow $1 $2:dir { add_name getattr open read remove_name search write };
+    allow $1 $3:dir { add_name create getattr link open read remove_name rename reparent rmdir search unlink write };
 ')
 ########################################
 interface(`hardhat_manage_files_pattern',`
-    allow $1 $2:dir { add_name getattr lock open read remove_name search write };
-    allow $1 $3:file { append create getattr link lock open read rename unlink write };
+    allow $1 $2:dir { add_name getattr open read remove_name search write };
+    allow $1 $3:file { append create getattr link open read rename unlink write };
 ')
 ########################################
 interface(`hardhat_manage_lnk_files_pattern',`
-    allow $1 $2:dir { add_name getattr lock open read remove_name search write };
-    allow $1 $3:lnk_file { append create getattr link lock read rename unlink write };
+    allow $1 $2:dir { add_name getattr open read remove_name search write };
+    allow $1 $3:lnk_file { append create getattr link read rename unlink write };
 ')
 ########################################
 interface(`hardhat_ps_process_pattern',`
@@ -140,7 +187,7 @@ interface(`hardhat_userdom_manage_tmp_dirs',`
     gen_require(`
         type user_tmp_t;
     ')
-    allow $1 user_tmp_t:dir { add_name create getattr link lock open read remove_name rename reparent rmdir search unlink write };
+    allow $1 user_tmp_t:dir { add_name create getattr link open read remove_name rename reparent rmdir search unlink write };
 ')
 ########################################
 interface(`hardhat_userdom_manage_user_home_content_files',`
@@ -149,8 +196,8 @@ interface(`hardhat_userdom_manage_user_home_content_files',`
     ')
     hardhat_files_search_home($1)
     allow $1 user_home_dir_t:dir { getattr open search };
-    allow $1 user_home_t:dir { add_name getattr lock open read remove_name search write };
-    allow $1 user_home_t:file { append create getattr link lock open read rename unlink write };
+    allow $1 user_home_t:dir { add_name getattr open read remove_name search write };
+    allow $1 user_home_t:file { append create getattr link open read rename unlink write };
 ')
 ########################################
 interface(`hardhat_userdom_user_home_dir_filetrans',`
@@ -168,6 +215,6 @@ interface(`hardhat_userdom_write_user_tmp_files',`
         type user_tmp_t;
     ')
     allow $1 user_tmp_t:dir { getattr open search };
-    allow $1 user_tmp_t:file { append getattr lock open write };
+    allow $1 user_tmp_t:file { append getattr open write };
 ')
 ########################################
