@@ -1,0 +1,1 @@
+/usr/bin/dbus-binding-tool -- gen_context(system_u:object_r:dbus-binding-tool_exec_t,s0)

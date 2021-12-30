@@ -1,0 +1,87 @@
+
+## <summary>policy for dbus-binding-tool</summary>
+
+########################################
+## <summary>
+##	Execute dbus-binding-tool_exec_t in the dbus-binding-tool domain.
+## </summary>
+## <param name="domain">
+## <summary>
+##	Domain allowed to transition.
+## </summary>
+## </param>
+#
+interface(`dbus-binding-tool_domtrans',`
+	gen_require(`
+		type dbus-binding-tool_t, dbus-binding-tool_exec_t;
+	')
+	hardhat_corecmd_search_bin($1)
+	hardhat_domtrans_pattern($1, dbus-binding-tool_exec_t, dbus-binding-tool_t)
+')
+######################################
+## <summary>
+##	Execute dbus-binding-tool in the caller domain.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+#
+interface(`dbus-binding-tool_exec',`
+	gen_require(`
+		type dbus-binding-tool_exec_t;
+	')
+
+	hardhat_corecmd_search_bin($1)
+	hardhat_can_exec($1, dbus-binding-tool_exec_t)
+')
+########################################
+## <summary>
+##	Execute dbus-binding-tool in the dbus-binding-tool domain, and
+##	allow the specified role the dbus-binding-tool domain.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed to transition
+##	</summary>
+## </param>
+## <param name="role">
+##	<summary>
+##	The role to be allowed the dbus-binding-tool domain.
+##	</summary>
+## </param>
+#
+interface(`dbus-binding-tool_run',`
+	gen_require(`
+		type dbus-binding-tool_t;
+		attribute_role dbus-binding-tool_roles;
+	')
+	dbus-binding-tool_domtrans($1)
+	roleattribute $2 dbus-binding-tool_roles;
+')
+########################################
+## <summary>
+##	Role access for dbus-binding-tool
+## </summary>
+## <param name="role">
+##	<summary>
+##	Role allowed access
+##	</summary>
+## </param>
+## <param name="domain">
+##	<summary>
+##	User domain for the role
+##	</summary>
+## </param>
+#
+interface(`dbus-binding-tool_role',`
+	gen_require(`
+		type dbus-binding-tool_t;
+		attribute_role dbus-binding-tool_roles;
+	')
+	roleattribute $1 dbus-binding-tool_roles;
+	dbus-binding-tool_domtrans($2)
+	hardhat_ps_process_pattern($2, dbus-binding-tool_t)
+	allow $2 dbus-binding-tool_t:process { signull signal sigkill };
+')
