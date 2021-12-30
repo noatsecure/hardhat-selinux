@@ -133,15 +133,14 @@ interface(`hardhat_files_manage_generic_tmp_dirs',`
     gen_require(`
         type tmp_t;
     ')
-    allow $1 tmp_t:dir { add_name create getattr link open read remove_name rename reparent rmdir search unlink write };
+    hardhat_manage_dirs_pattern($1, tmp_t, tmp_t)
 ')
 ########################################
 interface(`hardhat_files_manage_generic_tmp_files',`
     gen_require(`
         type tmp_t;
     ')
-    allow $1 tmp_t:dir { add_name getattr open read remove_name search write };
-    allow $1 tmp_t:file { append create open getattr link read rename unlink write };
+    hardhat_manage_files_pattern($1, tmp_t, tmp_t)
 ')
 ########################################
 interface(`hardhat_files_map_generic_tmp_files',`
@@ -166,46 +165,83 @@ interface(`hardhat_files_search_pids', `
     hardhat_read_lnk_files_pattern($1, var_run_t, var_run_t)
 ')
 ########################################
+interface(`hardhat_files_search_tmp',`
+    gen_require(`
+        type tmp_t;
+    ')
+    hardhat_fs_search_tmpfs($1)
+    hardhat_read_lnk_files_pattern($1, tmp_t, tmp_t)
+')
+########################################
+interface(`hardhat_fs_search_tmpfs',`
+    gen_require(`
+        type tmpfs_t;
+    ')
+    hardhat_search_dir_perms($1, tmpfs_t)
+')
+########################################
+define(`hardhat_manage_chr_files_pattern',`
+    allow $1 self:capability { mknod };
+    hardhat_rw_dir_perms($1, $2)
+    allow $1 $3:chr_file { append create getattr link open read rename unlink write };
+')
+########################################
 interface(`hardhat_manage_dirs_pattern',`
-    allow $1 $2:dir { add_name getattr open read remove_name search write };
-    allow $1 $3:dir { add_name create getattr link open read remove_name rename reparent rmdir search unlink write };
+    hardhat_rw_dir_perms($1, $2)
+    hardhat_search_dir_perms($1, $3)
+    allow $1 $3:dir { add_name create link read remove_name rename reparent rmdir unlink write };
 ')
 ########################################
 interface(`hardhat_manage_files_pattern',`
-    allow $1 $2:dir { add_name getattr open read remove_name search write };
+    hardhat_rw_dir_perms($1, $2)
     allow $1 $3:file { append create getattr link open read rename unlink write };
 ')
 ########################################
 interface(`hardhat_manage_lnk_files_pattern',`
-    allow $1 $2:dir { add_name getattr open read remove_name search write };
+    hardhat_rw_dir_perms($1, $2)
     allow $1 $3:lnk_file { append create getattr link read rename unlink write };
 ')
 ########################################
+interface(`hardhat_manage_sock_files_pattern',`
+    hardhat_rw_dir_perms($1, $2)
+    allow $1 $3:sock_file { append create getattr link open read rename unlink write };
+')
+########################################
 interface(`hardhat_mmap_exec_files_pattern',`
-    allow $1 $2:dir { getattr open search };
+    hardhat_search_dir_perms($1, $2)
     allow $1 $3:file { execute getattr map open read };
 ')
 ########################################
 interface(`hardhat_ps_process_pattern',`
-    allow $1 $2:dir { getattr open read search };
+    hardhat_search_dir_perms($1, $2)
+    allow $1 $2:dir { read };
     allow $1 $2:file { getattr open read };
     allow $1 $2:lnk_file { getattr read };
     allow $1 $2:process { getattr };
 ')
 ########################################
 interface(`hardhat_read_files_pattern',`
-    allow $1 $2:dir { getattr open search };
+    hardhat_search_dir_perms($1, $2)
     allow $1 $3:file { getattr open read };
 ')
 ########################################
 interface(`hardhat_read_lnk_files_pattern',`
-    allow $1 $2:dir { getattr open search };
+    hardhat_search_dir_perms($1, $2)
     allow $1 $3:lnk_file { getattr read };
 ')
 ########################################
-interface(`hardhat_search_dirs_pattern',`
+interface(`hardhat_rw_dir_perms',`
+    hardhat_search_dir_perms($1, $2)
+    allow $1 $2:dir { add_name read remove_name write };
+')
+########################################
+interface(`hardhat_search_dir_perms',`
     allow $1 $2:dir { getattr open search };
-    allow $1 $3:dir { getattr open search };
+')
+########################################
+interface(`hardhat_search_dirs_pattern',`
+    hardhat_search_dir_perms($1, $2)
+    hardhat_search_dir_perms($1, $3)
 ')
 ########################################
 interface(`hardhat_udev_read_db',`
@@ -231,11 +267,33 @@ interface(`hardhat_userdom_list_user_home_dirs', `
     allow $1 user_home_dir_t:dir { getattr open read search };
 ')
 ########################################
+interface(`hardhat_userdom_manage_user_tmp_chr_files',`
+    gen_require(`
+        type user_tmp_t;
+    ')
+    hardhat_manage_chr_files_pattern($1, user_tmp_t, user_tmp_t)
+    hardhat_files_search_tmp($1)
+')
+########################################
 interface(`hardhat_userdom_manage_tmp_dirs',`
     gen_require(`
         type user_tmp_t;
     ')
-    allow $1 user_tmp_t:dir { add_name create getattr link open read remove_name rename reparent rmdir search unlink write };
+    hardhat_manage_dirs_pattern($1, user_tmp_t, user_tmp_t)
+')
+########################################
+interface(`hardhat_userdom_manage_tmp_files',`
+    gen_require(`
+        type user_tmp_t;
+    ')
+    hardhat_manage_files_pattern($1, user_tmp_t, user_tmp_t)
+')
+########################################
+interface(`userdom_manage_tmp_sockets',`
+    gen_require(`
+        type user_tmp_t;
+    ')
+    hardhat_manage_sock_files_pattern($1, user_tmp_t, user_tmp_t)
 ')
 ########################################
 interface(`hardhat_userdom_manage_user_home_content_files',`
@@ -244,7 +302,7 @@ interface(`hardhat_userdom_manage_user_home_content_files',`
     ')
     hardhat_files_search_home($1)
     hardhat_read_files_pattern($1, user_home_t, user_home_t)
-    allow $1 user_home_dir_t:dir { getattr open search };
+    hardhat_search_dir_perms($1, user_home_dir_t)
     allow $1 user_home_t:dir { add_name read remove_name write };
     allow $1 user_home_t:file { append create link rename unlink write };
 ')
