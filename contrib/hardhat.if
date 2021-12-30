@@ -4,6 +4,20 @@ interface(`hardhat_auth_read_passwd_file',`
         type passwd_file_t;
     ')
     hardhat_read_file_perms($1, passwd_file_t)
+    init_dbus_chat($1)
+')
+#########################################
+interface(`hardhat_auth_read_shadow',`
+    auth_can_read_shadow_password($1)
+    hardhat_auth_tunable_read_shadow($1)
+')
+#########################################
+interface(`hardhat_auth_tunable_read_shadow',`
+    gen_require(`
+        type shadow_t;
+    ')
+    hardhat_files_list_etc($1)
+    hardhat_read_file_perms($1, shadow_t)
 ')
 #########################################
 interface(`hardhat_can_exec',`
@@ -130,6 +144,13 @@ interface(`hardhat_files_exec_all_base_ro_files',`
     hardhat_can_exec($1, base_ro_file_type)
 ')
 ########################################
+interface(`hardhat_files_list_etc',`
+    gen_require(`
+        type etc_t;
+    ')
+    hardhat_list_dir_perms($1, etc_t)
+')
+########################################
 interface(`hardhat_files_manage_generic_tmp_dirs',`
     gen_require(`
         type tmp_t;
@@ -142,13 +163,6 @@ interface(`hardhat_files_manage_generic_tmp_files',`
         type tmp_t;
     ')
     hardhat_manage_files_pattern($1, tmp_t, tmp_t)
-')
-########################################
-interface(`hardhat_files_map_generic_tmp_files',`
-    gen_require(`
-        type tmp_t;
-    ')
-    allow $1 tmp_t:file { map };
 ')
 ########################################
 interface(`hardhat_files_search_home', `
@@ -172,13 +186,6 @@ interface(`hardhat_files_search_tmp',`
     ')
     hardhat_fs_search_tmpfs($1)
     hardhat_read_lnk_files_pattern($1, tmp_t, tmp_t)
-')
-########################################
-interface(`hardhat_fs_getattr_cgroup',`
-    gen_require(`
-        type cgroup_t;
-    ')
-    allow $1 cgroup_t:filesystem { getattr };
 ')
 ########################################
 interface(`hardhat_fs_search_tmpfs',`
@@ -283,10 +290,10 @@ interface(`hardhat_mmap_exec_files_pattern',`
 ')
 ########################################
 interface(`hardhat_ps_process_pattern',`
+    hardhat_read_file_perms($1, $2)
+    hardhat_read_lnk_file_perms($1, $2)
     hardhat_search_dir_perms($1, $2)
     allow $1 $2:dir { read };
-    allow $1 $2:file { getattr open read };
-    allow $1 $2:lnk_file { getattr read };
     allow $1 $2:process { getattr };
 ')
 ########################################
@@ -337,19 +344,12 @@ interface(`hardhat_udev_read_pid_files',`
     allow $1 udev_var_run_t:dir { read };
 ')
 ########################################
-interface(`hardhat_userdom_delete_user_home_content_files',`
-    gen_require(`
-        type user_home_t;
-    ')
-    allow $1 user_home_t:file { getattr unlink };
-')
-########################################
 interface(`hardhat_userdom_list_user_home_dirs', `
     gen_require(`
         type user_home_dir_t;
     ')
     hardhat_files_search_home($1)
-    allow $1 user_home_dir_t:dir { getattr open read search };
+    hardhat_list_dir_perms($1, user_home_dir_t)
 ')
 ########################################
 interface(`hardhat_userdom_manage_tmp_dirs',`
