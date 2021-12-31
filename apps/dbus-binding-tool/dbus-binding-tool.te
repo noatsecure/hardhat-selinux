@@ -16,3 +16,4 @@ type dbus-binding-tool_exec_t;
 application_domain(dbus-binding-tool_t, dbus-binding-tool_exec_t);
 hardhat_domain_auto_transition_pattern(user_t, dbus-binding-tool_exec_t, dbus-binding-tool_t);
 ########################################
+# This policy is empty since this program does not seem to be used
