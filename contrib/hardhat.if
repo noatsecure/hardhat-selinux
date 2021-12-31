@@ -256,12 +256,6 @@ interface(`hardhat_rw_inherited_term_perms',`
     allow $1 $2:$3 { append getattr read write };
 ')
 ########################################
-interface(`stream_connect_pattern',`
-    allow $1 $2:dir search_dir_perms;
-    allow $1 $3:sock_file write_sock_file_perms;
-    allow $1 $4:unix_stream_socket { connectto };
-')
-########################################
 interface(`hardhat_udev_read_db',`
     hardhat_udev_read_pid_files($1)
 ')
