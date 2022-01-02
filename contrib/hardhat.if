@@ -74,6 +74,14 @@ interface(`hardhat_dbus_manage_session_tmp_dirs',`
     hardhat_manage_dirs_pattern($1, session_dbusd_tmp_t, session_dbusd_tmp_t)
 ')
 ########################################
+interface(`hardhat_dbus_read_config',`
+    gen_require(`
+        type dbusd_etc_t;
+    ')
+    hardhat_read_file_perms($1, dbusd_etc_t)
+    allow $1 dbusd_etc_t:dir list_dir_perms;
+')
+########################################
 interface(`hardhat_dev_list_all_dev_nodes',`
     gen_require(`
         type device_t;
@@ -372,6 +380,16 @@ interface(`hardhat_userdom_manage_user_tmp_symlinks',`
         type user_tmp_t;
     ')
     hardhat_manage_lnk_files_pattern($1, user_tmp_t, user_tmp_t)
+')
+########################################
+interface(`hardhat_userdom_read_home_audio_files',`
+    gen_require(`
+        type audio_home_t;
+    ')
+    hardhat_read_files_pattern($1, audio_home_t, audio_home_t)
+    read_lnk_files_pattern($1, audio_home_t, audio_home_t)
+    userdom_search_user_home_dirs($1)
+    allow $1 audio_home_t:dir list_dir_perms;
 ')
 ########################################
 interface(`hardhat_userdom_use_inherited_user_ptys',`
