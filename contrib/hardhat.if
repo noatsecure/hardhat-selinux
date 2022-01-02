@@ -314,7 +314,7 @@ interface(`hardhat_udev_read_pid_files',`
     allow $1 udev_var_run_t:dir { read };
 ')
 ########################################
-interface(`hardhat_userdom_list_user_home_dirs', `
+interface(`hardhat_userdom_list_user_home_dirs',`
     gen_require(`
         type user_home_dir_t;
     ')
