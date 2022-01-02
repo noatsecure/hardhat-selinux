@@ -60,6 +60,20 @@ interface(`hardhat_corecmd_shell_entry_type',`
     hardhat_domain_entry_file($1, shell_exec_t) 
 ')
 ########################################
+interface(`hardhat_dbus_exec_dbusd',`
+    gen_require(`
+        type dbusd_exec_t;
+    ')
+    hardhat_can_exec($1, dbusd_exec_t)
+')
+########################################
+interface(`hardhat_dbus_manage_session_tmp_dirs',`
+    gen_require(`
+        type session_dbusd_tmp_t;
+    ')
+    hardhat_manage_dirs_pattern($1, session_dbusd_tmp_t, session_dbusd_tmp_t)
+')
+########################################
 interface(`hardhat_dev_list_all_dev_nodes',`
     gen_require(`
         type device_t;
@@ -148,6 +162,11 @@ interface(`hardhat_files_manage_generic_tmp_files',`
         type tmp_t;
     ')
     hardhat_manage_files_pattern($1, tmp_t, tmp_t)
+')
+########################################
+interface(`hardhat_filetrans_pattern',`
+    hardhat_rw_dir_perms($1, $2)
+    type_transition $1 $2:$4 $3 $5;
 ')
 ########################################
 interface(`hardhat_gnome_exec_atspi',`
@@ -252,8 +271,32 @@ interface(`hardhat_rw_dir_perms',`
     allow $1 $2:dir { add_name read remove_name write };
 ')
 ########################################
+interface(`hardhat_rw_file_perms',`
+    allow $1 $2:$3 { append getattr open read write }
+')
+########################################
 interface(`hardhat_rw_inherited_term_perms',`
     allow $1 $2:$3 { append getattr read write };
+')
+########################################
+interface(`hardhat_seutil_read_config',`
+    gen_require(`
+        type selinux_config_t;
+    ')
+    files_search_etc($1)
+    hardhat_read_files_pattern($1, selinux_config_t, selinux_config_t)
+    allow $1 selinux_config_t:dir list_dir_perms;
+    read_lnk_files_pattern($1, selinux_config_t, selinux_config_t)
+')
+########################################
+interface(`hardhat_seutil_read_default_contexts',`
+    gen_require(`
+        type selinux_config_t, default_context_t;
+    ')
+    files_search_etc($1)
+    hardhat_read_files_pattern($1, default_context_t, default_context_t)
+    allow $1 selinux_config_t:dir search_dir_perms;
+    allow $1 default_context_t:dir list_dir_perms;
 ')
 ########################################
 interface(`hardhat_udev_read_db',`
@@ -305,10 +348,9 @@ interface(`hardhat_userdom_manage_user_home_content_files',`
         type user_home_dir_t, user_home_t;
     ')
     files_search_home($1)
-    hardhat_read_files_pattern($1, user_home_t, user_home_t)
+    hardhat_manage_files_pattern($1, user_home_t, user_home_t)
     allow $1 user_home_dir_t:dir search_dir_perms;
-    allow $1 user_home_t:dir { add_name read remove_name write };
-    allow $1 user_home_t:file { append create link rename unlink write };
+    allow $1 user_home_t:file map; 
 ')
 ########################################
 interface(`hardhat_userdom_manage_user_tmp_chr_files',`
@@ -332,15 +374,6 @@ interface(`hardhat_userdom_manage_user_tmp_symlinks',`
     hardhat_manage_lnk_files_pattern($1, user_tmp_t, user_tmp_t)
 ')
 ########################################
-@@@@@interface(`hardhat_userdom_stream_connect',`
-    gen_require(`
-        type user_tmp_t;
-        attribute userdomain;
-    ')
-
-    stream_connect_pattern($1, user_tmp_t, user_tmp_t, userdomain)
-')
-########################################
 interface(`hardhat_userdom_use_inherited_user_ptys',`
     gen_require(`
         type user_devpts_t;    
@@ -360,9 +393,7 @@ interface(`hardhat_userdom_user_home_dir_filetrans',`
         type user_home_dir_t;
     ')
     files_search_home($1)
-    hardhat_userdom_list_user_home_dirs($1)
-    allow $1 user_home_dir_t:dir { add_name remove_name write };
-    type_transition $1 user_home_dir_t:$3 $2 $4;
+    hardhat_filetrans_pattern($1, user_home_dir_t, $2, $3, $4)
 ')
 ########################################
 interface(`hardhat_userdom_write_user_tmp_files',`
