@@ -1,0 +1,10 @@
+policy_module(templates_home, 1.0.0)
+########################################
+gen_require(`
+    attribute userdom_filetrans_type;
+')
+type templates_home_t;
+userdom_user_home_content(templates_home_t)
+ubac_constrained(templates_home_t)
+hardhat_userdom_user_home_dir_filetrans(userdom_filetrans_type, templates_home_t, dir, "Templates")
+########################################
