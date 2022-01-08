@@ -1,0 +1,87 @@
+
+## <summary>policy for bwrap</summary>
+
+########################################
+## <summary>
+##	Execute bwrap_exec_t in the bwrap domain.
+## </summary>
+## <param name="domain">
+## <summary>
+##	Domain allowed to transition.
+## </summary>
+## </param>
+#
+interface(`bwrap_domtrans',`
+	gen_require(`
+		type bwrap_t, bwrap_exec_t;
+	')
+	hardhat_corecmd_search_bin($1)
+	hardhat_domtrans_pattern($1, bwrap_exec_t, bwrap_t)
+')
+######################################
+## <summary>
+##	Execute bwrap in the caller domain.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+#
+interface(`bwrap_exec',`
+	gen_require(`
+		type bwrap_exec_t;
+	')
+
+	hardhat_corecmd_search_bin($1)
+	hardhat_can_exec($1, bwrap_exec_t)
+')
+########################################
+## <summary>
+##	Execute bwrap in the bwrap domain, and
+##	allow the specified role the bwrap domain.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed to transition
+##	</summary>
+## </param>
+## <param name="role">
+##	<summary>
+##	The role to be allowed the bwrap domain.
+##	</summary>
+## </param>
+#
+interface(`bwrap_run',`
+	gen_require(`
+		type bwrap_t;
+		attribute_role bwrap_roles;
+	')
+	bwrap_domtrans($1)
+	roleattribute $2 bwrap_roles;
+')
+########################################
+## <summary>
+##	Role access for bwrap
+## </summary>
+## <param name="role">
+##	<summary>
+##	Role allowed access
+##	</summary>
+## </param>
+## <param name="domain">
+##	<summary>
+##	User domain for the role
+##	</summary>
+## </param>
+#
+interface(`bwrap_role',`
+	gen_require(`
+		type bwrap_t;
+		attribute_role bwrap_roles;
+	')
+	roleattribute $1 bwrap_roles;
+	bwrap_domtrans($2)
+	hardhat_ps_process_pattern($2, bwrap_t)
+	allow $2 bwrap_t:process { signull signal sigkill };
+')
