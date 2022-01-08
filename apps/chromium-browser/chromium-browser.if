@@ -1,0 +1,87 @@
+
+## <summary>policy for chromium-browser</summary>
+
+########################################
+## <summary>
+##	Execute chromium-browser_exec_t in the chromium-browser domain.
+## </summary>
+## <param name="domain">
+## <summary>
+##	Domain allowed to transition.
+## </summary>
+## </param>
+#
+interface(`chromium-browser_domtrans',`
+	gen_require(`
+		type chromium-browser_t, chromium-browser_exec_t;
+	')
+	hardhat_corecmd_search_bin($1)
+	hardhat_domtrans_pattern($1, chromium-browser_exec_t, chromium-browser_t)
+')
+######################################
+## <summary>
+##	Execute chromium-browser in the caller domain.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+#
+interface(`chromium-browser_exec',`
+	gen_require(`
+		type chromium-browser_exec_t;
+	')
+
+	hardhat_corecmd_search_bin($1)
+	hardhat_can_exec($1, chromium-browser_exec_t)
+')
+########################################
+## <summary>
+##	Execute chromium-browser in the chromium-browser domain, and
+##	allow the specified role the chromium-browser domain.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed to transition
+##	</summary>
+## </param>
+## <param name="role">
+##	<summary>
+##	The role to be allowed the chromium-browser domain.
+##	</summary>
+## </param>
+#
+interface(`chromium-browser_run',`
+	gen_require(`
+		type chromium-browser_t;
+		attribute_role chromium-browser_roles;
+	')
+	chromium-browser_domtrans($1)
+	roleattribute $2 chromium-browser_roles;
+')
+########################################
+## <summary>
+##	Role access for chromium-browser
+## </summary>
+## <param name="role">
+##	<summary>
+##	Role allowed access
+##	</summary>
+## </param>
+## <param name="domain">
+##	<summary>
+##	User domain for the role
+##	</summary>
+## </param>
+#
+interface(`chromium-browser_role',`
+	gen_require(`
+		type chromium-browser_t;
+		attribute_role chromium-browser_roles;
+	')
+	roleattribute $1 chromium-browser_roles;
+	chromium-browser_domtrans($2)
+	hardhat_ps_process_pattern($2, chromium-browser_t)
+	allow $2 chromium-browser_t:process { signull signal sigkill };
+')

@@ -1,0 +1,3 @@
+/usr/bin/chromium-browser                     -- gen_context(system_u:object_r:chromium-browser_exec_t,s0)
+/usr/bin/chromium-freeworld                   -- gen_context(system_u:object_r:chromium-browser_exec_t,s0)
+/usr/lib/chromium-browser/chromium-browser.sh -- gen_context(system_u:object_r:chromium-browser_exec_t,s0)
