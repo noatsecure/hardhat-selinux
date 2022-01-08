@@ -1,0 +1,118 @@
+policy_module(MODULE, 1.0.0)
+########################################
+# Required
+gen_require(`
+    role user_r;
+')
+
+# Roles
+attribute_role MODULE_roles;
+roleattribute user_r MODULE_roles;
+role MODULE_roles types MODULE_t;
+
+# Types (Binary)
+type MODULE_t;
+type MODULE_exec_t;
+application_domain(MODULE_t, MODULE_exec_t);
+hardhat_domain_auto_transition_pattern(user_t, MODULE_exec_t, MODULE_t);
+
+# Types (Configuration Directories & Files)
+# type MODULE_etc_t;
+# hardhat_files_config_file(MODULE_etc_t);
+########################################
+module dbus-daemon 1.0.0;
+########################################
+require {
+    attribute application_domain_type, application_exec_type, entry_type, exec_type, file_type, non_auth_file_type, non_security_file_type;
+    class chr_file { open read write };
+    class dir { getattr open read search };
+    class fd { use };
+    class file { entrypoint execute getattr map open read system };
+    class filesystem { getattr };
+    class lnk_file { read };
+    class process { rlimitinh siginh transition };
+    class sock_file { write };
+    class unix_dgram_socket { connect create sendto write };
+    class unix_stream_socket { connect connectto create read write };
+    role system_r;
+    type dbusd_etc_t;
+    type default_context_t;
+    type device_t;
+    type devlog_t;
+    type etc_t;
+    type init_t;
+    type init_var_run_t;
+    type kernel_t;
+    type ld_so_cache_t;
+    type ld_so_t;
+    type lib_t;
+    type locale_t;
+    type null_device_t;
+    type passwd_file_t;
+    type proc_t;
+    type root_t;
+    type security_t;
+    type syslogd_t;
+    type syslogd_var_run_t;
+    type systemd_userdbd_runtime_t;
+    type systemd_userdbd_t;
+    type urandom_device_t;
+    type usr_t;
+    type var_run_t;
+}
+########################################
+type dbus-daemon_t, application_domain_type;
+type dbus-daemon_exec_t, application_exec_type, entry_type, exec_type, file_type, non_auth_file_type, non_security_file_type;
+role system_r types dbus-daemon_t;
+type_transition init_t dbus-daemon_exec_t: process dbus-daemon_t;
+########################################
+#============= dbus-daemon_t ==============
+allow dbus-daemon_t dbus-daemon_exec_t:file { entrypoint execute map read };
+allow dbus-daemon_t dbusd_etc_t:dir { getattr open read search };
+allow dbus-daemon_t dbusd_etc_t:file { getattr open read };
+allow dbus-daemon_t default_context_t:dir search;
+allow dbus-daemon_t default_context_t:file { getattr open read };
+allow dbus-daemon_t device_t:dir search;
+allow dbus-daemon_t devlog_t:lnk_file read;
+allow dbus-daemon_t devlog_t:sock_file write;
+allow dbus-daemon_t etc_t:dir search;
+allow dbus-daemon_t etc_t:file { getattr open read };
+allow dbus-daemon_t init_t:dir search;
+allow dbus-daemon_t init_t:fd use;
+allow dbus-daemon_t init_t:file { getattr open read };
+allow dbus-daemon_t init_t:unix_stream_socket { connectto read write };
+allow dbus-daemon_t init_var_run_t:dir search;
+allow dbus-daemon_t kernel_t:unix_dgram_socket sendto;
+allow dbus-daemon_t ld_so_cache_t:file { getattr map open read };
+allow dbus-daemon_t ld_so_t:file { execute map read };
+allow dbus-daemon_t lib_t:dir { getattr search };
+allow dbus-daemon_t lib_t:file { execute getattr map open read };
+allow dbus-daemon_t lib_t:lnk_file read;
+allow dbus-daemon_t locale_t:dir search;
+allow dbus-daemon_t locale_t:file { getattr open read };
+allow dbus-daemon_t locale_t:lnk_file read;
+allow dbus-daemon_t null_device_t:chr_file { open read write };
+allow dbus-daemon_t passwd_file_t:file { getattr open read };
+allow dbus-daemon_t proc_t:filesystem getattr;
+allow dbus-daemon_t root_t:dir { getattr search };
+allow dbus-daemon_t security_t:filesystem getattr;
+allow dbus-daemon_t self:unix_dgram_socket { connect create write };
+allow dbus-daemon_t self:unix_stream_socket { connect create read write };
+allow dbus-daemon_t syslogd_var_run_t:dir search;
+allow dbus-daemon_t systemd_userdbd_runtime_t:dir { getattr open read search };
+allow dbus-daemon_t systemd_userdbd_runtime_t:lnk_file read;
+allow dbus-daemon_t systemd_userdbd_runtime_t:sock_file write;
+allow dbus-daemon_t systemd_userdbd_t:unix_stream_socket connectto;
+allow dbus-daemon_t urandom_device_t:chr_file { open read };
+allow dbus-daemon_t usr_t:dir { getattr open read search };
+allow dbus-daemon_t usr_t:file { getattr open read };
+allow dbus-daemon_t var_run_t:dir search;
+allow dbus-daemon_t var_run_t:lnk_file read;
+#============= init_t ==============
+allow init_t dbus-daemon_exec_t:file { execute open read };
+allow init_t dbus-daemon_t:file { getattr open read };
+allow init_t dbus-daemon_t:process { rlimitinh siginh transition };
+#============= syslogd_t ==============
+allow syslogd_t dbus-daemon_t:dir search;
+allow syslogd_t dbus-daemon_t:file { getattr open read };
+allow syslogd_t dbus-daemon_t:lnk_file read;

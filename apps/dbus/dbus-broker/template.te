@@ -1,0 +1,180 @@
+policy_module(MODULE, 1.0.0)
+########################################
+# Required
+gen_require(`
+    role user_r;
+')
+
+# Roles
+attribute_role MODULE_roles;
+roleattribute user_r MODULE_roles;
+role MODULE_roles types MODULE_t;
+
+# Types (Binary)
+type MODULE_t;
+type MODULE_exec_t;
+application_domain(MODULE_t, MODULE_exec_t);
+hardhat_domain_auto_transition_pattern(user_t, MODULE_exec_t, MODULE_t);
+
+# Types (Configuration Directories & Files)
+# type MODULE_etc_t;
+# hardhat_files_config_file(MODULE_etc_t);
+########################################
+module dbus-broker 1.0.0;
+########################################
+require {
+    attribute application_domain_type, application_exec_type, entry_type, exec_type, file_type, non_auth_file_type, non_security_file_type;
+    class capability { audit_write net_admin setgid setuid };
+    class chr_file { read write };
+    class dbus { acquire_svc send_msg };
+    class dir { getattr open read search watch };
+    class fd { use };
+    class fifo_file { write };
+    class file { entrypoint execute execute_no_trans getattr map open read system write };
+    class filesystem { getattr };
+    class lnk_file { read };
+    class netlink_audit_socket { create nlmsg_relay read write };
+    class process { fork getattr getcap noatsecure rlimitinh setcap siginh sigkill signal signull transition };
+    class security { compute_av };
+    class service { start };
+    class sock_file { write };
+    class system { status };
+    class unix_dgram_socket { connect create getopt sendto setopt write };
+    class unix_stream_socket { accept bind connect connectto create getattr getopt ioctl listen read setopt write };
+    role system_r;
+    type NetworkManager_t;
+    type NetworkManager_unit_file_t;
+    type bin_t;
+    type dbusd_etc_t;
+    type default_context_t;
+    type devicekit_disk_t;
+    type dri_device_t;
+    type etc_t;
+    type event_device_t;
+    type firewalld_t;
+    type init_t;
+    type init_var_run_t;
+    type kernel_t;
+    type ld_so_cache_t;
+    type ld_so_t;
+    type lib_t;
+    type local_login_t;
+    type machineid_t;
+    type passwd_file_t;
+    type polkitd_t;
+    type power_unit_file_t;
+    type root_t;
+    type security_t;
+    type sshd_t;
+    type sysfs_t;
+    type syslogd_t;
+    type syslogd_var_run_t;
+    type system_dbusd_var_run_t;
+    type systemd_hostnamed_t;
+    type systemd_logind_inhibit_var_run_t;
+    type systemd_logind_sessions_t;
+    type systemd_logind_t;
+    type systemd_resolved_t;
+    type systemd_unit_file_t;
+    type tmpfs_t;
+    type user_t;
+    type usr_t;
+    type var_run_t;
+}
+########################################
+type dbus-broker_t, application_domain_type;
+type dbus-broker_exec_t, application_exec_type, entry_type, exec_type, file_type, non_auth_file_type, non_security_file_type;
+role system_r types dbus-broker_t;
+type_transition init_t dbus-broker_exec_t: process dbus-broker_t;
+########################################
+#============= dbus-broker_t ==============
+allow dbus-broker_t bin_t:dir search;
+allow dbus-broker_t dbus-broker_exec_t:file { entrypoint execute execute_no_trans map open read };
+allow dbus-broker_t dbusd_etc_t:dir { getattr open read search watch };
+allow dbus-broker_t dbusd_etc_t:file { open read };
+allow dbus-broker_t default_context_t:dir search;
+allow dbus-broker_t default_context_t:file { open read };
+allow dbus-broker_t dri_device_t:chr_file { read write };
+allow dbus-broker_t etc_t:dir search;
+allow dbus-broker_t event_device_t:chr_file { read write };
+allow dbus-broker_t init_t:dbus send_msg;
+allow dbus-broker_t init_t:fd use;
+allow dbus-broker_t init_t:system status;
+allow dbus-broker_t init_t:unix_stream_socket { accept connectto getattr getopt read write };
+allow dbus-broker_t init_var_run_t:dir search;
+allow dbus-broker_t init_var_run_t:sock_file write;
+allow dbus-broker_t kernel_t:unix_dgram_socket sendto;
+allow dbus-broker_t ld_so_cache_t:file { getattr map open read };
+allow dbus-broker_t ld_so_t:file { execute map open read };
+allow dbus-broker_t lib_t:dir search;
+allow dbus-broker_t lib_t:file { execute getattr map open read };
+allow dbus-broker_t lib_t:lnk_file read;
+allow dbus-broker_t machineid_t:file { open read };
+allow dbus-broker_t NetworkManager_unit_file_t:service start;
+allow dbus-broker_t passwd_file_t:file { getattr open read };
+allow dbus-broker_t power_unit_file_t:service start;
+allow dbus-broker_t root_t:dir search;
+allow dbus-broker_t security_t:dir { getattr open read search };
+allow dbus-broker_t security_t:file { getattr map open read write };
+allow dbus-broker_t security_t:filesystem getattr;
+allow dbus-broker_t security_t:security compute_av;
+allow dbus-broker_t self:capability { audit_write net_admin setgid setuid };
+allow dbus-broker_t self:dbus send_msg;
+allow dbus-broker_t self:netlink_audit_socket { create nlmsg_relay read write };
+allow dbus-broker_t self:process { fork getcap setcap signal };
+allow dbus-broker_t self:unix_dgram_socket { connect create getopt setopt write };
+allow dbus-broker_t self:unix_stream_socket { accept connect connectto create getattr getopt ioctl read setopt write };
+allow dbus-broker_t sysfs_t:dir search;
+allow dbus-broker_t syslogd_var_run_t:dir search;
+allow dbus-broker_t syslogd_var_run_t:sock_file write;
+allow dbus-broker_t system_dbusd_var_run_t:dir search;
+allow dbus-broker_t system_dbusd_var_run_t:sock_file write;
+allow dbus-broker_t systemd_logind_inhibit_var_run_t:fifo_file write;
+allow dbus-broker_t systemd_logind_sessions_t:fifo_file write;
+allow dbus-broker_t systemd_logind_t:fd use;
+allow dbus-broker_t systemd_unit_file_t:service start;
+allow dbus-broker_t tmpfs_t:file { map read write };
+allow dbus-broker_t usr_t:dir { getattr open read search watch };
+allow dbus-broker_t usr_t:file { open read };
+allow dbus-broker_t var_run_t:dir search;
+#============= devicekit_disk_t ==============
+allow devicekit_disk_t dbus-broker_t:dbus { acquire_svc send_msg };
+allow devicekit_disk_t dbus-broker_t:unix_stream_socket connectto;
+#============= firewalld_t ==============
+allow firewalld_t dbus-broker_t:dbus { acquire_svc send_msg };
+allow firewalld_t dbus-broker_t:unix_stream_socket connectto;
+#============= init_t ==============
+allow init_t dbus-broker_t:dbus { acquire_svc send_msg };
+allow init_t dbus-broker_exec_t:file { execute execute_no_trans map open read };
+allow init_t dbus-broker_t:file { getattr open read };
+allow init_t dbus-broker_t:process { noatsecure rlimitinh siginh sigkill signal signull transition };
+allow init_t dbus-broker_t:unix_stream_socket { bind connectto create listen setopt };
+#============= local_login_t ==============
+allow local_login_t dbus-broker_t:dbus send_msg;
+allow local_login_t dbus-broker_t:unix_stream_socket connectto;
+#============= NetworkManager_t ==============
+allow NetworkManager_t dbus-broker_t:dbus { acquire_svc send_msg };
+allow NetworkManager_t dbus-broker_t:unix_stream_socket connectto;
+#============= polkitd_t ==============
+allow polkitd_t dbus-broker_t:unix_stream_socket connectto;
+#============= sshd_t ==============
+allow sshd_t dbus-broker_t:dbus send_msg;
+allow sshd_t dbus-broker_t:unix_stream_socket connectto;
+#============= systemd_logind_t ==============
+allow systemd_logind_t dbus-broker_t:dbus { acquire_svc send_msg };
+#============= syslogd_t ==============
+allow syslogd_t dbus-broker_t:dir search;
+allow syslogd_t dbus-broker_t:file { getattr open read };
+allow syslogd_t dbus-broker_t:lnk_file read;
+allow syslogd_t dbus-broker_t:process getattr;
+#============= systemd_hostnamed_t ==============
+allow systemd_hostnamed_t dbus-broker_t:dbus { acquire_svc send_msg };
+allow systemd_hostnamed_t dbus-broker_t:unix_stream_socket connectto;
+#============= systemd_logind_t ==============
+allow systemd_logind_t dbus-broker_t:unix_stream_socket connectto;
+#============= systemd_resolved_t ==============
+allow systemd_resolved_t dbus-broker_t:dbus { acquire_svc send_msg };
+allow systemd_resolved_t dbus-broker_t:unix_stream_socket connectto;
+#============= user_t ==============
+allow user_t dbus-broker_t:dbus send_msg;
+allow user_t dbus-broker_t:unix_stream_socket connectto;

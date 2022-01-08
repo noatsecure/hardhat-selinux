@@ -1,0 +1,161 @@
+policy_module(MODULE, 1.0.0)
+########################################
+# Required
+gen_require(`
+    role user_r;
+')
+
+# Roles
+attribute_role MODULE_roles;
+roleattribute user_r MODULE_roles;
+role MODULE_roles types MODULE_t;
+
+# Types (Binary)
+type MODULE_t;
+type MODULE_exec_t;
+application_domain(MODULE_t, MODULE_exec_t);
+hardhat_domain_auto_transition_pattern(user_t, MODULE_exec_t, MODULE_t);
+
+# Types (Configuration Directories & Files)
+# type MODULE_etc_t;
+# hardhat_files_config_file(MODULE_etc_t);
+########################################
+module dbus-run-session 1.0.0;
+########################################
+require {
+    attribute application_domain_type, application_exec_type, entry_type, exec_type, file_type, non_auth_file_type, non_security_file_type;
+    class chr_file { getattr ioctl open read write };
+    class dbus { send_msg };
+    class dir { add_name create getattr open read remove_name search watch write };
+    class fifo_file { getattr read write };
+    class file { create entrypoint execute execute_no_trans getattr map open read rename setattr unlink write };
+    class lnk_file { getattr read };
+    class process { fork getcap getsched rlimitinh setpgid setrlimit siginh signal transition };
+    class sock_file { getattr write };
+    class unix_dgram_socket { create getopt sendto setopt write };
+    class unix_stream_socket { bind connect connectto create getattr listen read write };
+    role user_r;
+    type audio_home_t;
+    type bin_t;
+    type cache_home_t;
+    type config_home_t;
+    type data_home_t;
+    type dbus-broker_t;
+    type dbus-daemon_exec_t;
+    type dbusd_etc_t;
+    type device_t;
+    type devtty_t;
+    type etc_t;
+    type gconf_home_t;
+    type home_root_t;
+    type init_t;
+    type kernel_t;
+    type ld_so_cache_t;
+    type ld_so_t;
+    type lib_t;
+    type locale_t;
+    type null_device_t;
+    type passwd_file_t;
+    type proc_t;
+    type pulseaudio_home_t;
+    type root_t;
+    type shell_exec_t;
+    type syslogd_t;
+    type system_dbusd_var_run_t;
+    type systemd_userdbd_runtime_t;
+    type systemd_userdbd_t;
+    type textrel_shlib_t;
+    type tmp_t;
+    type urandom_device_t;
+    type user_home_dir_t;
+    type user_home_t;
+    type user_t;
+    type user_tmp_t;
+    type user_tty_device_t;
+    type usr_t;
+    type var_run_t;
+    type var_t;
+}
+########################################
+type dbus-run-session_t, application_domain_type;
+type dbus-run-session_exec_t, application_exec_type, entry_type, exec_type, file_type, non_auth_file_type, non_security_file_type;
+role user_r types dbus-run-session_t;
+type_transition user_t dbus-run-session_exec_t: process dbus-run-session_t;
+########################################
+#============= dbus-run-session_t ==============
+allow dbus-run-session_t audio_home_t:dir { getattr open read search };
+allow dbus-run-session_t bin_t:dir { getattr open read search };
+allow dbus-run-session_t bin_t:file { execute execute_no_trans getattr map open read };
+allow dbus-run-session_t bin_t:lnk_file read;
+allow dbus-run-session_t cache_home_t:dir { getattr open read search };
+allow dbus-run-session_t cache_home_t:lnk_file { getattr read };
+allow dbus-run-session_t config_home_t:dir { getattr open read search };
+allow dbus-run-session_t config_home_t:file { getattr open read };
+allow dbus-run-session_t data_home_t:dir search;
+allow dbus-run-session_t dbus-broker_t:dbus send_msg;
+allow dbus-run-session_t dbus-broker_t:unix_stream_socket connectto;
+allow dbus-run-session_t dbus-daemon_exec_t:file { execute execute_no_trans map open read };
+allow dbus-run-session_t dbusd_etc_t:dir { getattr open read search watch };
+allow dbus-run-session_t dbusd_etc_t:file { getattr open read };
+allow dbus-run-session_t dbus-run-session_exec_t:file { entrypoint execute map read };
+allow dbus-run-session_t device_t:dir search;
+allow dbus-run-session_t devtty_t:chr_file { open read write };
+allow dbus-run-session_t etc_t:dir { getattr open read search };
+allow dbus-run-session_t etc_t:file { getattr open read };
+allow dbus-run-session_t etc_t:lnk_file read;
+allow dbus-run-session_t gconf_home_t:dir { getattr open read search };
+allow dbus-run-session_t home_root_t:dir { getattr search };
+allow dbus-run-session_t init_t:unix_stream_socket connectto;
+allow dbus-run-session_t kernel_t:unix_dgram_socket sendto;
+allow dbus-run-session_t ld_so_cache_t:file { getattr map open read };
+allow dbus-run-session_t ld_so_t:file { execute map open read };
+allow dbus-run-session_t lib_t:dir { getattr search };
+allow dbus-run-session_t lib_t:file { execute getattr map open read };
+allow dbus-run-session_t lib_t:lnk_file read;
+allow dbus-run-session_t locale_t:dir { getattr open read search };
+allow dbus-run-session_t locale_t:file { getattr map open read };
+allow dbus-run-session_t null_device_t:chr_file { getattr ioctl open read write };
+allow dbus-run-session_t passwd_file_t:file { getattr open read };
+allow dbus-run-session_t proc_t:dir search;
+allow dbus-run-session_t pulseaudio_home_t:dir { getattr open read };
+allow dbus-run-session_t root_t:dir { getattr search };
+allow dbus-run-session_t self:dir search;
+allow dbus-run-session_t self:fifo_file { getattr read write };
+allow dbus-run-session_t self:file { getattr open read };
+allow dbus-run-session_t self:lnk_file read;
+allow dbus-run-session_t self:process { fork getcap getsched setpgid setrlimit signal };
+allow dbus-run-session_t self:unix_dgram_socket { create getopt setopt write };
+allow dbus-run-session_t self:unix_stream_socket { bind connect create getattr listen read write };
+allow dbus-run-session_t shell_exec_t:file { execute execute_no_trans getattr map open read };
+allow dbus-run-session_t system_dbusd_var_run_t:dir search;
+allow dbus-run-session_t system_dbusd_var_run_t:sock_file write;
+allow dbus-run-session_t systemd_userdbd_runtime_t:dir { getattr open read search };
+allow dbus-run-session_t systemd_userdbd_runtime_t:lnk_file read;
+allow dbus-run-session_t systemd_userdbd_runtime_t:sock_file write;
+allow dbus-run-session_t systemd_userdbd_t:unix_stream_socket connectto;
+allow dbus-run-session_t textrel_shlib_t:file { execute getattr map open read };
+allow dbus-run-session_t tmp_t:dir { add_name getattr open read remove_name search write };
+allow dbus-run-session_t urandom_device_t:chr_file { open read };
+allow dbus-run-session_t user_home_dir_t:dir { add_name getattr open read search write };
+allow dbus-run-session_t user_home_dir_t:file getattr;
+allow dbus-run-session_t user_home_t:dir { add_name getattr open read remove_name search write };
+allow dbus-run-session_t user_home_t:file { create open read rename setattr unlink write };
+allow dbus-run-session_t user_tmp_t:dir { add_name create getattr open read search write };
+allow dbus-run-session_t user_tmp_t:sock_file { getattr write };
+allow dbus-run-session_t user_tty_device_t:chr_file { getattr ioctl read write };
+allow dbus-run-session_t user_t:unix_stream_socket connectto;
+allow dbus-run-session_t usr_t:dir { getattr open read search watch };
+allow dbus-run-session_t usr_t:file { getattr map open read };
+allow dbus-run-session_t usr_t:lnk_file read;
+allow dbus-run-session_t var_run_t:dir search;
+allow dbus-run-session_t var_run_t:lnk_file read;
+allow dbus-run-session_t var_t:dir search;
+#============= init_t ==============
+allow init_t dbus-run-session_t:dir search;
+allow init_t dbus-run-session_t:file { getattr open read };
+#============= syslogd_t ==============
+allow syslogd_t dbus-run-session_t:dir search;
+allow syslogd_t dbus-run-session_t:file { getattr open read };
+allow syslogd_t dbus-run-session_t:lnk_file read;
+#============= user_t ==============
+allow user_t dbus-run-session_t:process { rlimitinh siginh transition };

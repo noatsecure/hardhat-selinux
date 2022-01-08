@@ -1,0 +1,73 @@
+policy_module(MODULE, 1.0.0)
+########################################
+# Required
+gen_require(`
+    role user_r;
+')
+
+# Roles
+attribute_role MODULE_roles;
+roleattribute user_r MODULE_roles;
+role MODULE_roles types MODULE_t;
+
+# Types (Binary)
+type MODULE_t;
+type MODULE_exec_t;
+application_domain(MODULE_t, MODULE_exec_t);
+hardhat_domain_auto_transition_pattern(user_t, MODULE_exec_t, MODULE_t);
+
+# Types (Configuration Directories & Files)
+# type MODULE_etc_t;
+# hardhat_files_config_file(MODULE_etc_t);
+########################################
+module dbus-monitor 1.0.0;
+########################################
+require {
+    attribute application_domain_type, application_exec_type, entry_type, exec_type, file_type, non_auth_file_type, non_security_file_type;
+    class chr_file { getattr ioctl read write };
+    class dbus { send_msg };
+    class dir { search };
+    class file { entrypoint execute getattr map open read };
+    class lnk_file { read };
+    class process { rlimitinh siginh transition };
+    class sock_file { write };
+    class unix_stream_socket { connect connectto create getattr read write };
+    role user_r;
+    type etc_t;
+    type ld_so_cache_t;
+    type ld_so_t;
+    type lib_t;
+    type root_t;
+    type sysctl_t;
+    type user_t;
+    type user_tmp_t;
+    type user_tty_device_t;
+    type usr_t;
+    type var_run_t;
+}
+########################################
+type dbus-monitor_t, application_domain_type;
+type dbus-monitor_exec_t, application_exec_type, entry_type, exec_type, file_type, non_auth_file_type, non_security_file_type;
+role user_r types dbus-monitor_t;
+type_transition user_t dbus-monitor_exec_t: process dbus-monitor_t;
+########################################
+#============= dbus-monitor_t ==============
+allow dbus-monitor_t dbus-monitor_exec_t:file { entrypoint execute map read };
+allow dbus-monitor_t etc_t:dir search;
+allow dbus-monitor_t ld_so_cache_t:file { getattr map open read };
+allow dbus-monitor_t ld_so_t:file { execute map read };
+allow dbus-monitor_t lib_t:dir search;
+allow dbus-monitor_t lib_t:file { execute getattr map open read };
+allow dbus-monitor_t lib_t:lnk_file read;
+allow dbus-monitor_t root_t:dir search;
+allow dbus-monitor_t self:unix_stream_socket { connect create getattr read write };
+allow dbus-monitor_t sysctl_t:dir search;
+allow dbus-monitor_t user_t:dbus send_msg;
+allow dbus-monitor_t user_t:unix_stream_socket connectto;
+allow dbus-monitor_t user_tmp_t:dir search;
+allow dbus-monitor_t user_tmp_t:sock_file write;
+allow dbus-monitor_t user_tty_device_t:chr_file { getattr ioctl read write };
+allow dbus-monitor_t usr_t:dir search;
+allow dbus-monitor_t var_run_t:dir search;
+#============= user_t ==============
+allow user_t dbus-monitor_t:process { rlimitinh siginh transition };
