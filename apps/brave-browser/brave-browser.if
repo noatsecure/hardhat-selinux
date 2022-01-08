@@ -1,0 +1,87 @@
+
+## <summary>policy for brave-browser</summary>
+
+########################################
+## <summary>
+##	Execute brave-browser_exec_t in the brave-browser domain.
+## </summary>
+## <param name="domain">
+## <summary>
+##	Domain allowed to transition.
+## </summary>
+## </param>
+#
+interface(`brave-browser_domtrans',`
+	gen_require(`
+		type brave-browser_t, brave-browser_exec_t;
+	')
+	hardhat_corecmd_search_bin($1)
+	hardhat_domtrans_pattern($1, brave-browser_exec_t, brave-browser_t)
+')
+######################################
+## <summary>
+##	Execute brave-browser in the caller domain.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+#
+interface(`brave-browser_exec',`
+	gen_require(`
+		type brave-browser_exec_t;
+	')
+
+	hardhat_corecmd_search_bin($1)
+	hardhat_can_exec($1, brave-browser_exec_t)
+')
+########################################
+## <summary>
+##	Execute brave-browser in the brave-browser domain, and
+##	allow the specified role the brave-browser domain.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed to transition
+##	</summary>
+## </param>
+## <param name="role">
+##	<summary>
+##	The role to be allowed the brave-browser domain.
+##	</summary>
+## </param>
+#
+interface(`brave-browser_run',`
+	gen_require(`
+		type brave-browser_t;
+		attribute_role brave-browser_roles;
+	')
+	brave-browser_domtrans($1)
+	roleattribute $2 brave-browser_roles;
+')
+########################################
+## <summary>
+##	Role access for brave-browser
+## </summary>
+## <param name="role">
+##	<summary>
+##	Role allowed access
+##	</summary>
+## </param>
+## <param name="domain">
+##	<summary>
+##	User domain for the role
+##	</summary>
+## </param>
+#
+interface(`brave-browser_role',`
+	gen_require(`
+		type brave-browser_t;
+		attribute_role brave-browser_roles;
+	')
+	roleattribute $1 brave-browser_roles;
+	brave-browser_domtrans($2)
+	hardhat_ps_process_pattern($2, brave-browser_t)
+	allow $2 brave-browser_t:process { signull signal sigkill };
+')
