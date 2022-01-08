@@ -15,7 +15,7 @@ Source0:    brave-browser.pp
 Source1:    brave-browser.if
 Source2:    brave-browser_selinux.8
 
-Requires: policycoreutils, libselinux-utils, hardhat-selinux-interfaces
+Requires: policycoreutils, libselinux-utils, hardhat-selinux-interfaces, selinux-label-downloads
 Requires(post): selinux-policy-base >= %{selinux_policyver}, policycoreutils
 Requires(postun): policycoreutils
 BuildArch: noarch
