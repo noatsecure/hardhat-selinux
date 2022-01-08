@@ -1,0 +1,87 @@
+
+## <summary>policy for dbus-broker</summary>
+
+########################################
+## <summary>
+##	Execute dbus-broker_exec_t in the dbus-broker domain.
+## </summary>
+## <param name="domain">
+## <summary>
+##	Domain allowed to transition.
+## </summary>
+## </param>
+#
+interface(`dbus-broker_domtrans',`
+	gen_require(`
+		type dbus-broker_t, dbus-broker_exec_t;
+	')
+	hardhat_corecmd_search_bin($1)
+	hardhat_domtrans_pattern($1, dbus-broker_exec_t, dbus-broker_t)
+')
+######################################
+## <summary>
+##	Execute dbus-broker in the caller domain.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+#
+interface(`dbus-broker_exec',`
+	gen_require(`
+		type dbus-broker_exec_t;
+	')
+
+	hardhat_corecmd_search_bin($1)
+	hardhat_can_exec($1, dbus-broker_exec_t)
+')
+########################################
+## <summary>
+##	Execute dbus-broker in the dbus-broker domain, and
+##	allow the specified role the dbus-broker domain.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed to transition
+##	</summary>
+## </param>
+## <param name="role">
+##	<summary>
+##	The role to be allowed the dbus-broker domain.
+##	</summary>
+## </param>
+#
+interface(`dbus-broker_run',`
+	gen_require(`
+		type dbus-broker_t;
+		attribute_role dbus-broker_roles;
+	')
+	dbus-broker_domtrans($1)
+	roleattribute $2 dbus-broker_roles;
+')
+########################################
+## <summary>
+##	Role access for dbus-broker
+## </summary>
+## <param name="role">
+##	<summary>
+##	Role allowed access
+##	</summary>
+## </param>
+## <param name="domain">
+##	<summary>
+##	User domain for the role
+##	</summary>
+## </param>
+#
+interface(`dbus-broker_role',`
+	gen_require(`
+		type dbus-broker_t;
+		attribute_role dbus-broker_roles;
+	')
+	roleattribute $1 dbus-broker_roles;
+	dbus-broker_domtrans($2)
+	hardhat_ps_process_pattern($2, dbus-broker_t)
+	allow $2 dbus-broker_t:process { signull signal sigkill };
+')
