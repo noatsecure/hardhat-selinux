@@ -39,6 +39,7 @@ gen_require(`
     type net_conf_t;
     type null_device_t;
     type proc_t;
+    type public_home_t;
     type pulseaudio_home_t;
     type pulseaudio_t;
     type root_t;
@@ -73,7 +74,7 @@ hardhat_domain_auto_transition_pattern(user_t, mpv_exec_t, mpv_t);
 # Types (Configuration Directories & Files)
 type mpv_etc_t;
 type mpv_home_t;
-hardhat_files_config_file(mpv_etc_t);
+files_config_file(mpv_etc_t);
 userdom_user_home_content(mpv_home_t)
 ubac_constrained(mpv_home_t)
 ########################################
