@@ -1,7 +1,7 @@
 %define relabel_files() \
-restorecon -R /usr/bin/chromium-browser;                     \
-restorecon -R /usr/bin/chromium-freeworld;                   \
-restorecon -R /usr/lib/chromium-browser/chromium-browser.sh; \
+restorecon -i -R /usr/bin/chromium-browser;                                                           \
+restorecon -i -R /usr/bin/chromium-freeworld;                                                         \
+[[ -d /usr/lib/chromium-browser ]] && restorecon -i -R /usr/lib/chromium-browser/chromium-browser.sh; \
 
 %define selinux_policyver 35.7-1
 
@@ -17,7 +17,8 @@ Source0:    chromium-browser.pp
 Source1:    chromium-browser.if
 Source2:    chromium-browser_selinux.8
 
-Requires: policycoreutils, libselinux-utils, hardhat-selinux-interfaces, selinux-label-downloads
+#Requires: policycoreutils, libselinux-utils, hardhat-selinux-interfaces, selinux-label-downloads
+Requires: policycoreutils, libselinux-utils
 Requires(post): selinux-policy-base >= %{selinux_policyver}, policycoreutils
 Requires(postun): policycoreutils
 BuildArch: noarch
