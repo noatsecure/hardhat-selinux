@@ -1,16 +1,12 @@
 %define relabel_files() \
-restorecon -R /usr/bin/youtube-dl; \
-restorecon -R /usr/bin/yt-dlp; \
-restorecon -R /usr/local/bin/youtube-dl; \
-restorecon -R /usr/local/bin/yt-dlp; \
-restorecon -R /home/*/.local/bin/youtube-dl; \
-restorecon -R /home/*/.local/bin/yt-dlp; \
-restorecon -R /home/*/bin/youtube-dl; \
-restorecon -R /home/*/bin/yt-dlp; \
-restorecon -R /opt/youtube-dl; \
-restorecon -R /opt/yt-dlp; \
-restorecon -R /opt/*/youtube-dl; \
-restorecon -R /opt/*/yt-dlp; \
+restorecon -i -R /usr/bin/youtube-dl; \
+restorecon -i -R /usr/bin/yt-dlp; \
+restorecon -i -R /usr/local/bin/youtube-dl; \
+restorecon -i -R /usr/local/bin/yt-dlp; \
+restorecon -i -R /home/*/.local/bin/youtube-dl; \
+restorecon -i -R /home/*/.local/bin/yt-dlp; \
+restorecon -i -R /opt/youtube-dl; \
+restorecon -i -R /opt/yt-dlp; \
 
 %define selinux_policyver 35.7-1
 
