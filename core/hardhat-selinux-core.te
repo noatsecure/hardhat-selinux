@@ -7,9 +7,13 @@ gen_require(`
     class dir { watch };
     class file { execute execute_no_trans getattr map open read relabelfrom write };
     type dbusd_etc_t;
+    type iceauth_t;
+    type session_dbusd_tmp_t;
     type tmp_t;
+    type user_dbusd_t;
     type user_home_dir_t;
     type user_t;
+    type xauth_t;
 ')
 ########################################
 #============= user_t ==============
