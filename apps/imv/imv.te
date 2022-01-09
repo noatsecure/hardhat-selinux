@@ -22,6 +22,8 @@ gen_require(`
     type ld_so_t;
     type lib_t;
     type passwd_file_t;
+    type pictures_home_t;
+    type public_home_t;
     type root_t;
     type sysfs_t;
     type textrel_shlib_t;
@@ -30,6 +32,7 @@ gen_require(`
     type user_home_t;
     type user_t;
     type usr_t;
+    type videos_home_t;
 ')
 
 # Roles
