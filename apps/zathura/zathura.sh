@@ -49,7 +49,7 @@ make -f /usr/share/selinux/devel/Makefile zathura.pp || exit
 sepolicy manpage -p . -d zathura_t
 
 # Fixing the file and directory contexts
-/sbin/restorecon -F -R -v /usr/bin/zathura
+/sbin/restorecon -F -i -R -v /usr/bin/zathura
 
 # Generate a rpm package for the newly generated policy
 pwd=$(pwd)

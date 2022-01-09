@@ -1,5 +1,5 @@
 %define relabel_files() \
-restorecon -R /usr/bin/zathura; \
+restorecon -i -R /usr/bin/zathura; \
 
 %define selinux_policyver 35.7-1
 
