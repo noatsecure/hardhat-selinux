@@ -1,0 +1,87 @@
+
+## <summary>policy for mpv</summary>
+
+########################################
+## <summary>
+##	Execute mpv_exec_t in the mpv domain.
+## </summary>
+## <param name="domain">
+## <summary>
+##	Domain allowed to transition.
+## </summary>
+## </param>
+#
+interface(`mpv_domtrans',`
+	gen_require(`
+		type mpv_t, mpv_exec_t;
+	')
+	hardhat_corecmd_search_bin($1)
+	hardhat_domtrans_pattern($1, mpv_exec_t, mpv_t)
+')
+######################################
+## <summary>
+##	Execute mpv in the caller domain.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+#
+interface(`mpv_exec',`
+	gen_require(`
+		type mpv_exec_t;
+	')
+
+	hardhat_corecmd_search_bin($1)
+	hardhat_can_exec($1, mpv_exec_t)
+')
+########################################
+## <summary>
+##	Execute mpv in the mpv domain, and
+##	allow the specified role the mpv domain.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed to transition
+##	</summary>
+## </param>
+## <param name="role">
+##	<summary>
+##	The role to be allowed the mpv domain.
+##	</summary>
+## </param>
+#
+interface(`mpv_run',`
+	gen_require(`
+		type mpv_t;
+		attribute_role mpv_roles;
+	')
+	mpv_domtrans($1)
+	roleattribute $2 mpv_roles;
+')
+########################################
+## <summary>
+##	Role access for mpv
+## </summary>
+## <param name="role">
+##	<summary>
+##	Role allowed access
+##	</summary>
+## </param>
+## <param name="domain">
+##	<summary>
+##	User domain for the role
+##	</summary>
+## </param>
+#
+interface(`mpv_role',`
+	gen_require(`
+		type mpv_t;
+		attribute_role mpv_roles;
+	')
+	roleattribute $1 mpv_roles;
+	mpv_domtrans($2)
+	hardhat_ps_process_pattern($2, mpv_t)
+	allow $2 mpv_t:process { signull signal sigkill };
+')
