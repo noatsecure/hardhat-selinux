@@ -17,12 +17,12 @@ if [ $# -eq 1 ]; then
 		rules=`ausearch --start $time -m avc --raw -se chromium-browser`
 		if [ x"$rules" != "x" ] ; then
 			echo "Found avc's to update policy with"
-			echo -e "$rules" | audit2allow -R
+			echo -e "$rules" | audit2allow -i -R
 			echo "Do you want these changes added to policy [y/n]?"
 			read ANS
 			if [ "$ANS" = "y" -o "$ANS" = "Y" ] ; then
 				echo "Updating policy"
-				echo -e "$rules" | audit2allow -R >> chromium-browser.te
+				echo -e "$rules" | audit2allow -i -R >> chromium-browser.te
 				# Fall though and rebuild policy
 			else
 				exit 0
@@ -49,9 +49,9 @@ make -f /usr/share/selinux/devel/Makefile chromium-browser.pp || exit
 sepolicy manpage -p . -d chromium-browser_t
 
 # Fixing the file and directory contexts
-/sbin/restorecon -F -R -v /usr/bin/chromium-browser
-/sbin/restorecon -F -R -v /usr/bin/chromium-freeworld
-/sbin/restorecon -F -R -v /usr/lib/chromium-browser/chromium-browser.sh
+/sbin/restorecon -F -i -R -v /usr/bin/chromium-browser
+/sbin/restorecon -F -i -R -v /usr/bin/chromium-freeworld
+[[ -d /usr/lib/chromium-browser ]] && /sbin/restorecon -F -i -R -v /usr/lib/chromium-browser/chromium-browser.sh
 
 # Generate a rpm package for the newly generated policy
 pwd=$(pwd)
