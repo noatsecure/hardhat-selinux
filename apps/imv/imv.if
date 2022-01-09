@@ -1,0 +1,87 @@
+
+## <summary>policy for imv</summary>
+
+########################################
+## <summary>
+##	Execute imv_exec_t in the imv domain.
+## </summary>
+## <param name="domain">
+## <summary>
+##	Domain allowed to transition.
+## </summary>
+## </param>
+#
+interface(`imv_domtrans',`
+	gen_require(`
+		type imv_t, imv_exec_t;
+	')
+	hardhat_corecmd_search_bin($1)
+	hardhat_domtrans_pattern($1, imv_exec_t, imv_t)
+')
+######################################
+## <summary>
+##	Execute imv in the caller domain.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+#
+interface(`imv_exec',`
+	gen_require(`
+		type imv_exec_t;
+	')
+
+	hardhat_corecmd_search_bin($1)
+	hardhat_can_exec($1, imv_exec_t)
+')
+########################################
+## <summary>
+##	Execute imv in the imv domain, and
+##	allow the specified role the imv domain.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed to transition
+##	</summary>
+## </param>
+## <param name="role">
+##	<summary>
+##	The role to be allowed the imv domain.
+##	</summary>
+## </param>
+#
+interface(`imv_run',`
+	gen_require(`
+		type imv_t;
+		attribute_role imv_roles;
+	')
+	imv_domtrans($1)
+	roleattribute $2 imv_roles;
+')
+########################################
+## <summary>
+##	Role access for imv
+## </summary>
+## <param name="role">
+##	<summary>
+##	Role allowed access
+##	</summary>
+## </param>
+## <param name="domain">
+##	<summary>
+##	User domain for the role
+##	</summary>
+## </param>
+#
+interface(`imv_role',`
+	gen_require(`
+		type imv_t;
+		attribute_role imv_roles;
+	')
+	roleattribute $1 imv_roles;
+	imv_domtrans($2)
+	hardhat_ps_process_pattern($2, imv_t)
+	allow $2 imv_t:process { signull signal sigkill };
+')
