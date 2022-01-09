@@ -1,0 +1,87 @@
+
+## <summary>policy for zatura</summary>
+
+########################################
+## <summary>
+##	Execute zatura_exec_t in the zatura domain.
+## </summary>
+## <param name="domain">
+## <summary>
+##	Domain allowed to transition.
+## </summary>
+## </param>
+#
+interface(`zatura_domtrans',`
+	gen_require(`
+		type zatura_t, zatura_exec_t;
+	')
+	hardhat_corecmd_search_bin($1)
+	hardhat_domtrans_pattern($1, zatura_exec_t, zatura_t)
+')
+######################################
+## <summary>
+##	Execute zatura in the caller domain.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+#
+interface(`zatura_exec',`
+	gen_require(`
+		type zatura_exec_t;
+	')
+
+	hardhat_corecmd_search_bin($1)
+	hardhat_can_exec($1, zatura_exec_t)
+')
+########################################
+## <summary>
+##	Execute zatura in the zatura domain, and
+##	allow the specified role the zatura domain.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed to transition
+##	</summary>
+## </param>
+## <param name="role">
+##	<summary>
+##	The role to be allowed the zatura domain.
+##	</summary>
+## </param>
+#
+interface(`zatura_run',`
+	gen_require(`
+		type zatura_t;
+		attribute_role zatura_roles;
+	')
+	zatura_domtrans($1)
+	roleattribute $2 zatura_roles;
+')
+########################################
+## <summary>
+##	Role access for zatura
+## </summary>
+## <param name="role">
+##	<summary>
+##	Role allowed access
+##	</summary>
+## </param>
+## <param name="domain">
+##	<summary>
+##	User domain for the role
+##	</summary>
+## </param>
+#
+interface(`zatura_role',`
+	gen_require(`
+		type zatura_t;
+		attribute_role zatura_roles;
+	')
+	roleattribute $1 zatura_roles;
+	zatura_domtrans($2)
+	hardhat_ps_process_pattern($2, zatura_t)
+	allow $2 zatura_t:process { signull signal sigkill };
+')
