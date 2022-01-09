@@ -3,8 +3,6 @@ restorecon -i -R /usr/bin/youtube-dl; \
 restorecon -i -R /usr/bin/yt-dlp; \
 restorecon -i -R /usr/local/bin/youtube-dl; \
 restorecon -i -R /usr/local/bin/yt-dlp; \
-restorecon -i -R /home/*/.local/bin/youtube-dl; \
-restorecon -i -R /home/*/.local/bin/yt-dlp; \
 restorecon -i -R /opt/youtube-dl; \
 restorecon -i -R /opt/yt-dlp; \
 
