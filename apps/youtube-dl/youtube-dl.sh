@@ -49,18 +49,12 @@ make -f /usr/share/selinux/devel/Makefile youtube-dl.pp || exit
 sepolicy manpage -p . -d youtube-dl_t
 
 # Fixing the file and directory contexts
-/sbin/restorecon -R -v /usr/bin/youtube-dl
-/sbin/restorecon -R -v /usr/bin/yt-dlp
-/sbin/restorecon -R -v /usr/local/bin/youtube-dl
-/sbin/restorecon -R -v /usr/local/bin/yt-dlp
-/sbin/restorecon -R -v /home/*/.local/bin/youtube-dl
-/sbin/restorecon -R -v /home/*/.local/bin/yt-dlp
-/sbin/restorecon -R -v /home/*/bin/youtube-dl
-/sbin/restorecon -R -v /home/*/bin/yt-dlp
-/sbin/restorecon -R -v /opt/youtube-dl
-/sbin/restorecon -R -v /opt/yt-dlp
-/sbin/restorecon -R -v /opt/*/youtube-dl
-/sbin/restorecon -R -v /opt/*/yt-dlp
+/sbin/restorecon -i -R -v /usr/bin/youtube-dl
+/sbin/restorecon -i -R -v /usr/bin/yt-dlp
+/sbin/restorecon -i -R -v /usr/local/bin/youtube-dl
+/sbin/restorecon -i -R -v /usr/local/bin/yt-dlp
+/sbin/restorecon -i -R -v /opt/youtube-dl
+/sbin/restorecon -i -R -v /opt/yt-dlp
 
 # Generate a rpm package for the newly generated policy
 pwd=$(pwd)
