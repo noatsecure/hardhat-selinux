@@ -1,9 +1,9 @@
 
-## <summary>policy for zatura</summary>
+## <summary>policy for zathura</summary>
 
 ########################################
 ## <summary>
-##	Execute zatura_exec_t in the zatura domain.
+##	Execute zathura_exec_t in the zathura domain.
 ## </summary>
 ## <param name="domain">
 ## <summary>
@@ -11,16 +11,16 @@
 ## </summary>
 ## </param>
 #
-interface(`zatura_domtrans',`
+interface(`zathura_domtrans',`
 	gen_require(`
-		type zatura_t, zatura_exec_t;
+		type zathura_t, zathura_exec_t;
 	')
 	hardhat_corecmd_search_bin($1)
-	hardhat_domtrans_pattern($1, zatura_exec_t, zatura_t)
+	hardhat_domtrans_pattern($1, zathura_exec_t, zathura_t)
 ')
 ######################################
 ## <summary>
-##	Execute zatura in the caller domain.
+##	Execute zathura in the caller domain.
 ## </summary>
 ## <param name="domain">
 ##	<summary>
@@ -28,18 +28,18 @@ interface(`zatura_domtrans',`
 ##	</summary>
 ## </param>
 #
-interface(`zatura_exec',`
+interface(`zathura_exec',`
 	gen_require(`
-		type zatura_exec_t;
+		type zathura_exec_t;
 	')
 
 	hardhat_corecmd_search_bin($1)
-	hardhat_can_exec($1, zatura_exec_t)
+	hardhat_can_exec($1, zathura_exec_t)
 ')
 ########################################
 ## <summary>
-##	Execute zatura in the zatura domain, and
-##	allow the specified role the zatura domain.
+##	Execute zathura in the zathura domain, and
+##	allow the specified role the zathura domain.
 ## </summary>
 ## <param name="domain">
 ##	<summary>
@@ -48,21 +48,21 @@ interface(`zatura_exec',`
 ## </param>
 ## <param name="role">
 ##	<summary>
-##	The role to be allowed the zatura domain.
+##	The role to be allowed the zathura domain.
 ##	</summary>
 ## </param>
 #
-interface(`zatura_run',`
+interface(`zathura_run',`
 	gen_require(`
-		type zatura_t;
-		attribute_role zatura_roles;
+		type zathura_t;
+		attribute_role zathura_roles;
 	')
-	zatura_domtrans($1)
-	roleattribute $2 zatura_roles;
+	zathura_domtrans($1)
+	roleattribute $2 zathura_roles;
 ')
 ########################################
 ## <summary>
-##	Role access for zatura
+##	Role access for zathura
 ## </summary>
 ## <param name="role">
 ##	<summary>
@@ -75,13 +75,13 @@ interface(`zatura_run',`
 ##	</summary>
 ## </param>
 #
-interface(`zatura_role',`
+interface(`zathura_role',`
 	gen_require(`
-		type zatura_t;
-		attribute_role zatura_roles;
+		type zathura_t;
+		attribute_role zathura_roles;
 	')
-	roleattribute $1 zatura_roles;
-	zatura_domtrans($2)
-	hardhat_ps_process_pattern($2, zatura_t)
-	allow $2 zatura_t:process { signull signal sigkill };
+	roleattribute $1 zathura_roles;
+	zathura_domtrans($2)
+	hardhat_ps_process_pattern($2, zathura_t)
+	allow $2 zathura_t:process { signull signal sigkill };
 ')

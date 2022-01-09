@@ -1,4 +1,4 @@
-policy_module(zatura, 1.0.0)
+policy_module(zathura, 1.0.0)
 ########################################
 # Required
 gen_require(`
@@ -37,15 +37,15 @@ gen_require(`
 ')
 
 # Roles
-attribute_role zatura_roles;
-roleattribute user_r zatura_roles;
-role zatura_roles types zatura_t;
+attribute_role zathura_roles;
+roleattribute user_r zathura_roles;
+role zathura_roles types zathura_t;
 
 # Types (Binary)
-type zatura_t;
-type zatura_exec_t;
-application_domain(zatura_t, zatura_exec_t);
-hardhat_domain_auto_transition_pattern(user_t, zatura_exec_t, zatura_t);
+type zathura_t;
+type zathura_exec_t;
+application_domain(zathura_t, zathura_exec_t);
+hardhat_domain_auto_transition_pattern(user_t, zathura_exec_t, zathura_t);
 ########################################
 #============= user_t ==============
 allow user_t zathura_t:dir { getattr search };
