@@ -1,0 +1,5 @@
+/usr/bin/(youtube-dl|yt-dlp)               gen_context(system_u:object_r:youtube-dl_exec_t,s0)
+/usr/local/bin/(youtube-dl|yt-dlp)         gen_context(system_u:object_r:youtube-dl_exec_t,s0)
+/opt/(youtube-dl|yt-dlp)                   gen_context(system_u:object_r:youtube-dl_exec_t,s0)
+/opt/(.*)/(youtube-dl|yt-dlp)              gen_context(system_u:object_r:youtube-dl_exec_t,s0)
+HOME_DIR/(|.local/)bin/(youtube-dl|yt-dlp) gen_context(system_u:object_r:youtube-dl_exec_t,s0)

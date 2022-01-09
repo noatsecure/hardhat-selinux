@@ -1,0 +1,95 @@
+policy_module(youtube-dl, 1.0.0)
+########################################
+# Required
+gen_require(`
+    class chr_file { getattr read write };
+    class dbus { send_msg };
+    class dir { add_name getattr open read remove_name search write };
+    class fifo_file { getattr read write };
+    class file { append create entrypoint execute execute_no_trans getattr map open read rename setattr unlink write };
+    class lnk_file { read };
+    class netlink_route_socket { bind create getattr nlmsg_read read write };
+    class process { fork getattr getsched rlimitinh siginh transition };
+    class sock_file { write };
+    class tcp_socket { connect create getattr getopt name_connect read setopt write };
+    class udp_socket { connect create getattr setopt write };
+    class unix_stream_socket { connect connectto create getattr getopt read setopt shutdown write };
+    role user_r;
+    type bin_t;
+    type cert_t;
+    type etc_t;
+    type home_root_t;
+    type http_port_t;
+    type ld_so_cache_t;
+    type ld_so_t;
+    type lib_t;
+    type locale_t;
+    type net_conf_t;
+    type root_t;
+    type system_dbusd_t;
+    type system_dbusd_var_run_t;
+    type systemd_resolved_t;
+    type textrel_shlib_t;
+    type user_devpts_t;
+    type user_home_dir_t;
+    type user_t;
+    type usr_t;
+    type var_run_t;
+')
+
+# Roles
+attribute_role youtube-dl_roles;
+roleattribute user_r youtube-dl_roles;
+role youtube-dl_roles types youtube-dl_t;
+
+# Types (Binary)
+type youtube-dl_t;
+type youtube-dl_exec_t;
+application_domain(youtube-dl_t, youtube-dl_exec_t);
+hardhat_domain_auto_transition_pattern(user_t, youtube-dl_exec_t, youtube-dl_t);
+########################################
+#============= user_t ==============
+allow user_t youtube-dl_t:process { getattr rlimitinh siginh transition };
+#============= youtube-dl_t ==============
+allow youtube-dl_t bin_t:dir { getattr open read search };
+allow youtube-dl_t bin_t:file { execute execute_no_trans getattr map open read };
+allow youtube-dl_t bin_t:lnk_file read;
+allow youtube-dl_t cert_t:dir search;
+allow youtube-dl_t cert_t:file { getattr open read };
+allow youtube-dl_t cert_t:lnk_file read;
+allow youtube-dl_t etc_t:dir search;
+allow youtube-dl_t etc_t:file { getattr open read };
+allow youtube-dl_t etc_t:lnk_file read;
+allow youtube-dl_t http_port_t:tcp_socket name_connect;
+allow youtube-dl_t home_root_t:dir search;
+allow youtube-dl_t ld_so_cache_t:file { getattr map open read };
+allow youtube-dl_t ld_so_t:file { execute map open read };
+allow youtube-dl_t lib_t:dir { getattr open read search };
+allow youtube-dl_t lib_t:file { execute getattr map open read };
+allow youtube-dl_t lib_t:lnk_file read;
+allow youtube-dl_t locale_t:dir search;
+allow youtube-dl_t locale_t:file { getattr map open read };
+allow youtube-dl_t locale_t:lnk_file read;
+allow youtube-dl_t net_conf_t:file { getattr open read };
+allow youtube-dl_t net_conf_t:lnk_file read;
+allow youtube-dl_t root_t:dir { getattr search };
+allow youtube-dl_t self:dir { open read search };
+allow youtube-dl_t self:fifo_file { getattr read write };
+allow youtube-dl_t self:file { getattr open read };
+allow youtube-dl_t self:netlink_route_socket { bind create getattr nlmsg_read read write };
+allow youtube-dl_t self:process { fork getsched };
+allow youtube-dl_t self:tcp_socket { connect create getattr getopt read setopt write };
+allow youtube-dl_t self:udp_socket { connect create getattr setopt write };
+allow youtube-dl_t self:unix_stream_socket { connect create getattr getopt read setopt shutdown write };
+allow youtube-dl_t system_dbusd_t:dbus send_msg;
+allow youtube-dl_t system_dbusd_t:unix_stream_socket connectto;
+allow youtube-dl_t system_dbusd_var_run_t:dir search;
+allow youtube-dl_t system_dbusd_var_run_t:sock_file write;
+allow youtube-dl_t systemd_resolved_t:dbus send_msg;
+allow youtube-dl_t textrel_shlib_t:file { execute getattr map open read };
+allow youtube-dl_t user_devpts_t:chr_file { getattr read write };
+allow youtube-dl_t user_home_dir_t:dir { add_name remove_name search write };
+allow youtube-dl_t user_home_dir_t:file { append create getattr open read rename setattr unlink write };
+allow youtube-dl_t usr_t:dir { getattr search };
+allow youtube-dl_t var_run_t:dir search;
+allow youtube-dl_t youtube-dl_exec_t:file { entrypoint getattr open read };

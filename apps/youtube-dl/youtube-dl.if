@@ -1,0 +1,87 @@
+
+## <summary>policy for youtube-dl</summary>
+
+########################################
+## <summary>
+##	Execute youtube-dl_exec_t in the youtube-dl domain.
+## </summary>
+## <param name="domain">
+## <summary>
+##	Domain allowed to transition.
+## </summary>
+## </param>
+#
+interface(`youtube-dl_domtrans',`
+	gen_require(`
+		type youtube-dl_t, youtube-dl_exec_t;
+	')
+	hardhat_corecmd_search_bin($1)
+	hardhat_domtrans_pattern($1, youtube-dl_exec_t, youtube-dl_t)
+')
+######################################
+## <summary>
+##	Execute youtube-dl in the caller domain.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+#
+interface(`youtube-dl_exec',`
+	gen_require(`
+		type youtube-dl_exec_t;
+	')
+
+	hardhat_corecmd_search_bin($1)
+	hardhat_can_exec($1, youtube-dl_exec_t)
+')
+########################################
+## <summary>
+##	Execute youtube-dl in the youtube-dl domain, and
+##	allow the specified role the youtube-dl domain.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed to transition
+##	</summary>
+## </param>
+## <param name="role">
+##	<summary>
+##	The role to be allowed the youtube-dl domain.
+##	</summary>
+## </param>
+#
+interface(`youtube-dl_run',`
+	gen_require(`
+		type youtube-dl_t;
+		attribute_role youtube-dl_roles;
+	')
+	youtube-dl_domtrans($1)
+	roleattribute $2 youtube-dl_roles;
+')
+########################################
+## <summary>
+##	Role access for youtube-dl
+## </summary>
+## <param name="role">
+##	<summary>
+##	Role allowed access
+##	</summary>
+## </param>
+## <param name="domain">
+##	<summary>
+##	User domain for the role
+##	</summary>
+## </param>
+#
+interface(`youtube-dl_role',`
+	gen_require(`
+		type youtube-dl_t;
+		attribute_role youtube-dl_roles;
+	')
+	roleattribute $1 youtube-dl_roles;
+	youtube-dl_domtrans($2)
+	hardhat_ps_process_pattern($2, youtube-dl_t)
+	allow $2 youtube-dl_t:process { signull signal sigkill };
+')
