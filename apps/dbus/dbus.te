@@ -1,4 +1,5 @@
 policy_module(dbus, 1.19.0)
+
 gen_require(`
 	class dbus all_dbus_perms;
 ')
@@ -7,6 +8,7 @@ gen_require(`
 #
 # Delcarations
 #
+
 attribute dbusd_unconfined;
 attribute system_bus_type;
 attribute session_bus_type;
@@ -72,24 +74,24 @@ allow system_dbusd_t self:netlink_selinux_socket { create bind read };
 can_exec(system_dbusd_t, dbusd_exec_t)
 
 allow system_dbusd_t dbusd_etc_t:dir { list_dir_perms watch_dir_perms };
-hardhat_read_files_pattern(system_dbusd_t, dbusd_etc_t, dbusd_etc_t)
+read_files_pattern(system_dbusd_t, dbusd_etc_t, dbusd_etc_t)
 read_lnk_files_pattern(system_dbusd_t, dbusd_etc_t, dbusd_etc_t)
 
-hardhat_manage_dirs_pattern(system_dbusd_t, system_dbusd_tmp_t, system_dbusd_tmp_t)
-hardhat_manage_files_pattern(system_dbusd_t, system_dbusd_tmp_t, system_dbusd_tmp_t)
-hardhat_manage_sock_files_pattern(system_dbusd_t, system_dbusd_tmp_t, system_dbusd_tmp_t)
+manage_dirs_pattern(system_dbusd_t, system_dbusd_tmp_t, system_dbusd_tmp_t)
+manage_files_pattern(system_dbusd_t, system_dbusd_tmp_t, system_dbusd_tmp_t)
+manage_sock_files_pattern(system_dbusd_t, system_dbusd_tmp_t, system_dbusd_tmp_t)
 files_tmp_filetrans(system_dbusd_t, system_dbusd_tmp_t, { dir file sock_file })
 
-hardhat_manage_files_pattern(system_dbusd_t, system_dbusd_tmpfs_t, system_dbusd_tmpfs_t)
-hardhat_manage_dirs_pattern(system_dbusd_t, system_dbusd_tmpfs_t, system_dbusd_tmpfs_t)
+manage_files_pattern(system_dbusd_t, system_dbusd_tmpfs_t, system_dbusd_tmpfs_t)
+manage_dirs_pattern(system_dbusd_t, system_dbusd_tmpfs_t, system_dbusd_tmpfs_t)
 fs_tmpfs_filetrans(system_dbusd_t, system_dbusd_tmpfs_t, { dir file })
 allow system_dbusd_t system_dbusd_tmpfs_t:file map;
 
-hardhat_read_files_pattern(system_dbusd_t, system_dbusd_var_lib_t, system_dbusd_var_lib_t)
+read_files_pattern(system_dbusd_t, system_dbusd_var_lib_t, system_dbusd_var_lib_t)
 
-hardhat_manage_dirs_pattern(system_dbusd_t, system_dbusd_var_run_t, system_dbusd_var_run_t)
-hardhat_manage_files_pattern(system_dbusd_t, system_dbusd_var_run_t, system_dbusd_var_run_t)
-hardhat_manage_sock_files_pattern(system_dbusd_t, system_dbusd_var_run_t, system_dbusd_var_run_t)
+manage_dirs_pattern(system_dbusd_t, system_dbusd_var_run_t, system_dbusd_var_run_t)
+manage_files_pattern(system_dbusd_t, system_dbusd_var_run_t, system_dbusd_var_run_t)
+manage_sock_files_pattern(system_dbusd_t, system_dbusd_var_run_t, system_dbusd_var_run_t)
 files_pid_filetrans(system_dbusd_t, system_dbusd_var_run_t, { file dir })
 
 kernel_read_system_state(system_dbusd_t)
@@ -139,8 +141,8 @@ corecmd_list_bin(system_dbusd_t)
 corecmd_read_bin_pipes(system_dbusd_t)
 corecmd_read_bin_sockets(system_dbusd_t)
 # needed for system-tools-backends
-hardhat_corecmd_exec_shell(system_dbusd_t)
-hardhat_corecmd_exec_bin(system_dbusd_t)
+corecmd_exec_shell(system_dbusd_t)
+corecmd_exec_bin(system_dbusd_t)
 
 domain_use_interactive_fds(system_dbusd_t)
 domain_read_all_domains_state(system_dbusd_t)
@@ -308,12 +310,12 @@ allow session_bus_type self:tcp_socket create_stream_socket_perms;
 allow session_bus_type self:netlink_selinux_socket create_socket_perms;
 
 allow session_bus_type dbusd_etc_t:dir { list_dir_perms watch_dir_perms };
-hardhat_read_files_pattern(session_bus_type, dbusd_etc_t, dbusd_etc_t)
+read_files_pattern(session_bus_type, dbusd_etc_t, dbusd_etc_t)
 read_lnk_files_pattern(session_bus_type, dbusd_etc_t, dbusd_etc_t)
 
-hardhat_manage_dirs_pattern(session_bus_type, session_dbusd_tmp_t, session_dbusd_tmp_t)
-hardhat_manage_files_pattern(session_bus_type, session_dbusd_tmp_t, session_dbusd_tmp_t)
-hardhat_manage_sock_files_pattern(session_bus_type, session_dbusd_tmp_t, session_dbusd_tmp_t)
+manage_dirs_pattern(session_bus_type, session_dbusd_tmp_t, session_dbusd_tmp_t)
+manage_files_pattern(session_bus_type, session_dbusd_tmp_t, session_dbusd_tmp_t)
+manage_sock_files_pattern(session_bus_type, session_dbusd_tmp_t, session_dbusd_tmp_t)
 files_tmp_filetrans(session_bus_type, session_dbusd_tmp_t, { file dir sock_file })
 userdom_user_tmp_filetrans(session_bus_type, session_dbusd_tmp_t, { file dir sock_file })
 
@@ -363,7 +365,7 @@ term_use_all_inherited_terms(session_bus_type)
 
 userdom_dontaudit_search_admin_dir(session_bus_type)
 userdom_manage_user_home_content_dirs(session_bus_type)
-hardhat_userdom_manage_user_home_content_files(session_bus_type)
+userdom_manage_user_home_content_files(session_bus_type)
 userdom_write_user_tmp_sockets(session_bus_type)
 userdom_manage_tmpfs_files(session_bus_type, file)
 userdom_tmpfs_filetrans(session_bus_type, file)
