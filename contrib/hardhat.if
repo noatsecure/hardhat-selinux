@@ -208,7 +208,7 @@ interface(`hardhat_filetrans_pattern',`
     type_transition $1 $2:$4 $3 $5;
 ')
 ########################################
-interface(`fs_dontaudit_list_nfs',`
+interface(`hardhat_fs_dontaudit_list_nfs',`
     gen_require(`
         type nfs_t;
     ')
@@ -501,7 +501,7 @@ interface(`hardhat_term_dontaudit_use_console',`
     init_dontaudit_use_fds($1)
 ')
 ########################################
-interface(`term_use_ptmx',`
+interface(`hardhat_term_use_ptmx',`
     gen_require(`
         type ptmx_t;
     ')
