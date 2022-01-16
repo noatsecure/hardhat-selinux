@@ -53,11 +53,32 @@ interface(`hardhat_corecmd_mmap_bin_files',`
     hardhat_mmap_exec_files_pattern($1, bin_t, bin_t)
 ')
 ########################################
+interface(`hardhat_corecmd_read_bin_files',`
+    gen_require(`
+        type bin_t;
+    ')
+    corecmd_read_bin_symlinks($1)
+    hardhat_read_files_pattern($1, bin_t, bin_t)
+')
+########################################
+interface(`hardhat_corecmd_read_bin_pipes',`
+    gen_require(`
+        type bin_t;
+    ')
+    corecmd_read_bin_symlinks(bin_t)
+    hardhat_read_fifo_files_pattern($1, bin_t, bin_t)
+')
+########################################
 interface(`hardhat_corecmd_shell_entry_type',`
     gen_require(`
         type shell_exec_t;
     ')
     hardhat_domain_entry_file($1, shell_exec_t) 
+')
+########################################
+interface(`hardhat_create_socket_perms',`
+    allow $1 $2:$3 { create };
+    hardhat_rw_socket_perms($1, $2, $3)
 ')
 ########################################
 interface(`hardhat_dbus_exec_dbusd',`
@@ -151,6 +172,16 @@ interface(`hardhat_domain_entry_file',`
     corecmd_executable_file($2)
     allow $1 $2:file { entrypoint execute getattr open map read };
     typeattribute $2 entry_type;
+')
+########################################
+interface(`hardhat_domain_read_all_domains_state',`
+    gen_require(`
+        attribute domain;
+    ')
+    hardhat_list_dir_perms($1, domain)
+    hardhat_read_files_pattern($1, domain, domain)
+    kernel_search_proc($1)
+    read_lnk_files_pattern($1, domain, domain)
 ')
 ########################################
 interface(`hardhat_domtrans_pattern',`
@@ -294,6 +325,17 @@ interface(`hardhat_list_dirs_pattern',`
     allow $1 $2:dir search_dir_perms;
 ')
 ########################################
+interface(`hardhat_logging_dontaudit_send_audit_msgs',`
+    dontaudit $1 self:capability audit_write;
+    dontaudit $1 self:netlink_audit_socket { append bind create connect getattr getopt lock nlmsg_read nlmsg_relay read setattr setopt shutdown write };
+')
+########################################
+interface(`hardhat_logging_send_audit_msgs',`
+    allow $1 self:capability audit_write;
+    allow $1 self:netlink_audit_socket { nlmsg_relay nlmsg_tty_audit };
+    hardhat_r_netlink_socket_perms($1, self, netlink_audit_socket)
+')
+########################################
 interface(`hardhat_manage_chr_files_pattern',`
     allow $1 self:capability { mknod };
     hardhat_rw_dir_perms($1, $2)
@@ -352,6 +394,11 @@ interface(`hardhat_ps_process_pattern',`
     allow $1 $2:process { getattr };
 ')
 ########################################
+interface(`hardhat_r_netlink_socket_perms',`
+    allow $1 $2:$3 { nlmsg_read };
+    hardhat_create_socket_perms($1, $2, $3)
+')
+########################################
 interface(`hardhat_read_chr_file_perms',`
     allow $1 $2:chr_file { getattr open read };
 ')
@@ -361,13 +408,22 @@ interface(`hardhat_read_chr_files_pattern',`
     hardhat_read_chr_file_perms($1, $3)
 ')
 ########################################
+interface(`hardhat_read_fifo_file_perms',`
+    allow $1 $2:fifo_file { getattr lock open read };
+')
+########################################
+interface(`hardhat_read_fifo_files_pattern',`
+    allow $1 $2:dir search_dir_perms;
+    hardhat_read_fifo_file_perms($1, $3)
+')
+########################################
 interface(`hardhat_read_file_perms',`
-    allow $1 $2:file { getattr open read };
+    allow $1 $2:file { getattr lock open read };
 ')
 ########################################
 interface(`hardhat_read_files_pattern',`
-    hardhat_read_file_perms($1, $3)
     allow $1 $2:dir search_dir_perms;
+    hardhat_read_file_perms($1, $3)
 ')
 ########################################
 interface(`hardhat_rw_chr_file_perms',`
@@ -381,15 +437,19 @@ interface(`hardhat_rw_dir_perms',`
 ')
 ########################################
 interface(`hardhat_rw_file_perms',`
-    allow $1 $2:$3 { append getattr open read write }
+    allow $1 $2:$3 { append getattr lock open read write }
 ')
 ########################################
 interface(`hardhat_rw_inherited_chr_file_perms',`
-    allow $1 $2:chr_file { append getattr read write };
+    allow $1 $2:chr_file { append getattr lock read write };
 ')
 ########################################
 interface(`hardhat_rw_inherited_term_perms',`
     allow $1 $2:$3 { append getattr read write };
+')
+########################################
+interface(`hardhat_rw_socket_perms',`
+    allow $1 $2:$3 { append bind connect getattr getopt lock read setattr setopt shutdown write };
 ')
 ########################################
 interface(`hardhat_selinux_get_fs_mount',`
@@ -501,6 +561,29 @@ interface(`hardhat_term_dontaudit_use_console',`
     init_dontaudit_use_fds($1)
 ')
 ########################################
+interface(`hardhat_term_use_all_inherited_terms',`
+    gen_require(`
+        attribute ttynode, ptynode;
+        type console_device_t, devpts_t, tty_device_t;
+    ')
+    hardhat_rw_inherited_term_perms($1, console_device_t, chr_file)
+    hardhat_rw_inherited_term_perms($1, devpts_t, chr_file)
+    hardhat_rw_inherited_term_perms($1, ptynode, chr_file)
+    hardhat_rw_inherited_term_perms($1, tty_device_t, chr_file)
+    hardhat_rw_inherited_term_perms($1, ttynode, chr_file)
+')
+########################################
+interface(`hardhat_term_use_all_ptys',`
+    gen_require(`
+        attribute ptynode;
+        type devpts_t;
+    ')
+    allow $1 devpts_t:dir list_dir_perms;
+    allow $1 ptynode:chr_file { lock append };
+    hardhat_dev_list_all_dev_nodes($1)
+    hardhat_rw_term_perms($1, ptynode, chr_file)
+')
+########################################
 interface(`hardhat_term_use_ptmx',`
     gen_require(`
         type ptmx_t;
@@ -551,6 +634,29 @@ interface(`hardhat_userdom_manage_tmp_sockets',`
         type user_tmp_t;
     ')
     hardhat_manage_sock_files_pattern($1, user_tmp_t, user_tmp_t)
+')
+########################################
+interface(`hardhat_userdom_manage_tmpfs_files',`
+    gen_require(`
+        type user_tmpfs_t;
+    ')
+    hardhat_manage_files_pattern($1, user_tmpfs_t, user_tmpfs_t)
+')
+########################################
+interface(`hardhat_userdom_tmpfs_filetrans',`
+    gen_require(`
+        type user_tmpfs_t;
+    ')
+    hardhat_fs_tmpfs_filetrans($1, user_tmpfs_t, $2, $3)
+')
+########################################
+interface(`hardhat_userdom_manage_user_home_content_dirs',`
+    gen_require(`
+        type user_home_dir_t, user_home_t;
+    ')
+    files_search_home($1)
+    hardhat_manage_dirs_pattern($1, user_home_dir_t, user_home_t)
+    hardhat_manage_dirs_pattern($1, user_home_t, user_home_t)
 ')
 ########################################
 interface(`hardhat_userdom_manage_user_home_content_files',`
