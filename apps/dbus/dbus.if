@@ -31,7 +31,7 @@ interface(`dbus_exec_dbusd',`
 	gen_require(`
         type dbusd_exec_t;
 	')
-    can_exec($1, dbusd_exec_t)
+    hardhat_can_exec($1, dbusd_exec_t)
 ')
 
 ########################################
@@ -67,16 +67,12 @@ template(`dbus_role_template',`
 	#
 	# Delcarations
 	#
-
 	type $1_dbusd_t, session_bus_type;
 	application_domain($1_dbusd_t, dbusd_exec_t)
 	ubac_constrained($1_dbusd_t)
 	role $2 types $1_dbusd_t;
-
 	kernel_read_system_state($1_dbusd_t)
-
-	selinux_get_fs_mount($1_dbusd_t)
-
+	hardhat_selinux_get_fs_mount($1_dbusd_t)
 	userdom_home_manager($1_dbusd_t)
 
 	##############################
@@ -85,57 +81,50 @@ template(`dbus_role_template',`
 	#
 
 	# For connecting to the bus
-	allow $3 $1_dbusd_t:unix_stream_socket { accept connectto listen rw_socket_perms create };
-	allow $1_dbusd_t $3:unix_stream_socket { accept getattr getopt  read write };
-    allow $1_dbusd_t $3:unix_dgram_socket sendto;
+	allow $3 $1_dbusd_t:unix_stream_socket { accept connectto create listen };
+	allow $1_dbusd_t $3:unix_stream_socket { accept getattr getopt read write };
+    allow $1_dbusd_t $3:unix_dgram_socket { sendto };
+    hardhat_rw_socket_perms($3, $1_dbusd_t, unix_stream_socket)
 
 	# SE-DBus specific permissions
-	allow { dbusd_unconfined $3 } $1_dbusd_t:dbus { send_msg acquire_svc };
+	#allow { dbusd_unconfined $3 } $1_dbusd_t:dbus { send_msg acquire_svc };
 	allow $3 system_dbusd_t:dbus { send_msg acquire_svc };
 
     # Permissions for dbus-broker running with systemd user sessions
     allow $3 $1_dbusd_t:process { noatsecure rlimitinh siginh };
-    allow $1_dbusd_t $3:dbus send_msg;
-    allow $3 $1_dbusd_t:dbus send_msg;
+    allow $1_dbusd_t $3:dbus { send_msg };
+    allow $3 $1_dbusd_t:dbus { send_msg };
     allow $1_dbusd_t $3:system { start reload };
     allow $1_dbusd_t session_dbusd_tmp_t:service { start stop };
-    allow $3 session_dbusd_tmp_t:dir manage_dir_perms;
-    allow $3 session_dbusd_tmp_t:file manage_file_perms;
-
-    can_exec($1_dbusd_t, dbusd_exec_t)
-
-	domtrans_pattern($3, dbusd_exec_t, $1_dbusd_t)
-
-	ps_process_pattern($3, $1_dbusd_t)
-	allow $3 $1_dbusd_t:process signal_perms;
+	allow $3 $1_dbusd_t:process { signal_perms };
+    hardhat_manage_dir_perms($3, session_dbusd_tmp_t)
+    hardhat_manage_file_perms($3, session_dbusd_tmp_t, file)
+    hardhat_can_exec($1_dbusd_t, dbusd_exec_t)
+	hardhat_domtrans_pattern($3, dbusd_exec_t, $1_dbusd_t)
+	hardhat_ps_process_pattern($3, $1_dbusd_t)
 
 	tunable_policy(`deny_ptrace',`',`
-		allow $3 $1_dbusd_t:process ptrace;
+		allow $3 $1_dbusd_t:process { ptrace };
 	')
 
 	# cjp: this seems very broken
-	corecmd_bin_domtrans($1_dbusd_t, $1_t)
-	corecmd_shell_domtrans($1_dbusd_t, $1_t)
-	allow $1_dbusd_t $3:process sigkill;
-	allow $3 $1_dbusd_t:fd use;
-	allow $3 $1_dbusd_t:fifo_file rw_fifo_file_perms;
-
+	allow $1_dbusd_t $3:process { sigkill };
+	allow $3 $1_dbusd_t:fd { use };
 	auth_use_nsswitch($1_dbusd_t)
-
-	files_config_all_files($1_dbusd_t)
-
-	logging_send_syslog_msg($1_dbusd_t)
-
 	dontaudit $1_dbusd_t self:capability net_admin;
-
+	files_config_all_files($1_dbusd_t)
+	hardhat_corecmd_bin_domtrans($1_dbusd_t, $1_t)
+	hardhat_corecmd_shell_domtrans($1_dbusd_t, $1_t)
+    hardhat_rw_fifo_file_perms($3, $1_dbusd_t)
+	logging_send_syslog_msg($1_dbusd_t)
 	optional_policy(`
-		mozilla_domtrans_spec($1_dbusd_t, $1_t)
+		hardhat_mozilla_domtrans_spec($1_dbusd_t, $1_t)
 	')
-
 	optional_policy(`
 		systemd_start_systemd_services($1_dbusd_t)
 	')
 ')
+#!!! DONE up to here
 
 #######################################
 ## <summary>
@@ -160,11 +149,11 @@ interface(`dbus_system_bus_client',`
 	allow $1 { system_dbusd_t self }:dbus send_msg;
 	allow { system_dbusd_t dbusd_unconfined } $1:dbus send_msg;
 
-	read_files_pattern($1, system_dbusd_var_lib_t, system_dbusd_var_lib_t)
+	hardhat_read_files_pattern($1, system_dbusd_var_lib_t, system_dbusd_var_lib_t)
 	read_lnk_files_pattern($1, system_dbusd_var_lib_t, system_dbusd_var_lib_t)
 	files_search_var_lib($1)
 
-	dev_read_urand($1)
+	hardhat_dev_read_urand($1)
 
 	# For connecting to the bus
 	files_search_pids($1)
@@ -302,7 +291,7 @@ interface(`dbus_read_lib_files',`
 	')
 
 	files_search_var_lib($1)
-	read_files_pattern($1, system_dbusd_var_lib_t, system_dbusd_var_lib_t)
+	hardhat_read_files_pattern($1, system_dbusd_var_lib_t, system_dbusd_var_lib_t)
 	read_lnk_files_pattern($1, system_dbusd_var_lib_t, system_dbusd_var_lib_t)
 ')
 
@@ -323,7 +312,7 @@ interface(`dbus_manage_lib_files',`
 	')
 
 	files_search_var_lib($1)
-	manage_files_pattern($1, system_dbusd_var_lib_t, system_dbusd_var_lib_t)
+	hardhat_manage_files_pattern($1, system_dbusd_var_lib_t, system_dbusd_var_lib_t)
 ')
 
 ########################################
@@ -373,7 +362,7 @@ interface(`dbus_session_domain',`
 		type $1_dbusd_t;
 	')
 
-	domtrans_pattern($1_dbusd_t, $2, $3)
+	hardhat_domtrans_pattern($1_dbusd_t, $2, $3)
 
 	dbus_session_bus_client($3)
 	dbus_connect_session_bus($3)
@@ -462,12 +451,12 @@ interface(`dbus_system_domain',`
 	typeattribute $1  system_bus_type;
 
 	domain_type($1)
-	domain_entry_file($1, $2)
+	hardhat_domain_entry_file($1, $2)
 
-	domtrans_pattern(system_dbusd_t, $2, $1)
+	hardhat_domtrans_pattern(system_dbusd_t, $2, $1)
 	init_system_domain($1, $2)
 
-	ps_process_pattern($1, system_dbusd_t)
+	hardhat_ps_process_pattern($1, system_dbusd_t)
 
 ')
 
@@ -542,8 +531,8 @@ interface(`dbus_read_pid_files',`
 	')
 
 	files_search_pids($1)
-	list_dirs_pattern($1, system_dbusd_var_run_t, system_dbusd_var_run_t)
-	read_files_pattern($1, system_dbusd_var_run_t, system_dbusd_var_run_t)
+	hardhat_list_dirs_pattern($1, system_dbusd_var_run_t, system_dbusd_var_run_t)
+	hardhat_read_files_pattern($1, system_dbusd_var_run_t, system_dbusd_var_run_t)
 ')
 
 ########################################
@@ -562,7 +551,7 @@ interface(`dbus_read_pid_sock_files',`
 	')
 
 	files_search_pids($1)
-	list_dirs_pattern($1, system_dbusd_var_run_t, system_dbusd_var_run_t)
+	hardhat_list_dirs_pattern($1, system_dbusd_var_run_t, system_dbusd_var_run_t)
 	read_sock_files_pattern($1, system_dbusd_var_run_t, system_dbusd_var_run_t)
 ')
 
@@ -860,7 +849,61 @@ interface(`dbus_manage_session_tmp_dirs',`
                 type session_dbusd_tmp_t;
         ')
 
-	manage_dirs_pattern($1, session_dbusd_tmp_t, session_dbusd_tmp_t)
+	hardhat_manage_dirs_pattern($1, session_dbusd_tmp_t, session_dbusd_tmp_t)
+')
+
+########################################
+## <summary>
+##      Write to session_dbusd tmp socket files.
+## </summary>
+## <param name="domain">
+##      <summary>
+##      Domain allowed access.
+##      </summary>
+## </param>
+#
+interface(`dbus_write_session_tmp_sock_files',`
+        gen_require(`
+                type session_dbusd_tmp_t;
+        ')
+
+	write_sock_files_pattern($1, session_dbusd_tmp_t, session_dbusd_tmp_t)
+')
+
+########################################
+## <summary>
+##      Delete session_dbusd tmp socket files.
+## </summary>
+## <param name="domain">
+##      <summary>
+##      Domain allowed access.
+##      </summary>
+## </param>
+#
+interface(`dbus_delete_session_tmp_sock_files',`
+        gen_require(`
+                type session_dbusd_tmp_t;
+        ')
+
+	delete_sock_files_pattern($1, session_dbusd_tmp_t, session_dbusd_tmp_t)
+')
+
+########################################
+## <summary>
+##      Create session_dbusd tmp socket files.
+## </summary>
+## <param name="domain">
+##      <summary>
+##      Domain allowed access.
+##      </summary>
+## </param>
+#
+interface(`dbus_create_session_tmp_sock_files',`
+        gen_require(`
+                type session_dbusd_tmp_t;
+        ')
+
+	create_sock_files_pattern($1, session_dbusd_tmp_t, session_dbusd_tmp_t)
 ')
 
 ########################################
@@ -878,7 +921,7 @@ interface(`dbus_systemctl',`
 		type dbusd_unit_file_t;
 	')
 
-	systemd_exec_systemctl($1)
+	hardhat_systemd_exec_systemctl($1)
 	init_reload_services($1)
 	allow $1 dbusd_unit_file_t:file read_file_perms;
 	allow $1 dbusd_unit_file_t:service manage_service_perms;
