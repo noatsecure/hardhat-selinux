@@ -670,6 +670,11 @@ interface(`hardhat_create_socket_perms',`
     allow $1 $2:$3 { create };
     hardhat_rw_socket_perms($1, $2, $3)
 ')
+#---------------------------------------------------
+interface(`hardhat_create_stream_socket_perms', `
+    allow $1 $2:$3 { accept listen };
+    hardhat_create_socket_perms($1, $2, $3)
+')
 
 ####################################################
 # PS
