@@ -1,4 +1,12 @@
 ####################################################
+# ADD
+####################################################
+#---------------------------------------------------
+interface(`hardhat_add_entry_dir_perms',`
+    allow $1 $2:dir { add_name getattr open search write };
+')
+
+####################################################
 # AUTH
 ####################################################
 #---------------------------------------------------
@@ -150,6 +158,33 @@ interface(`hardhat_corecmd_shell_spec_domtrans',`
     hardhat_domain_transition_pattern($1, shell_exec_t, $2)
     hardhat_list_dirs_pattern($1, bin_t, bin_t)
     read_lnk_files_pattern($1, bin_t, bin_t)
+')
+
+####################################################
+# CREATE
+####################################################
+#---------------------------------------------------
+interface(`hardhat_create_sock_files_pattern',`
+    allow $1 $3:sock_file { create_sock_file_perms };
+    hardhat_add_entry_dir_perms($1, $2)
+')
+
+####################################################
+# DELETE
+####################################################
+#---------------------------------------------------
+interface(`hardhat_del_entry_dir_perms',`
+    allow $1 $2:dir { getattr lock open remove_name search write };
+')
+#---------------------------------------------------
+interface(`hardhat_delete_files_pattern',`
+    allow $1 $3:file { delete_file_perms };
+    hardhat_del_entry_dir_perms($1, $2)
+')
+#---------------------------------------------------
+interface(`hardhat_delete_sock_files_pattern',`
+    allow $1 $3:sock_file { delete_sock_file_perms };
+    hardhat_del_entry_dir_perms($1, $2)
 ')
 
 ####################################################
@@ -314,6 +349,13 @@ interface(`hardhat_files_tmp_filetrans',`
         type tmp_t;
     ')
     hardhat_filetrans_pattern($1, tmp_t, $2, $3, $4)
+')
+#---------------------------------------------------
+interface(`hardhat_files_var_filetrans',`
+    gen_require(`
+        type var_t;
+    ')
+    hardhat_filetrans_pattern($1, var_t, $2, $3, $4)
 ')
 #---------------------------------------------------
 interface(`hardhat_filetrans_pattern',`
@@ -611,6 +653,7 @@ interface(`hardhat_mmap_exec_files_pattern',`
 ####################################################
 # MOZILLA
 ####################################################
+#---------------------------------------------------
 interface(`hardhat_mozilla_domtrans_spec',`
     gen_require(`
         type mozilla_exec_t;
