@@ -1,0 +1,34 @@
+policy_module(dbus-monitor, 1.0.0)
+########################################
+# Required
+gen_require(`
+    class dbus { send_msg };
+    class process { rlimitinh siginh };
+    class unix_stream_socket { connectto };
+    role user_r;
+    type dbus-monitor_t;
+    type user_dbusd_t;
+    type user_t;
+')
+
+# Roles
+attribute_role dbus-monitor_roles;
+roleattribute user_r dbus-monitor_roles;
+role dbus-monitor_roles types dbus-monitor_t;
+
+# Types (Binary)
+type dbus-monitor_t;
+type dbus-monitor_exec_t;
+application_domain(dbus-monitor_t, dbus-monitor_exec_t);
+hardhat_domain_auto_transition_pattern(user_t, dbus-monitor_exec_t, dbus-monitor_t);
+########################################
+#============= dbus-monitor_t ==============
+allow dbus-monitor_t user_dbusd_t:dbus send_msg;
+allow dbus-monitor_t user_dbusd_t:unix_stream_socket connectto;
+dbus_write_session_tmp_sock_files(dbus-monitor_t)
+hardhat_userdom_use_inherited_user_ptys(dbus-monitor_t)
+hardhat_userdom_use_inherited_user_ttys(dbus-monitor_t)
+term_use_unallocated_ttys(dbus-monitor_t)
+userdom_search_user_tmp_dirs(dbus-monitor_t)
+#============= user_t ==============
+allow user_t dbus-monitor_t:process { rlimitinh siginh };
