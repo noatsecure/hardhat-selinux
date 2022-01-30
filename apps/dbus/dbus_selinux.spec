@@ -13,7 +13,6 @@ License:    GPLv3
 URL:        https://github.com/noatsecure/hardhat-selinux
 Source0:    dbus.pp
 Source1:    dbus.if
-Source2:    dbus_selinux.8
 
 Requires: policycoreutils, libselinux-utils, hardhat-selinux-interfaces
 Requires(post): selinux-policy-base >= %{selinux_policyver}, policycoreutils
@@ -28,8 +27,6 @@ install -d %{buildroot}%{_datadir}/selinux/packages
 install -m 644 %{SOURCE0} %{buildroot}%{_datadir}/selinux/packages
 install -d %{buildroot}%{_datadir}/selinux/devel/include/contrib
 install -m 644 %{SOURCE1} %{buildroot}%{_datadir}/selinux/devel/include/contrib/
-install -d %{buildroot}%{_mandir}/man8/
-install -m 644 %{SOURCE2} %{buildroot}%{_mandir}/man8/dbus_selinux.8
 install -d %{buildroot}/etc/selinux/targeted/contexts/users/
 
 %post
@@ -53,4 +50,3 @@ exit 0
 %files
 %attr(0600,root,root) %{_datadir}/selinux/packages/dbus.pp
 %{_datadir}/selinux/devel/include/contrib/dbus.if
-%{_mandir}/man8/dbus_selinux.8.*
