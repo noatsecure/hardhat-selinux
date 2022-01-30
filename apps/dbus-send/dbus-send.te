@@ -2,29 +2,10 @@ policy_module(dbus-send, 1.0.0)
 ########################################
 # Required
 gen_require(`
-    class chr_file { getattr read write };
-    class dbus { send_msg };
-    class dir { search };
-    class file { entrypoint execute getattr map open read };
-    class lnk_file { read };
-    class process { rlimitinh siginh transition };
-    class sock_file { write };
-    class system { status };
-    class unix_stream_socket { connect connectto create getattr read write };
+    class process { rlimitinh siginh };
     role user_r;
-    type etc_t;
-    type init_t;
-    type ld_so_cache_t;
-    type ld_so_t;
-    type lib_t;
-    type root_t;
-    type sysctl_t;
-    type system_dbusd_var_run_t;
+    type dbus-send_t;
     type user_t;
-    type user_tmp_t;
-    type user_tty_device_t;
-    type usr_t;
-    type var_run_t;
 ')
 
 # Roles
