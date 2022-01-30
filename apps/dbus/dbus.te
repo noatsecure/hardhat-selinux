@@ -55,7 +55,7 @@ allow system_dbusd_t self:dbus { acquire_svc send_msg };
 # Receive notifications of policy reloads and enforcing status changes.
 allow system_dbusd_t self:netlink_selinux_socket { create bind read };
 
-allow system_dbusd_t self:process { getatt getcapr getsched setcap setpgid setrlimit signal_perms };
+allow system_dbusd_t self:process { getattr getcap getsched setcap setpgid setrlimit signal_perms };
 allow system_dbusd_t self:unix_stream_socket { connectto };
 allow system_dbusd_t system_dbusd_tmpfs_t:file map;
 auth_use_nsswitch(system_dbusd_t)
@@ -225,13 +225,13 @@ optional_policy(`
 #
 role system_r types system_bus_type;
 
-allow system_bus_type system_dbusd_t:unix_stream_socket rw_socket_perms;
 dbus_connect_system_bus(system_bus_type)
 dbus_system_bus_client(system_bus_type)
 dontaudit system_bus_type self:capability net_admin;
 fs_search_all(system_bus_type)
 hardhat_init_rw_stream_sockets(system_bus_type)
 hardhat_ps_process_pattern(system_dbusd_t, system_bus_type)
+hardhat_rw_socket_perms(system_bus_type, system_dbusd_t, unix_stream_socket)
 hardhat_userdom_read_all_users_state(system_bus_type)
 init_dgram_send(system_bus_type)
 init_status(system_bus_type)
@@ -287,7 +287,7 @@ hardhat_corecmd_read_bin_files(session_bus_type)
 hardhat_corecmd_read_bin_pipes(session_bus_type)
 hardhat_create_socket_perms(session_bus_type, self, netlink_selinux_socket)
 hardhat_create_socket_perms(session_bus_type, self, unix_dgram_socket)
-hardhat_create_stream_socket_perms(session_bus_type self, tcp_socket)
+hardhat_create_stream_socket_perms(session_bus_type, self, tcp_socket)
 hardhat_create_stream_socket_perms(session_bus_type, self, unix_stream_socket)
 hardhat_dev_read_urand(session_bus_type)
 hardhat_domain_read_all_domains_state(session_bus_type)
