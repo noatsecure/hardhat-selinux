@@ -1,0 +1,1 @@
+/usr/bin/dbus-send -- gen_context(system_u:object_r:dbus-send_exec_t,s0)

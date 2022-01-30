@@ -1,0 +1,51 @@
+policy_module(dbus-send, 1.0.0)
+########################################
+# Required
+gen_require(`
+    class chr_file { getattr read write };
+    class dbus { send_msg };
+    class dir { search };
+    class file { entrypoint execute getattr map open read };
+    class lnk_file { read };
+    class process { rlimitinh siginh transition };
+    class sock_file { write };
+    class system { status };
+    class unix_stream_socket { connect connectto create getattr read write };
+    role user_r;
+    type etc_t;
+    type init_t;
+    type ld_so_cache_t;
+    type ld_so_t;
+    type lib_t;
+    type root_t;
+    type sysctl_t;
+    type system_dbusd_var_run_t;
+    type user_t;
+    type user_tmp_t;
+    type user_tty_device_t;
+    type usr_t;
+    type var_run_t;
+')
+
+# Roles
+attribute_role dbus-send_roles;
+roleattribute user_r dbus-send_roles;
+role dbus-send_roles types dbus-send_t;
+
+# Types (Binary)
+type dbus-send_t;
+type dbus-send_exec_t;
+application_domain(dbus-send_t, dbus-send_exec_t);
+hardhat_domain_auto_transition_pattern(user_t, dbus-send_exec_t, dbus-send_t);
+########################################
+#============= dbus-send_t ==============
+dbus_read_pid_sock_files(dbus-send_t)
+dbus_send_system_bus(dbus-send_t)
+dbus_stream_connect_system_dbusd(dbus-send_t)
+dbus_system_bus_client(dbus-send_t)
+hardhat_userdom_use_inherited_user_ptys(dbus-send_t)
+hardhat_userdom_use_inherited_user_ttys(dbus-send_t)
+init_dbus_chat(dbus-send_t)
+init_status(dbus-send_t)
+#============= user_t ==============
+allow user_t dbus-send_t:process { rlimitinh siginh };

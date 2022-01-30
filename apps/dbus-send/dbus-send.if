@@ -1,9 +1,9 @@
 
-## <summary>policy for MODULE</summary>
+## <summary>policy for dbus-send</summary>
 
 ########################################
 ## <summary>
-##	Execute MODULE_exec_t in the MODULE domain.
+##	Execute dbus-send_exec_t in the dbus-send domain.
 ## </summary>
 ## <param name="domain">
 ## <summary>
@@ -11,16 +11,16 @@
 ## </summary>
 ## </param>
 #
-interface(`MODULE_domtrans',`
+interface(`dbus-send_domtrans',`
 	gen_require(`
-		type MODULE_t, MODULE_exec_t;
+		type dbus-send_t, dbus-send_exec_t;
 	')
 	hardhat_corecmd_search_bin($1)
-	hardhat_domtrans_pattern($1, MODULE_exec_t, MODULE_t)
+	hardhat_domtrans_pattern($1, dbus-send_exec_t, dbus-send_t)
 ')
 ######################################
 ## <summary>
-##	Execute MODULE in the caller domain.
+##	Execute dbus-send in the caller domain.
 ## </summary>
 ## <param name="domain">
 ##	<summary>
@@ -28,18 +28,17 @@ interface(`MODULE_domtrans',`
 ##	</summary>
 ## </param>
 #
-interface(`MODULE_exec',`
+interface(`dbus-send_exec',`
 	gen_require(`
-		type MODULE_exec_t;
+		type dbus-send_exec_t;
 	')
-
+	hardhat_can_exec($1, dbus-send_exec_t)
 	hardhat_corecmd_search_bin($1)
-	hardhat_can_exec($1, MODULE_exec_t)
 ')
 ########################################
 ## <summary>
-##	Execute MODULE in the MODULE domain, and
-##	allow the specified role the MODULE domain.
+##	Execute dbus-send in the dbus-send domain, and
+##	allow the specified role the dbus-send domain.
 ## </summary>
 ## <param name="domain">
 ##	<summary>
@@ -48,21 +47,21 @@ interface(`MODULE_exec',`
 ## </param>
 ## <param name="role">
 ##	<summary>
-##	The role to be allowed the MODULE domain.
+##	The role to be allowed the dbus-send domain.
 ##	</summary>
 ## </param>
 #
-interface(`MODULE_run',`
+interface(`dbus-send_run',`
 	gen_require(`
-		type MODULE_t;
-		attribute_role MODULE_roles;
+		type dbus-send_t;
+		attribute_role dbus-send_roles;
 	')
-	MODULE_domtrans($1)
-	roleattribute $2 MODULE_roles;
+	dbus-send_domtrans($1)
+	roleattribute $2 dbus-send_roles;
 ')
 ########################################
 ## <summary>
-##	Role access for MODULE
+##	Role access for dbus-send
 ## </summary>
 ## <param name="role">
 ##	<summary>
@@ -75,13 +74,13 @@ interface(`MODULE_run',`
 ##	</summary>
 ## </param>
 #
-interface(`MODULE_role',`
+interface(`dbus-send_role',`
 	gen_require(`
-		type MODULE_t;
-		attribute_role MODULE_roles;
+		type dbus-send_t;
+		attribute_role dbus-send_roles;
 	')
-	roleattribute $1 MODULE_roles;
-	MODULE_domtrans($2)
-	hardhat_ps_process_pattern($2, MODULE_t)
-	allow $2 MODULE_t:process { signull signal sigkill };
+	allow $2 dbus-send_t:process { signull signal sigkill };
+	dbus-send_domtrans($2)
+	hardhat_ps_process_pattern($2, dbus-send_t)
+	roleattribute $1 dbus-send_roles;
 ')
