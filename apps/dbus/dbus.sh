@@ -45,9 +45,6 @@ set -x
 make -f /usr/share/selinux/devel/Makefile dbus.pp || exit
 /usr/sbin/semodule -i dbus.pp
 
-# Generate a man page off the installed module
-sepolicy manpage -p . -d dbus_t
-
 # Fixing the file and directory contexts
 /sbin/restorecon -F -R -v /
 
